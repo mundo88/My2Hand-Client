@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities{
+    .card {
+        @apply bg-white rounded-lg shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]
+    }
+    .main-h {
+        max-height: calc(100vh - 56px);
+    }
+    .scroll:active::-webkit-scrollbar-thumb,
+    .scroll:focus::-webkit-scrollbar-thumb,
+    .scroll:hover::-webkit-scrollbar-thumb {
+        visibility: visible;
+    }
+    .scroll::-webkit-scrollbar-thumb {
+        background-color: darkgrey;
+        visibility: hidden;
+        border-radius: 3px;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        -ms-border-radius: 3px;
+        -o-border-radius: 3px;
+    }
+    .scroll::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+    }
+}
