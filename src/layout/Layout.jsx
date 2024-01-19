@@ -1,11 +1,8 @@
 import React from 'react';
 import Nav from '../components/Nav';
 import { Outlet} from "react-router-dom";
-import { RiHome5Fill,RiHome5Line,RiMessengerFill,RiGamepadFill,RiGamepadLine } from "react-icons/ri";
-import { PiVideoFill,PiVideo } from "react-icons/pi";
-import { IoStorefront,IoStorefrontOutline ,IoFastFoodOutline,IoFastFood } from "react-icons/io5";
 import Button from '../components/Button';
-import {  } from "react-icons/ri";
+import { RiMessengerFill } from "react-icons/ri";
 const Layout = () => {
     return (
            <div className='overflow-hidden h-screen'>
@@ -15,25 +12,21 @@ const Layout = () => {
                     <Nav.Searchbar width='72'/>
                 </Nav.Col>
                 <Nav.Col className={'justify-between'}>
-                    <Nav.Item className='w-full' to='/newfeed'>
-                        <RiHome5Fill size={28} className='group-[.active]:block hidden'/>
-                        <RiHome5Line size={28} className='group-[.active]:hidden block'/>
-                    </Nav.Item>
+                   
                     <Nav.Item className='w-full' to='/shop'>
-                        <IoStorefront size={28} className='group-[.active]:block hidden'/>
-                        <IoStorefrontOutline size={28} className='group-[.active]:hidden block'/>
+                        Cửa Hàng
+                    </Nav.Item>
+                    <Nav.Item className='w-full' to='/newfeed'>
+                        Bảng tin
                     </Nav.Item>
                     <Nav.Item className='w-full' to='/watch'>
-                        <PiVideoFill size={28} className='group-[.active]:block hidden'/>
-                        <PiVideo size={28} className='group-[.active]:hidden block'/>
+                        Watch
                     </Nav.Item>
                     <Nav.Item className='w-full' to='/discover'>
-                        <IoFastFood size={28} className='group-[.active]:block hidden'/>
-                        <IoFastFoodOutline size={28} className='group-[.active]:hidden block'/>
+                        Khám phá
                     </Nav.Item>                    
                     <Nav.Item className='w-full' to='/hot'>
-                        <RiGamepadFill size={28} className='group-[.active]:block hidden'/>
-                        <RiGamepadLine  size={28} className='group-[.active]:hidden block'/>
+                        Hot
                     </Nav.Item>
                 </Nav.Col>
             </Nav>

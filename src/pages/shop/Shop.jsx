@@ -7,10 +7,15 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { Navigation } from 'swiper/modules';
 import Button from '../../components/Button';
-import { FaStar } from "react-icons/fa";
+import { FaStar,FaStarHalfAlt,FaHeart,FaPlay,FaShare,FaComment,FaFacebookMessenger,FaStore} from "react-icons/fa";
 import  Avatar  from "../../components/Avatar";
-import { IoClose } from "react-icons/io5";
 import Product from './Product';
+import { HiArrowLongLeft, HiArrowLongRight  } from "react-icons/hi2";
+import Jordan from "../../assets/images/jordan.png";
+import { BsCartCheckFill } from "react-icons/bs";
+import Dropdown from '../../components/Dropdown';
+import { FaCartShopping } from 'react-icons/fa6';
+import { BiSolidLike } from "react-icons/bi";
 
 const ShopCardContainer = ({children,...props}) => {
     return (
@@ -265,7 +270,7 @@ const Shop = () => {
                                 </div>    
                                 <div className='grid grid-cols-6 gap-4 mt-4'>
                                     {products.slice(0,6).map(product => (
-                                        <Link  onClick={()=>setPopup(true)} className='flex flex-col items-center gap-3 rounded-lg border border-gray-300 hover:shadow-md duration-150 p-4 maxw'>
+                                        <Link  onClick={()=>setPopup(true)} className='flex flex-col items-center gap-3 rounded-lg border border-gray-300 hover:shadow-md duration-150 p-4 '>
                                             <div className=' aspect-square w-full h-auto overflow-hidden rounded-lg'>
                                                 <img src={product.thumbnail} className='w-full h-full object-contain' alt=""  />
                                             </div>
@@ -315,15 +320,181 @@ const Shop = () => {
                     </ShopCardContainer>
                 </div>
             </div> 
-            <div className={`fixed w-screen h-screen top-0 left-0 z-[100] ${popup ? 'visible':'invisible'}`}>
-                <div className={`absolute inset-0 bg-black/80 z-10`} onClick={()=>setPopup(false)}>
+            <div className={`fixed w-screen h-screen top-0 left-0 z-[100] duration-200 ${popup ? 'visible':'invisible'}`}>
+                <div className={`absolute inset-0 bg-black/80 z-10 duration-100 ${popup?'opacity-100':'opacity-0'}`} onClick={()=>setPopup(false)}>
                 </div>
                 <div className='h-full pt-12'>
-                    <div className={`bg-white z-20 relative rounded-t-3xl duration-300 transition-transform h-full ${popup ? 'translate-y-0' : 'translate-y-full'}`}>
-                        <div className='relative '>
-                            <button onClick={()=>setPopup(false)} className='p-2 flex items-center justify-center text-gray-300 hover: absolute right-0 -top-11 rounded-full hover:text-white duration-150'>
-                                <IoClose size={28}></IoClose>
-                            </button>
+                    <div className={`bg-gray-100 z-20 relative rounded-t-3xl duration-300 transition-transform h-full ${popup ? 'translate-y-0' : 'translate-y-full'}`}>
+                        <div className='relative container mx-auto h-full'>
+                            <div className='flex flex-col h-full justify-center pb-12 items-center'>
+                                <div className="grid grid-cols-12 min-h-[456px] gap-20">
+                                    <div className='flex justify-between flex-col col-span-3'>
+                                        <div className=''>
+                                            <p className='text-gray-800 text-xs font-bold'>Giày dép</p>
+                                            <h1 className='text-gray-800 text-3xl font-bold mt-8'>White technical knit fabric hight-tops</h1>
+                                        </div>
+                                        <p className='text-gray-500 text-2xl font-bold'>Running sneakers with thin classic laces</p>
+                                        <div className='flex items-center justify-between gap-1'>
+                                            <div className='w-24 aspect-square overflow-hidden rounded-lg p-2 hover:bg-white bg-white duration-150'>
+                                                <img src={Jordan} alt="" className='w-full h-full object-contain' />
+                                            </div>
+                                            <div className='w-24 aspect-square overflow-hidden rounded-lg p-2 hover:bg-white duration-150'>
+                                                <img src={Jordan} alt="" className='w-full h-full object-contain' />
+                                            </div>
+                                            <div className='w-24 aspect-square overflow-hidden rounded-lg p-2 hover:bg-white duration-150'>
+                                                <img src={Jordan} alt="" className='w-full h-full object-contain' />
+                                            </div>
+                                            <div className='w-24 aspect-square overflow-hidden rounded-lg p-2 hover:bg-white duration-150 relative'>
+                                                <div className='absolute inset-0 bg-black/80 flex items-center justify-center text-white'>
+                                                    <span>+3</span>
+                                                </div>
+                                                <img src={Jordan} alt="" className='w-full h-full object-contain' />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className='col-span-6 flex items-center justify-center'>
+                                        <div className='w-full h-auto relative'>
+                                            <img src={Jordan} alt="" className='w-full h-full object-contain' />
+                                        </div>
+                                    </div>
+                                    <div className="flex justify-between flex-col col-span-3">
+                                        <div className='flex justify-between items-center font-bold'>
+                                            <span className='text-lg text-gray-800'>Price</span>
+                                            <span className='text-2xl text-red-700 font-semibold'>$750</span>
+                                        </div>
+                                        <div className=''>
+                                            <span className='text-lg text-gray-800 font-bold'>Size</span>
+                                            <div className='flex justify-between items-center gap-3 mt-4'>
+                                                <div className='w-full h-auto aspect-square rounded-full font-semibold hover:bg-gray-800 hover:text-white duration-150 bg-gray-800 text-white flex items-center justify-center'>
+                                                    <span>37</span>
+                                                </div>
+                                                <div className='w-full h-auto aspect-square rounded-full font-semibold hover:bg-gray-800 hover:text-white duration-150 border-2 border-gray-800 text-gray-800 flex items-center justify-center'>
+                                                    <span>38</span>
+                                                </div>
+                                                <div className='w-full h-auto aspect-square rounded-full font-semibold hover:bg-gray-800 hover:text-white duration-150 border-2 border-gray-400 text-gray-400 flex items-center justify-center pointer-events-none'>
+                                                    <span>41</span>
+                                                </div>
+                                                <div className='w-full h-auto aspect-square rounded-full font-semibold hover:bg-gray-800 hover:text-white duration-150 border-2 border-gray-800 text-gray-800 flex items-center justify-center'>
+                                                    <span>41</span>
+                                                </div>
+                                                <div className='w-full h-auto aspect-square rounded-full font-semibold hover:bg-gray-800 hover:text-white duration-150 border-2 border-gray-800 text-gray-800 flex items-center justify-center'>
+                                                    <span>42</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className=''>
+                                            <span className='text-lg text-gray-800 font-bold'>Color</span>
+                                            <div className='flex justify-between items-center gap-3 mt-4'>
+                                        
+                                                <div className='w-full h-auto aspect-square rounded-full duration-150 bg-sky-500 border'>
+                                                </div>
+                                                <div className='w-full h-auto aspect-square rounded-full duration-150 bg-yellow-300 border'>
+                                                </div>
+                                                <div className='w-full h-auto aspect-square rounded-full duration-150 bg-green-500 border'>
+                                                </div>
+                                                <div className='w-full h-auto aspect-square rounded-full duration-150 bg-white border'>
+                                                </div>
+                                                <div className='w-full h-auto aspect-square rounded-full duration-150 bg-black border'>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className='flex justify-between items-center'>
+                                            <span className='text-lg text-gray-800 font-bold'>Đánh giá</span>
+                                            <div className='flex items-center justify-center gap-2'>
+                                                <span className='text-gray-800'>
+                                                    <FaStar size={16}/>
+                                                </span>
+                                                <span className='text-gray-800'>
+                                                    <FaStar size={16}/>
+                                                </span>
+                                                <span className='text-gray-800'>
+                                                    <FaStar size={16}/>
+                                                </span>
+                                                <span className='text-gray-800'>
+                                                    <FaStar size={16}/>
+                                                </span>
+                                                <span className='text-gray-800'>
+                                                    <FaStarHalfAlt size={16}/>
+                                                </span>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className='bg-white w-full rounded-t-xl absolute bottom-0 left-0 grid grid-cols-12 py-8 px-12'>
+                                    <div className='flex items-center gap-2 col-span-3'>
+                                        <Button variant='light' size={'lg'}>
+                                            <BiSolidLike  size={24}></BiSolidLike>
+                                            <span>3112</span>
+                                        </Button>
+                                        <Button variant='light' size={'lg'}>
+                                            <FaComment size={24}></FaComment>
+                                            <span>3112</span>
+                                        </Button>
+                                        <Button variant='light' size={'lg'}>
+                                            <BsCartCheckFill size={24}></BsCartCheckFill>
+                                            <span>1212</span>
+                                        </Button>
+                                    </div>
+                                    <div className='flex items-center justify-center gap-6 col-span-6'>
+                                        <Button variant='light' size={'lg'}>
+                                            <HiArrowLongLeft size={24}></HiArrowLongLeft>
+                                        </Button> 
+                                        <Button size='lg-icon'>
+                                            <FaPlay size={16}></FaPlay> 
+                                        </Button>
+                                        <Button variant='light' size={'lg'}>
+                                            <HiArrowLongRight size={24}></HiArrowLongRight>
+                                        </Button> 
+                                    </div>
+                                    <div className='flex items-center justify-end gap-2 col-span-3'>
+                                        <Button variant='black' size='lg'>
+                                            Thêm vào giỏ hàng
+                                        </Button>
+                                        <Button variant='text' size='lg-icon'>
+                                            <FaHeart></FaHeart> 
+                                        </Button>
+                                    </div>
+                                </div>
+                                <div className='absolute top-16 left-0 flex items-center justify-between w-full'>
+                                    <Button onClick={()=>setPopup(false)} className='-ml-6'>
+                                        <HiArrowLongLeft size={24}></HiArrowLongLeft>
+                                        <span>Back</span>
+                                    </Button>
+                                    {/* <Button size='md-icon'>
+                                        <FaCartShopping size={24}></FaCartShopping>
+                                    </Button> */}
+                                    <Dropdown>
+                                        <Dropdown.Button>
+                                        <div className='flex items-center gap-2 p-1.5 rounded-full bg-white hover:shadow-md duration-150'>
+                                            <div className=' flex flex-col pl-3 items-end'>
+                                                <p className='font-semibold text-gray-800 text-sm'>My Store</p>
+                                                <p className='font-semibold text-gray-600 text-xs'>@mundoshop</p>
+                                            </div>
+                                            <Avatar></Avatar>
+                                        </div>
+                                        </Dropdown.Button>
+                                        <Dropdown.DropdownContainer>
+                                            <Dropdown.Item>
+                                                <Dropdown.ItemIcon>
+                                                    <FaFacebookMessenger size={20} />
+                                                </Dropdown.ItemIcon>
+                                                <Dropdown.ItemText>
+                                                    Chat với shop
+                                                </Dropdown.ItemText>
+                                            </Dropdown.Item>
+                                            <Dropdown.Item>
+                                                <Dropdown.ItemIcon>
+                                                    <FaStore size={20} />
+                                                </Dropdown.ItemIcon>
+                                                <Dropdown.ItemText>
+                                                    Xem shop
+                                                </Dropdown.ItemText>
+                                            </Dropdown.Item>
+                                        </Dropdown.DropdownContainer>
+                                    </Dropdown>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

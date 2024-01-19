@@ -7,6 +7,8 @@ const Avatar = ({children,...props}) => {
         'lg':'min-w-12 min-h-12 w-12 h-12',
         'xl':'min-w-14 min-h-14 w-14 h-14',
         '2xl':'min-w-16 min-h-16 w-16 h-16',
+        '3xl':'min-w-18 min-h-18 w-18 h-18',
+        '4xl':'min-w-20 min-h-20 w-20 h-20',
     }
     
     return (

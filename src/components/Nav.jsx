@@ -14,7 +14,7 @@ import Button from './Button';
 
 const NavItem = ({children,...props})=>{
     return (
-        <NavLink to={props.to} className={`flex items-center justify-center text-lg font-medium text-gray-800 hover:text-gray-800 duration-150 group h-11 min-w-28 rounded-lg relative hover:bg-gray-100 [&.active]:text-emerald-700 ${props.className ? props.className : ""}`}>
+        <NavLink to={props.to} className={`flex items-center justify-center text-md font-medium text-gray-800 hover:text-gray-800 duration-150 group h-11 min-w-28 rounded-lg relative hover:bg-gray-100 [&.active]:text-emerald-700 ${props.className ? props.className : ""}`}>
             {({isActive})=>(
                 isActive ? 
                 <>
