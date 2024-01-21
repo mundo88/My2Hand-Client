@@ -7,15 +7,10 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { Navigation } from 'swiper/modules';
 import Button from '../../components/Button';
-import { FaStar,FaStarHalfAlt,FaHeart,FaPlay,FaComment,FaFacebookMessenger,FaStore} from "react-icons/fa";
+import { FaStar} from "react-icons/fa";
 import  Avatar  from "../../components/Avatar";
-import Product from './Product';
-import { HiArrowLongLeft, HiArrowLongRight  } from "react-icons/hi2";
-import Jordan from "../../assets/images/jordan.png";
-import { BsCartCheckFill } from "react-icons/bs";
-import Dropdown from '../../components/Dropdown';
-import { BiSolidLike } from "react-icons/bi";
-
+import Product from '../../components/Product';
+import ProductlModal from './ProductlModal';
 const ShopCardContainer = ({children,...props}) => {
     return (
         <div className='relative max-w-7xl mx-auto w-full'>
@@ -24,13 +19,19 @@ const ShopCardContainer = ({children,...props}) => {
     )
 }
 
-
-
 const Shop = () => {
     const [categories,setCategories] = useState([])
     const [users,setUsers] = useState([])
-    const [popup,setPopup] = useState(0)
+    const [modal,setModal] = useState(0)
+    const [productId,setProductId] = useState(0)
 
+    const handleCloseModal =()=>{
+        setModal(false)
+    }
+    const handleOpenModal =(productId=null)=>{
+        setModal(true)
+        setProductId(productId)
+    }
     useEffect(() =>{
         axios.get('http://localhost:8000/api/users').then((response)=>{
             setUsers(response.data.users);
@@ -55,7 +56,7 @@ const Shop = () => {
     }, 1000);
     return (
         <>
-            <div className={`flex flex-col h-full w-full relative gap-6 bg-gray-100 pb-24 ${popup? 'overflow-hidden':'overflow-auto'}`}>
+            <div className={`flex flex-col h-full w-full relative gap-6 bg-gray-100 pb-12 ${modal? 'overflow-hidden':'overflow-auto'}`}>
                 <div className='w-full relative h-96 min-h-96 overflow-hidden'>
                     <div className='absolute inset-0 bg-black/50'>
                     </div>
@@ -95,14 +96,14 @@ const Shop = () => {
                                                 nextEl: '.button-next',
                                                 prevEl: '.button-prev',
                                             }}>
-                                            {categories.map(category => 
-                                                <SwiperSlide key={category.id}>
-                                                        <Link to={category.url} className='flex flex-col p-2 border rounded-lg group hover:border-emerald-700 duration-150'>
-                                                            <div className="w-full h-auto aspect-square overflow-hidden rounded-lg ">
-                                                                <img src={category.img} alt="" className='w-full h-full object-cover group-hover:scale-105 duration-150' />
-                                                            </div>
-                                                            <p className='text-gray-800 text-sm font-semibold mt-2 text-center'>{category.text}</p>
-                                                        </Link>
+                                            {categories.map((category,index) => 
+                                                <SwiperSlide key={index}>
+                                                    <Link to={category.url} className='flex flex-col p-2 border rounded-lg group hover:border-emerald-700 duration-150'>
+                                                        <div className="w-full h-auto aspect-square overflow-hidden rounded-lg ">
+                                                            <img src={category.img} alt="" className='w-full h-full object-cover group-hover:scale-105 duration-150' />
+                                                        </div>
+                                                        <p className='text-gray-800 text-sm font-semibold mt-2 text-center'>{category.text}</p>
+                                                    </Link>
                                                 </SwiperSlide>
                                             )}
                                             </Swiper>
@@ -148,8 +149,8 @@ const Shop = () => {
                                     prevEl: '.button-prev',
                                 }}>
                                 {products.map(product => 
-                                    <SwiperSlide key={product.id}>
-                                        <Product to={product.id} onClick={()=>setPopup(!popup)} className='flex flex-col border rounded-lg group hover:border-emerald-700 duration-150 overflow-hidden'>
+                                    <SwiperSlide key={product.id} onClick={()=>handleOpenModal(product.id)}>
+                                        <Product className='flex flex-col border rounded-lg group hover:border-emerald-700 duration-150 overflow-hidden'>
                                             <Product.Thumbnail>
                                                 <img src={product.thumbnail} alt="" className='w-full h-full object-contain'/>
                                             </Product.Thumbnail>
@@ -199,8 +200,8 @@ const Shop = () => {
                     <div className='h-full'>
                         <div className='card w-full h-full flex flex-col'>
                             <div className=" border-b border-b-gray-300 flex items-center justify-between px-1">
-                                {tabs.map(item=>(
-                                    <div key={item} onClick={()=>setTab(item)} className={`w-full whitespace-nowrap px-4 py-2 relative text-center border-b-4 translate-y-0.5 hover:text-emerald-700 duration-150 cursor-pointer ${tab ===item ? 'text-emerald-700 border-b-emerald-700':'border-b-transparent text-gray-600'}`}>
+                                {tabs.map((item,index)=>(
+                                    <div key={index} onClick={()=>setTab(item)} className={`w-full whitespace-nowrap px-4 py-2 relative text-center border-b-4 translate-y-0.5 hover:text-emerald-700 duration-150 cursor-pointer ${tab ===item ? 'text-emerald-700 border-b-emerald-700':'border-b-transparent text-gray-600'}`}>
                                         <span className="font-semibold text-sm">{item}</span>
                                     </div>
                                 ))}
@@ -223,7 +224,7 @@ const Shop = () => {
                                         prevEl: '.button-prev',
                                     }}>
                                     {users.map(user => (
-                                        <SwiperSlide>
+                                        <SwiperSlide key={user.id}>
                                             <div className='flex flex-col justify-between rounded-lg p-2 border border-gray-300 h-full gap-3 hover:border-emerald-700 duration-150'>
                                                 <div className='flex items-center justify-center gap-2 mb-2'>
                                                     <Avatar img={user.image}></Avatar>
@@ -268,7 +269,7 @@ const Shop = () => {
                             </div>    
                             <div className='grid grid-cols-6 gap-4 mt-4'>
                                 {products.slice(0,6).map(product => (
-                                    <Link  onClick={()=>setPopup(true)} className='flex flex-col items-center gap-3 rounded-lg border border-gray-300 hover:shadow-md duration-150 p-4 '>
+                                    <div onClick={()=>handleOpenModal(product.id)} key={product.id} className='flex flex-col items-center gap-3 rounded-lg border border-gray-300 hover:shadow-md duration-150 p-4 '>
                                         <div className=' aspect-square w-full h-auto overflow-hidden rounded-lg'>
                                             <img src={product.thumbnail} className='w-full h-full object-contain' alt=""  />
                                         </div>
@@ -279,7 +280,7 @@ const Shop = () => {
                                         <div className='max-w-full'>
                                             <p className='text-sm text-emerald-700 font-semibold mr-2 truncate'>{product.title}</p>
                                         </div>
-                                    </Link>
+                                    </div>
                                 ))}
                             </div>
                         </div>
@@ -295,7 +296,7 @@ const Shop = () => {
                     </div>
                     <div className='mt-6 grid grid-cols-6 gap-4'>
                         {products.map(product => 
-                            <Product to={product.id} key={product.id} onClick={()=>setPopup(true)}>
+                            <Product to={product.id} key={product.id} onClick={()=>handleOpenModal(product.id)} >
                                 <Product.Thumbnail>
                                     <img src={product.thumbnail} alt="" className='w-full h-full object-cover'/>
                                 </Product.Thumbnail>
@@ -317,187 +318,12 @@ const Shop = () => {
                     <Button variant='outline' className='w-fit m-auto'>/ Xem thêm</Button>
                 </ShopCardContainer>
             </div>
-            <div className={`fixed w-screen h-screen top-0 left-0 z-[100] duration-200 ${popup ? 'visible':'invisible'}`}>
-                <div className={`absolute inset-0 bg-black/80 z-10 duration-100 ${popup?'opacity-100':'opacity-0'}`} onClick={()=>setPopup(false)}>
-                </div>
-                <div className='h-full pt-12'>
-                    <div className={`bg-gray-100 z-20 relative rounded-t-3xl duration-300 transition-transform h-full ${popup ? 'translate-y-0' : 'translate-y-full'}`}>
-                        <div className='relative container mx-auto h-full'>
-                            <div className='flex flex-col h-full justify-center pb-12 items-center'>
-                                <div className="grid grid-cols-12 min-h-[456px] gap-20">
-                                    <div className='flex justify-between flex-col col-span-3'>
-                                        <div className=''>
-                                            <p className='text-gray-800 text-xs font-bold'>Giày dép</p>
-                                            <h1 className='text-gray-800 text-3xl font-bold mt-8'>White technical knit fabric hight-tops</h1>
-                                        </div>
-                                        <p className='text-gray-500 text-2xl font-bold'>Running sneakers with thin classic laces</p>
-                                        <div className='flex items-center justify-between gap-1'>
-                                            <div className='w-24 aspect-square overflow-hidden rounded-lg p-2 hover:bg-white bg-white duration-150'>
-                                                <img src={Jordan} alt="" className='w-full h-full object-contain' />
-                                            </div>
-                                            <div className='w-24 aspect-square overflow-hidden rounded-lg p-2 hover:bg-white duration-150'>
-                                                <img src={Jordan} alt="" className='w-full h-full object-contain' />
-                                            </div>
-                                            <div className='w-24 aspect-square overflow-hidden rounded-lg p-2 hover:bg-white duration-150'>
-                                                <img src={Jordan} alt="" className='w-full h-full object-contain' />
-                                            </div>
-                                            <div className='w-24 aspect-square overflow-hidden rounded-lg p-2 hover:bg-white duration-150 relative'>
-                                                <div className='absolute inset-0 bg-black/80 flex items-center justify-center text-white'>
-                                                    <span>+3</span>
-                                                </div>
-                                                <img src={Jordan} alt="" className='w-full h-full object-contain' />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className='col-span-6 flex items-center justify-center'>
-                                        <div className='w-full h-auto relative'>
-                                            <img src={Jordan} alt="" className='w-full h-full object-contain' />
-                                        </div>
-                                    </div>
-                                    <div className="flex justify-between flex-col col-span-3">
-                                        <div className='flex justify-between items-center font-bold'>
-                                            <span className='text-lg text-gray-800'>Price</span>
-                                            <span className='text-2xl text-red-700 font-semibold'>$750</span>
-                                        </div>
-                                        <div className=''>
-                                            <span className='text-lg text-gray-800 font-bold'>Size</span>
-                                            <div className='flex justify-between items-center gap-3 mt-4'>
-                                                <div className='w-full h-auto aspect-square rounded-full font-semibold hover:bg-gray-800 hover:text-white duration-150 bg-gray-800 text-white flex items-center justify-center'>
-                                                    <span>37</span>
-                                                </div>
-                                                <div className='w-full h-auto aspect-square rounded-full font-semibold hover:bg-gray-800 hover:text-white duration-150 border-2 border-gray-800 text-gray-800 flex items-center justify-center'>
-                                                    <span>38</span>
-                                                </div>
-                                                <div className='w-full h-auto aspect-square rounded-full font-semibold hover:bg-gray-800 hover:text-white duration-150 border-2 border-gray-400 text-gray-400 flex items-center justify-center pointer-events-none'>
-                                                    <span>41</span>
-                                                </div>
-                                                <div className='w-full h-auto aspect-square rounded-full font-semibold hover:bg-gray-800 hover:text-white duration-150 border-2 border-gray-800 text-gray-800 flex items-center justify-center'>
-                                                    <span>41</span>
-                                                </div>
-                                                <div className='w-full h-auto aspect-square rounded-full font-semibold hover:bg-gray-800 hover:text-white duration-150 border-2 border-gray-800 text-gray-800 flex items-center justify-center'>
-                                                    <span>42</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className=''>
-                                            <span className='text-lg text-gray-800 font-bold'>Color</span>
-                                            <div className='flex justify-between items-center gap-3 mt-4'>
-                                        
-                                                <div className='w-full h-auto aspect-square rounded-full duration-150 bg-sky-500 border'>
-                                                </div>
-                                                <div className='w-full h-auto aspect-square rounded-full duration-150 bg-yellow-300 border'>
-                                                </div>
-                                                <div className='w-full h-auto aspect-square rounded-full duration-150 bg-green-500 border'>
-                                                </div>
-                                                <div className='w-full h-auto aspect-square rounded-full duration-150 bg-white border'>
-                                                </div>
-                                                <div className='w-full h-auto aspect-square rounded-full duration-150 bg-black border'>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className='flex justify-between items-center'>
-                                            <span className='text-lg text-gray-800 font-bold'>Đánh giá</span>
-                                            <div className='flex items-center justify-center gap-2'>
-                                                <span className='text-gray-800'>
-                                                    <FaStar size={16}/>
-                                                </span>
-                                                <span className='text-gray-800'>
-                                                    <FaStar size={16}/>
-                                                </span>
-                                                <span className='text-gray-800'>
-                                                    <FaStar size={16}/>
-                                                </span>
-                                                <span className='text-gray-800'>
-                                                    <FaStar size={16}/>
-                                                </span>
-                                                <span className='text-gray-800'>
-                                                    <FaStarHalfAlt size={16}/>
-                                                </span>
-                                                
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className='bg-white w-full rounded-t-xl absolute bottom-0 left-0 grid grid-cols-12 py-8 px-12'>
-                                    <div className='flex items-center gap-2 col-span-3'>
-                                        <Button variant='light' size={'lg'}>
-                                            <BiSolidLike  size={24}></BiSolidLike>
-                                            <span>3112</span>
-                                        </Button>
-                                        <Button variant='light' size={'lg'}>
-                                            <FaComment size={24}></FaComment>
-                                            <span>3112</span>
-                                        </Button>
-                                        <Button variant='light' size={'lg'}>
-                                            <BsCartCheckFill size={24}></BsCartCheckFill>
-                                            <span>1212</span>
-                                        </Button>
-                                    </div>
-                                    <div className='flex items-center justify-center gap-6 col-span-6'>
-                                        <Button variant='light' size={'lg'}>
-                                            <HiArrowLongLeft size={24}></HiArrowLongLeft>
-                                        </Button> 
-                                        <Button size='lg-icon'>
-                                            <FaPlay size={16}></FaPlay> 
-                                        </Button>
-                                        <Button variant='light' size={'lg'}>
-                                            <HiArrowLongRight size={24}></HiArrowLongRight>
-                                        </Button> 
-                                    </div>
-                                    <div className='flex items-center justify-end gap-2 col-span-3'>
-                                        <Button variant='black' size='lg'>
-                                            Thêm vào giỏ hàng
-                                        </Button>
-                                        <Button variant='text' size='lg-icon'>
-                                            <FaHeart></FaHeart> 
-                                        </Button>
-                                    </div>
-                                </div>
-                                <div className='absolute top-16 left-0 flex items-center justify-between w-full'>
-                                    <Button onClick={()=>setPopup(false)} className='-ml-6'>
-                                        <HiArrowLongLeft size={24}></HiArrowLongLeft>
-                                        <span>Back</span>
-                                    </Button>
-                                    {/* <Button size='md-icon'>
-                                        <FaCartShopping size={24}></FaCartShopping>
-                                    </Button> */}
-                                    <Dropdown>
-                                        <Dropdown.Button>
-                                        <div className='flex items-center gap-2 p-1.5 rounded-full bg-white hover:shadow-md duration-150'>
-                                            <div className=' flex flex-col pl-3 items-end'>
-                                                <p className='font-semibold text-gray-800 text-sm'>My Store</p>
-                                                <p className='font-semibold text-gray-600 text-xs'>@mundoshop</p>
-                                            </div>
-                                            <Avatar></Avatar>
-                                        </div>
-                                        </Dropdown.Button>
-                                        <Dropdown.DropdownContainer>
-                                            <Dropdown.Item>
-                                                <Dropdown.ItemIcon>
-                                                    <FaFacebookMessenger size={20} />
-                                                </Dropdown.ItemIcon>
-                                                <Dropdown.ItemText>
-                                                    Chat với shop
-                                                </Dropdown.ItemText>
-                                            </Dropdown.Item>
-                                            <Dropdown.Item>
-                                                <Dropdown.ItemIcon>
-                                                    <FaStore size={20} />
-                                                </Dropdown.ItemIcon>
-                                                <Dropdown.ItemText>
-                                                    Xem shop
-                                                </Dropdown.ItemText>
-                                            </Dropdown.Item>
-                                        </Dropdown.DropdownContainer>
-                                    </Dropdown>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {modal && <ProductlModal productId={productId} show={modal} onClose={handleCloseModal}></ProductlModal>}
         </>
     );
 }
 
 export default Shop;
+
+
+

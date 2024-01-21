@@ -139,8 +139,8 @@ const Newfeed = () => {
     if (!stories) return null;
     if (!posts) return null;
     return (
-        <div className='h-full relative grid grid-cols-12 bg-gray-100 items-start min-h-screen overflow-auto'>
-            <div className='col-span-4 sticky top-0 flex'>
+        <div className='h-full relative grid grid-cols-12 bg-gray-100 items-start min-h-screen'>
+            <div className='col-span-4 sticky top-14 flex'>
                 <Sidebar/>
             </div>
             <div className='col-span-4 py-6'>

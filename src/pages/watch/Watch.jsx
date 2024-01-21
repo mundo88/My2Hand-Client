@@ -20,7 +20,7 @@ const SidebarItem= ({children,...props})=>{
 
 const Sidebar = ()=>{
     return (
-        <div className='py-6 px-2 w-80 overflow-y-auto main-h overflow-auto scroll sticky top-0' >
+        <div className='py-6 px-2 w-80 overflow-y-auto main-h overflow-auto scroll sticky top-14' >
             <div className='pb-4 border-b border-b-gray-300'>
 
                 <SidebarItem to={'/video/foru'}>
@@ -118,8 +118,8 @@ const Sidebar = ()=>{
 }
 const Watch = () => {
     return (
-        <div className='h-full w-full grid grid-cols-12 bg-gray-100 min-h-screen overflow-auto'>
-            <div className='col-span-4 sticky top-0'>
+        <div className='h-full w-full grid grid-cols-12 bg-gray-100'>
+            <div className='col-span-4'>
                 <Sidebar/>
             </div>
             <div className='col-span-4 mt-8 mb-8 flex items-center gap-6 flex-col'>

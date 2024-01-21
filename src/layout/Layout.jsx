@@ -5,7 +5,7 @@ import Button from '../components/Button';
 import { RiMessengerFill } from "react-icons/ri";
 const Layout = () => {
     return (
-           <div className='overflow-hidden h-screen'>
+           <>
             <Nav className='px-4 shadow-[0px_1px_3px_0px_#00000024]'>
                 <Nav.Col>
                     <Nav.Logo/>
@@ -36,7 +36,7 @@ const Layout = () => {
                     <RiMessengerFill size={24}/>
                 </Button>
             </div>
-           </div>
+           </>
     );
 }
 

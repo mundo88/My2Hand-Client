@@ -1,12 +1,13 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
 
+
+
 const Product = ({children,...props}) => {
-  return (
-    <Link {...props} className='flex flex-col border rounded-lg group hover:shadow-md overflow-hidden bg-white hover:border-emerald-700 duration-150'>
-        {children}
-    </Link>
-  )
+    return (
+        <Link {...props} className='flex flex-col border rounded-lg group hover:shadow-md overflow-hidden bg-white hover:border-emerald-700 duration-150'>
+            {children}
+        </Link>
+    )
 }
 
 const ProductThumbnail = ({children,...props}) =>{
@@ -42,6 +43,8 @@ const ProductDiscountPercen = ({children,...props}) =>{
         </div>
     )
 }
+
+
 Product.Thumbnail = ProductThumbnail
 Product.Content = ProductContent
 Product.Sold = ProductSold
