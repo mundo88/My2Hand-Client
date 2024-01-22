@@ -133,11 +133,10 @@ const Newfeed = () => {
     const [posts,setpost] = useState([])
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/posts`).then((response) => {
-            setpost(response.data.data);
+            setpost(response.data.posts);
         });
     },[]);
-    if (!stories) return null;
-    if (!posts) return null;
+
     return (
         <div className='h-full relative grid grid-cols-12 bg-gray-100 items-start min-h-screen'>
             <div className='col-span-4 sticky top-14 flex'>

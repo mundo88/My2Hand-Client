@@ -2,7 +2,7 @@
 import axios from 'axios';
 import React, {useEffect,useState} from 'react';
 import { Link } from 'react-router-dom';
-import { FiChevronRight,FiChevronLeft } from 'react-icons/fi';
+import { FiChevronRight,FiChevronLeft,FiSearch } from 'react-icons/fi';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { Navigation } from 'swiper/modules';
@@ -11,6 +11,7 @@ import { FaStar} from "react-icons/fa";
 import  Avatar  from "../../components/Avatar";
 import Product from '../../components/Product';
 import ProductlModal from './ProductlModal';
+import InputField from '../../components/InputField';
 const ShopCardContainer = ({children,...props}) => {
     return (
         <div className={`relative max-w-7xl mx-auto w-full ${props.className}`} >
@@ -57,22 +58,15 @@ const Shop = () => {
     return (
         <>
             <div className={`flex flex-col h-full w-full relative gap-6 bg-gray-100 pb-12 ${modal? 'overflow-hidden':'overflow-auto'}`}>
-                <div className='w-full relative h-96 min-h-96 overflow-hidden'>
-                    <div className='absolute inset-0 bg-black/50'>
-                    </div>
-                    <img className='w-full h-full object-cover' src="https://png.pngtree.com/thumb_back/fw800/background/20230426/pngtree-hanging-on-a-rack-in-dark-room-image_2518732.jpg" alt="" />
-                    <div className='absolute inset-0 py-12 max-w-7xl w-full mx-auto '>
-                        <div className='space-y-2'>
-                            <div className='font-semibold text-white text-xl'>01Oct-31Oct</div>
-                            <div className='text-6xl font-bold text-white uppercase'>#fashion day</div>
-                            <div className='text-xl font-bold text-gray-300'>explore fashion that suits to your</div>
-                            <Button size='md' className='w-fit' variant='primary' rounded='rounded-full'>Xem thêm</Button>
-                        </div>
-                        <div className="flex gap-1.5 mt-12">
-                            <span className='h-2 w-7 bg-emerald-500 rounded-full'></span>
-                            <span className='h-2 w-2 bg-gray-300 rounded-full hover:bg-emerald-500 duration-150'></span>
-                            <span className='h-2 w-2 bg-gray-300 rounded-full hover:bg-emerald-500 duration-150'></span>
-                        </div>
+                <div className='w-full relative overflow-hidden'>
+                    <div className='absolute inset-0 bg-black/50'></div>
+                    <video loop="loop" autoplay="autoplay" preload="" muted="muted" src="https://a.sinaimg.cn/mintra/pic/2112130543/weibo_login.mp4" poster="https://a.sinaimg.cn/mintra/pic/2112130400/18weibo_login.png" class="LoginTopNav_video_1W33g"></video>
+                    <div className='absolute inset-0 max-w-7xl w-full mx-auto flex items-center justify-center'>
+                        <InputField placeholder='Your email or username' size={'lg'} rounded='full' className="w-full max-w-5xl">
+                            <InputField.Icon>
+                                <FiSearch size={24}></FiSearch>
+                            </InputField.Icon>
+                        </InputField>
                     </div>
                 </div>
                 <ShopCardContainer className='-mt-20 grid grid-cols-2 gap-6'>
