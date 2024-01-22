@@ -65,7 +65,7 @@ const Shop = () => {
                         <div className='space-y-2'>
                             <p className='font-semibold text-white text-xl'>01Oct-31Oct</p>
                             <p className='text-6xl font-bold text-white uppercase'>#fashion day</p>
-                            <p className='text-xl font-bold text-gray-300'>Discover fashion that suits to your</p>
+                            <p className='text-xl font-bold text-gray-300'>explore fashion that suits to your</p>
                             <Button size='md' className='w-fit' variant='primary' rounded='rounded-full'>Xem thêm</Button>
                         </div>
                         <div className="flex gap-1.5 mt-12">

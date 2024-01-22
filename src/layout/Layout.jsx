@@ -22,7 +22,7 @@ const Layout = () => {
                     <Nav.Item className='w-full' to='/watch'>
                         Watch
                     </Nav.Item>
-                    <Nav.Item className='w-full' to='/discover'>
+                    <Nav.Item className='w-full' to='/explore'>
                         Khám phá
                     </Nav.Item>                    
                     <Nav.Item className='w-full' to='/hot'>

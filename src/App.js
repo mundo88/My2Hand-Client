@@ -13,7 +13,7 @@ import {
 import Layout from './layout/Layout';
 import Watch from './pages/watch/Watch';
 import Hot from './pages/hot/Hot';
-import Discover from './pages/discover/Discover';
+import Explore from './pages/explore/Explore';
 import Newfeed from './pages/newfeed/Newfeed';
 import AuthLayout from './pages/auth/AuthLayout';
 
@@ -29,7 +29,7 @@ function App() {
                 <Route path="/watch" element={<Watch />}/>
                 <Route path="/watch/:str" element={<Watch />}/>
                 <Route path="/hot" element={<Hot />}/>
-                <Route path="/discover" element={<Discover />}/>
+                <Route path="/Explore" element={<Explore />}/>
                 <Route path="/profile/:int" element={<Newfeed />}/>
               </Route>
               <Route element={<AuthLayout/>}>

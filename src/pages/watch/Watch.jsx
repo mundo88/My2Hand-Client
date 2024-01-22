@@ -35,7 +35,7 @@ const Sidebar = ()=>{
                     </div>
                     <span className='font-semibold'>Đang follow</span>
                 </SidebarItem>
-                <SidebarItem to={'/video/discover'}>
+                <SidebarItem to={'/video/explore'}>
                     <div className={`w-9 h-9 overflow-hidden flex items-center justify-center`}>
                         <TbCompass size={32}/>
                     </div>
