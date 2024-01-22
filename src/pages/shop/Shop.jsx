@@ -58,15 +58,25 @@ const Shop = () => {
     return (
         <>
             <div className={`flex flex-col h-full w-full relative gap-6 bg-gray-100 pb-12 ${modal? 'overflow-hidden':'overflow-auto'}`}>
-                <div className='w-full relative overflow-hidden'>
-                    <div className='absolute inset-0 bg-black/50'></div>
+                <div className='w-full relative overflow-hidden '>
+                    <div className='absolute inset-0 bg-black/80'></div>
                     <video loop="loop" autoplay="autoplay" preload="" muted="muted" src="https://a.sinaimg.cn/mintra/pic/2112130543/weibo_login.mp4" poster="https://a.sinaimg.cn/mintra/pic/2112130400/18weibo_login.png" class="LoginTopNav_video_1W33g"></video>
-                    <div className='absolute inset-0 max-w-7xl w-full mx-auto flex items-center justify-center'>
-                        <InputField placeholder='Your email or username' size={'lg'} rounded='full' className="w-full max-w-5xl">
-                            <InputField.Icon>
-                                <FiSearch size={24}></FiSearch>
-                            </InputField.Icon>
-                        </InputField>
+                    <div className='absolute inset-0 max-w-7xl w-full mx-auto flex items-center justify-center mb-20'>
+                        <div className='w-full max-w-4xl flex flex-col items-center gap-6'>
+                            <p className='text-4xl text-white font-bold'>My2Hand</p>
+                            <div className='w-full'>
+
+                                <InputField placeholder='Your email or username' size={'lg'}>
+                                    <InputField.Icon>
+                                        <FiSearch size={24}></FiSearch>
+                                    </InputField.Icon>
+                                    <InputField.Input type='search' placeholder='Tìm kiếm trên My2hand'/>
+                                    <Button className='h-full' variant='primary' rounded='rounded-none'>
+                                        Tìm kiếm
+                                    </Button>
+                                </InputField>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <ShopCardContainer className='-mt-20 grid grid-cols-2 gap-6'>
