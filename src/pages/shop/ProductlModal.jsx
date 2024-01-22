@@ -46,7 +46,7 @@ const ProductlModal = ({ children,show,onClose,onOpen,productId, ...props }) => 
     }, [show]); 
     useEffect(()=>{
         if(productId){
-             axios.get(`https://dummyjson.com/products/${productId}`).then(response => {
+             axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/products/${productId}`).then(response => {
                 setData(response.data)
             })
         }return setData(false)
@@ -71,13 +71,13 @@ const ProductlModal = ({ children,show,onClose,onOpen,productId, ...props }) => 
                                     <div className="flex justify-between flex-col col-span-3">
                                     <div>
                                         <p className="text-gray-800 text-xs font-bold">
-                                            {data.category}
+                                            {data.category.name}
                                         </p>
                                         <h1 className="text-gray-800 text-3xl font-bold mt-8">
                                             {data.title}
                                         </h1>
                                     </div>
-                                    <p className="text-gray-500 text-2xl font-bold">
+                                    <p className="text-gray-500 text-2xl font-bold line-clamp-4">
                                         {data.description}
                                     </p>
                                     <div className="flex items-center -mx-2">

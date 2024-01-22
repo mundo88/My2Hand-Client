@@ -19,7 +19,7 @@ const MySwiperSlide =(props,key)=>{
         <SwiperSlide className="h-full" key={key}>
             <div className="w-full h-full rounded-lg relative overflow-hidden group">
                 <div className="w-full h-full">
-                    <img src={props.img} alt="" className="w-full h-full object-cover"/>
+                    <img src={props.images[0]} alt="" className="w-full h-full object-cover"/>
                 </div>
                 <div className="absolute inset-0 rounded-lg group-hover:opacity-100 bg-black/60 opacity-0 duration-150 flex flex-col justify-between">
                     <div className="p-4 flex items-center justify-between">
@@ -41,7 +41,7 @@ const MySwiperSlide =(props,key)=>{
                             Áo mùa đông chất liệu vải nhập đài loan
                         </p>
                         <p className="text-sm text-white bg-emerald-600 w-fit py-1 px-2 font-semibold rounded-md mt-1.5">
-                            125.000đ
+                            ${props.price}
                         </p>
                     </div>
                 </div>
@@ -55,11 +55,16 @@ const Home = () => {
     useEffect(()=>{
         console.log(process.env.REACT_APP_API_ENDPOINT)
         axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/categories`).then((response)=>{
-            console.log(response.data)
-            setCategories(response.data.data);
+            console.log(response.data.categories)
+            setCategories(response.data.categories);
         })
     },[])
-    
+    const [products,setProducts] = useState([])
+    useEffect(() =>{
+        axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/products`).then((response)=>{
+            setProducts(response.data.products);
+        })
+    },[])
     return (
         <div className='min-h-screen h-screen'>
             <div className='h-full grid grid-cols-12'>
@@ -103,8 +108,9 @@ const Home = () => {
                                 <IoSearch size={24}></IoSearch>
                             </div>
                         </div>
-                        <div className='mt-8 flex justify-between space-x-4'>
+                        <div className='mt-8 flex justify-between space-x-4 w-full'>
                             <Swiper 
+                                className="w-full"
                                 spaceBetween={10}
                                 slidesPerView={9.3}
                                 slidesPerGroup={3}
@@ -114,13 +120,13 @@ const Home = () => {
                                     prevEl: '.button-prev',
                                 }}>
                                     
-                                {categories.map((item,index) =>
+                                {categories.map((category,index) =>
                                 <SwiperSlide>
-                                    <Link to={item.url} className='flex flex-col space-y-2 group' key={index}>
+                                    <Link to={category.id} className='flex flex-col space-y-2 group' key={index}>
                                         <div className='w-full h-auto aspect-square overflow-hidden rounded-lg'>
-                                            <img src={item.img} alt=""  className='w-full h-full object-cover group-hover:scale-110 duration-150'/>
+                                            <img src={category.image} alt=""  className='w-full h-full object-cover group-hover:scale-110 duration-150'/>
                                         </div>
-                                        <span className='text-sm text-center group-hover:text-emerald-700 duration-150'>{item.text}</span>
+                                        <span className='text-sm text-center group-hover:text-emerald-700 duration-150 truncate'>{category.name}</span>
                                     </Link>
                                 </SwiperSlide>
                                 )}
@@ -147,8 +153,8 @@ const Home = () => {
                             className="mySwiper w-full relative h-full"
                             spaceBetween={24}
                             slidesPerView={3.3}>
-                                {categories.map((item,index)=>
-                                    MySwiperSlide(item,index)
+                                {products.map((product,index)=>
+                                    MySwiperSlide(product,index)
                                 )}
                             </Swiper>
                         </div>
