@@ -125,14 +125,14 @@ const Newfeed = () => {
     const [tab,setTab] = useState('trending')
     const [stories,setStories] = useState([])
     useEffect(() => {
-        axios.get('http://localhost:8000/api/stories').then((response) => {
+        axios.get('https://my2-hand-server.vercel.app/api/stories').then((response) => {
             setStories(response.data.data);
         });
     },[]);
     
     const [posts,setpost] = useState([])
     useEffect(() => {
-        axios.get('http://localhost:8000/api/posts').then((response) => {
+        axios.get('https://my2-hand-server.vercel.app/api/posts').then((response) => {
             setpost(response.data.data);
         });
     },[]);

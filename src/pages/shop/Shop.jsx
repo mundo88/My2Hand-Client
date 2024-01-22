@@ -33,18 +33,18 @@ const Shop = () => {
         setProductId(productId)
     }
     useEffect(() =>{
-        axios.get('http://localhost:8000/api/users').then((response)=>{
+        axios.get('https://my2-hand-server.vercel.app/api/users').then((response)=>{
             setUsers(response.data.users);
         })
     },[])
     const [products,setProducts] = useState([])
     useEffect(() =>{
-        axios.get('http://localhost:8000/api/products').then((response)=>{
+        axios.get('https://my2-hand-server.vercel.app/api/products').then((response)=>{
             setProducts(response.data.products);
         })
     },[])
     useEffect(()=>{
-        axios.get('http://localhost:8000/api/categories').then((response)=>{
+        axios.get('https://my2-hand-server.vercel.app/api/categories').then((response)=>{
             setCategories(response.data.data);
         })
     },[])    
