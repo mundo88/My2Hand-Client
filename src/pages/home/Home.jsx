@@ -49,12 +49,12 @@ const MySwiperSlide =(props,key)=>{
         </SwiperSlide>
     )
 }
-
 const Home = () => {
     const [categories,setCategories] = useState([])
     const [tab,setTab] = useState('foru')
     useEffect(()=>{
-        axios.get('https://my2-hand-server.vercel.app/api/categories').then((response)=>{
+        console.log(process.env.REACT_APP_API_ENDPOINT)
+        axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/categories`).then((response)=>{
             console.log(response.data)
             setCategories(response.data.data);
         })
