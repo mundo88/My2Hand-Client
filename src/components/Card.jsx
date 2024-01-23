@@ -9,11 +9,14 @@ import { Link } from "react-router-dom";
 import Avatar from "./Avatar";
 import { Interweave } from 'interweave';
 import { CiImageOn,CiLocationOn  } from "react-icons/ci";
-import { IoBagHandleOutline,IoShareSocialOutline,IoPause,IoVolumeMedium  } from "react-icons/io5";
+import { IoBagHandleOutline,IoShareSocialOutline,IoPause,IoVolumeHigh,IoVolumeMute ,IoPlay } from "react-icons/io5";
 import {RiMessengerFill } from "react-icons/ri";
 import { MdOutlineInsertEmoticon,MdOutlineBookmarkBorder } from "react-icons/md";
 import { IoIosShareAlt } from "react-icons/io";
 import testVideo from "../assets/video/pexels.mp4"
+import { useEffect, useRef, useState } from "react";
+import ReactPlayer from "react-player";
+ 
 const CreatePostCard = () => {
     return (
         <div className='p-6 card'>
@@ -143,67 +146,101 @@ const PostCard = ({children,props}) => {
     )
 }
 
-const WatchCard =({children,props}) => {
-    return (
-        <div className='flex relative justify-center w-[calc(56.25vh_-_72px)] h-[calc(100vh_-_128px)] min-h-[560px] group'>
-            <div className='rounded-2xl overflow-hidden shadow-lg w-full h-full relative'>
-                <div className="absolute inset-0 flex flex-col justify-between p-4 z-10 bg-gradient-to-b from-black/60 via-transparent to-black/60 opacity-0 duration-150 group-hover:opacity-100">
-                    <div className="flex items-center justify-between">
-                        <button className="p-2 flex items-center justify-center text-white hover:text-gray-100 duration-150">
-                            <IoPause size={26}/>
-                        </button>
-                        <button className="p-2 flex items-center justify-center text-white hover:text-gray-100 duration-150">
-                            <IoVolumeMedium size={26}/>
-                        </button>
-                     
-                    </div>
-                    <div>
-                        <div className="flex items-center gap-2">
-                            <Avatar></Avatar>
-                            <p className='font-semibold text-white text-md'>Minh Phùng</p>
-                            <Button variant='light' size='sm' rounded='rounded-full'className='!px-3'>Theo dõi</Button>
-                        </div>
-                        <div className="text-white">
-                            #vang10k #lactay ✨ Lắc Nam Đúc Rồng
-                        </div>
-                    </div>
-                </div>
-                <video className='w-full h-full' thumbnail='https://i.vimeocdn.com/video/1784225672-a190cda358ccee184a6c86808891078c18f7c93a69268eb38d63a612fce5575b-d?mw=800&q=85' src={testVideo}></video>
-            </div>
+const ShortCard =({children,props}) => {
+    const vidRef = useRef(0)
+    const [playing,setPlaying] = useState(0)
+    const [vidTime,setVidTime] = useState(0)
+    const [currentTime,setCurrentTime] = useState(0)
+    const [muteVid,setMuteVid] = useState(0)
 
-            <div className='flex flex-col justify-end gap-3 absolute bottom-0 -right-16'>
-                <div className="flex flex-col items-center space-y-1">
-                    <Button variant='light' size='lg-icon' rounded='rounded-full'>
-                        <TbHeartFilled size={24}></TbHeartFilled>
-                    </Button>
-                    <span className="text-sm font-semibold">75</span>
+    const handleMuteVid = ()=>{
+        setMuteVid(!muteVid)
+    }
+    const handleCurrentTime = (time)=>{
+        setCurrentTime(time.playedSeconds)
+        if (time.playedSeconds===vidTime) {
+            setPlaying(false)
+        }
+        console.log(time)
+    }
+    const handleVideoTime = (time)=>{
+        setVidTime(time)
+        console.log(time)
+    }
+    const handlePlayVideo = () => {
+        setPlaying(!playing)
+    }
+
+    return (
+        <div className='relative w-[calc(56.25vh_-_72px)] h-[calc(100vh_-_128px)] min-h-[560px] shadow-lg rounded-2xl overflow-hidden group flex items-center justify-center'>
+            <div className="absolute inset-0 flex flex-col justify-between z-10 group-hover:opacity-100 opacity-0" >
+                <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/60 opacity-0 duration-150 " onClick={handlePlayVideo}></div>
+                <div className="flex items-center justify-between p-4">
+                    <button className="p-2 flex items-center justify-center text-white hover:text-gray-100 duration-150" onClick={handlePlayVideo}>
+                        {playing ? <IoPause size={26}/> : <IoPlay size={26}/> }
+                    </button>
+                    <button onClick={handleMuteVid} className="p-2 flex items-center justify-center text-white hover:text-gray-100 duration-150 relative group/vol">
+                        {muteVid ? 
+                        <IoVolumeMute size={26}/>
+                        :
+                        <IoVolumeHigh size={26}/>
+                        }
+                    </button>
                 </div>
-                <div className="flex flex-col items-center space-y-1">
-                    <Button variant='light' size='lg-icon' rounded='rounded-full'>
-                    <BiSolidMessageDetail size={24}></BiSolidMessageDetail>
-                    </Button>
-                    <span className="text-sm font-semibold">12</span>
+                <div className="flex flex-col gap-3">
+                    <div className="flex justify-between items-end p-4 ">
+                        <div>
+                            <div className="flex items-center gap-2">
+                                <Avatar online={true}></Avatar>
+                                <p className='font-semibold text-white text-md'>Minh Phùng</p>
+                                <Button variant='light' size='sm' rounded='rounded-full'className='!px-3'>Theo dõi</Button>
+                            </div>
+                            <div className="text-white">
+                                #vang10k #lactay ✨ Lắc Nam Đúc Rồng
+                            </div>
+                        </div>
+                        <div className='flex flex-col justify-end gap-3'>
+                            <div className="flex flex-col items-center space-y-1">
+                                <Button variant='light' size='lg-icon' rounded='rounded-full'>
+                                    <TbHeartFilled size={24}></TbHeartFilled>
+                                </Button>
+                                <span className="text-sm font-semibold text-white">75</span>
+                            </div>
+                            <div className="flex flex-col items-center space-y-1">
+                                <Button variant='light' size='lg-icon' rounded='rounded-full'>
+                                    <BiSolidMessageDetail size={24}></BiSolidMessageDetail>
+                                </Button>
+                                <span className="text-sm font-semibold text-white">12</span>
+                            </div>
+                            <div className="flex flex-col items-center space-y-1">
+                                <Button variant='light' size='lg-icon' rounded='rounded-full'>
+                                    <IoIosShareAlt size={24}></IoIosShareAlt>
+                                </Button>
+                                <span className="text-sm font-semibold text-white">3</span>
+                            </div>
+                            <Button variant='light' size='lg-icon' rounded='rounded-full'>
+                                <HiOutlineDotsHorizontal size={24}></HiOutlineDotsHorizontal>
+                            </Button>
+                        </div>
+                    </div>
+                    <div className="w-full h-1 relative bg-gray-100">
+                        <div className={`absolute bottom-0 left-0 bg-emerald-500 h-1`} style={{width:`${(currentTime/vidTime)*100}%`}}>
+                        </div>
+                    </div>
                 </div>
-                <div className="flex flex-col items-center space-y-1">
-                    <Button variant='light' size='lg-icon' rounded='rounded-full'>
-                        <IoIosShareAlt size={24}></IoIosShareAlt>
-                    </Button>
-                    <span className="text-sm font-semibold">3</span>
-                </div>
-                <Button variant='light' size='lg-icon' rounded='rounded-full'>
-                    <HiOutlineDotsHorizontal size={24}></HiOutlineDotsHorizontal>
-                </Button>
+            </div>
+            <div>
+                <ReactPlayer muted={muteVid} ref={vidRef} playing={playing} onProgress={handleCurrentTime} onDuration={handleVideoTime} className='w-full h-full' width={'100%'} height={'100%'} url={testVideo} thumbnail={'https://i.vimeocdn.com/video/1756262335-6320948b5cab017a918b10924cfa6fce650f7237807b7b812fa726b3c67541a0-d?mw=600&mh=1067'}></ReactPlayer>
             </div>
         </div>
     )
 }
 
-
 export default PostCard
 export  {
     StoryCard,
     CreatePostCard,
-    WatchCard
+    ShortCard
 }
 
 

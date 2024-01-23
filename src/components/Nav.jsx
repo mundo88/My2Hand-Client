@@ -9,7 +9,7 @@ import { IoSearchOutline } from "react-icons/io5";
 import { FaBell,FaFacebookMessenger  } from "react-icons/fa6";
 import { BsGridFill } from "react-icons/bs";
 import Button from './Button';
-
+import Avatar from './Avatar';
 
 
 const NavItem = ({children,...props})=>{
@@ -96,9 +96,7 @@ const Nav = ({children,...props}) => {
                 }
                 <Dropdown>
                     <Dropdown.Button>
-                        <div className='rounded-full w-10 h-10 overflow-hidden relative'>
-                            <img src={"https://phanmemmkt.vn/wp-content/uploads/2022/11/avatar-tet-2023-cute-31.jpg"} alt="your profile avatar" className='w-full h-full object-cover' />
-                        </div>
+                        <Avatar></Avatar>
                     </Dropdown.Button>
                     <Dropdown.DropdownContainer>
                         <Dropdown.Item>

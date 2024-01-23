@@ -12,12 +12,16 @@ const DropdownContext = createContext({
     setOpen: () => {},
 });
 // dropdown content for displaying dropdown
-const DropdownContainer =({ children })=> {
+const DropdownContainer =({ children ,...props})=> {
     const { open } = useContext(DropdownContext); // get the context
+    const postion = {
+        top:'mb-2 bottom-full',
+        bottom:'mt-2 top-full'
+    }
     return (
       <>
         {open &&
-            <div className={`absolute max-w-xs w-56 p-2 mt-2 bg-white rounded-lg shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] top-full right-0 z-50`} >
+            <div className={`absolute max-w-xs w-56 p-2 ${props.postion ? postion[props.postion]:'mt-2 top-full'} bg-white rounded-lg shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] right-0 z-50`} >
                 {children}
             </div>
         }
@@ -63,9 +67,9 @@ const DropdownButton =({ children, ...props }) => {
       console.log(open);
     }
     return (
-        <Link className='cursor-pointer' onClick={toggleOpen} {...props}>
+        <div className='cursor-pointer' onClick={toggleOpen} {...props}>
             {children}
-        </Link>
+        </div>
     )
 };
 const Dropdown = ({children,...props}) => {

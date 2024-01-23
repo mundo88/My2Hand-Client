@@ -24,6 +24,7 @@ import { Navigation, Autoplay, Thumbs } from "swiper/modules";
 import { FaPause } from "react-icons/fa6";
 import "swiper/css/thumbs";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const ProductlModal = ({ children,show,onClose,onOpen,productId, ...props }) => {
     const swiperRef = useRef(null);
@@ -60,12 +61,24 @@ const ProductlModal = ({ children,show,onClose,onOpen,productId, ...props }) => 
     };
     return(
         <div className={`fixed w-screen h-screen top-0 left-0 z-[100] duration-200`} {...props}>
+
             <div className={`absolute inset-0 bg-black/80 z-10 duration-100`} onClick={()=>onClose()}></div>
             <div className="h-full pt-12">
                 <div className={`bg-gray-100 z-20 relative rounded-t-3xl duration-300 transition-transform h-full ${show? 'ModalOpen':'ModalClosed'}`}>
                     {
                         data ?
                         <div className="relative container mx-auto h-full">
+                            <div className="absolute -left-20 top-1/2 -translate-y-1/2 flex flex-col gap-4 items-center justify-center">
+                                <Button variant='light' size='lg-icon'> 
+                                    <FaComment size={20}/>    
+                                </Button>
+                                <Button variant='light' size='lg-icon'> 
+                                    <FaHeart size={20}/>    
+                                </Button>
+                                <Button variant='light' size='lg-icon'> 
+                                    <FaFacebookMessenger size={20}/>    
+                                </Button>
+                            </div>
                             <div className="flex h-full justify-center pb-12 items-center">
                                 <div className="grid grid-cols-12 gap-20 ">
                                     <div className="flex justify-between flex-col col-span-3">
@@ -137,19 +150,19 @@ const ProductlModal = ({ children,show,onClose,onOpen,productId, ...props }) => 
                                         Size
                                         </span>
                                         <div className="flex justify-between items-center gap-3 mt-4">
-                                        <div className="w-full h-auto aspect-square rounded-full font-semibold hover:bg-gray-800 hover:text-white duration-150 bg-gray-800 text-white flex items-center justify-center">
+                                        <div className="w-full h-auto aspect-square rounded-xl font-semibold hover:bg-gray-800 hover:text-white duration-150 bg-gray-800 text-white flex items-center justify-center">
                                             <span>37</span>
                                         </div>
-                                        <div className="w-full h-auto aspect-square rounded-full font-semibold hover:bg-gray-800 hover:text-white duration-150 border-2 border-gray-800 text-gray-800 flex items-center justify-center">
+                                        <div className="w-full h-auto aspect-square rounded-xl font-semibold hover:bg-gray-800 hover:text-white duration-150 border-2 border-gray-800 text-gray-800 flex items-center justify-center">
                                             <span>38</span>
                                         </div>
-                                        <div className="w-full h-auto aspect-square rounded-full font-semibold hover:bg-gray-800 hover:text-white duration-150 border-2 border-gray-400 text-gray-400 flex items-center justify-center pointer-events-none">
+                                        <div className="w-full h-auto aspect-square rounded-xl font-semibold hover:bg-gray-800 hover:text-white duration-150 border-2 border-gray-400 text-gray-400 flex items-center justify-center pointer-events-none">
                                             <span>41</span>
                                         </div>
-                                        <div className="w-full h-auto aspect-square rounded-full font-semibold hover:bg-gray-800 hover:text-white duration-150 border-2 border-gray-800 text-gray-800 flex items-center justify-center">
+                                        <div className="w-full h-auto aspect-square rounded-xl font-semibold hover:bg-gray-800 hover:text-white duration-150 border-2 border-gray-800 text-gray-800 flex items-center justify-center">
                                             <span>41</span>
                                         </div>
-                                        <div className="w-full h-auto aspect-square rounded-full font-semibold hover:bg-gray-800 hover:text-white duration-150 border-2 border-gray-800 text-gray-800 flex items-center justify-center">
+                                        <div className="w-full h-auto aspect-square rounded-xl font-semibold hover:bg-gray-800 hover:text-white duration-150 border-2 border-gray-800 text-gray-800 flex items-center justify-center">
                                             <span>42</span>
                                         </div>
                                         </div>
@@ -159,11 +172,11 @@ const ProductlModal = ({ children,show,onClose,onOpen,productId, ...props }) => 
                                         Color
                                         </span>
                                         <div className="flex justify-between items-center gap-3 mt-4">
-                                        <div className="w-full h-auto aspect-square rounded-full duration-150 bg-sky-500 border"></div>
-                                        <div className="w-full h-auto aspect-square rounded-full duration-150 bg-yellow-300 border"></div>
-                                        <div className="w-full h-auto aspect-square rounded-full duration-150 bg-green-500 border"></div>
-                                        <div className="w-full h-auto aspect-square rounded-full duration-150 bg-white border"></div>
-                                        <div className="w-full h-auto aspect-square rounded-full duration-150 bg-black border"></div>
+                                        <div className="w-full h-auto aspect-square rounded-xl duration-150 bg-sky-500 border"></div>
+                                        <div className="w-full h-auto aspect-square rounded-xl duration-150 bg-yellow-300 border"></div>
+                                        <div className="w-full h-auto aspect-square rounded-xl duration-150 bg-green-500 border"></div>
+                                        <div className="w-full h-auto aspect-square rounded-xl duration-150 bg-white border"></div>
+                                        <div className="w-full h-auto aspect-square rounded-xl duration-150 bg-black border"></div>
                                         </div>
                                     </div>
                                     <div className="flex justify-between items-center">
@@ -190,20 +203,37 @@ const ProductlModal = ({ children,show,onClose,onOpen,productId, ...props }) => 
                                     </div>
                                     </div>
                                 </div>
-                                <div className="bg-white w-full rounded-t-xl absolute bottom-0 left-0 grid grid-cols-12 py-8 px-12">
+                                <div className="bg-white w-full rounded-t-xl absolute bottom-0 left-0 grid grid-cols-12 py-6 px-12">
                                     <div className="flex items-center gap-2 col-span-3">
-                                    <Button variant="light" size={"lg"}>
-                                        <BiSolidLike size={24}></BiSolidLike>
-                                        <span>3112</span>
-                                    </Button>
-                                    <Button variant="light" size={"lg"}>
-                                        <FaComment size={24}></FaComment>
-                                        <span>3112</span>
-                                    </Button>
-                                    <Button variant="light" size={"lg"}>
-                                        <BsCartCheckFill size={24}></BsCartCheckFill>
-                                        <span>1212</span>
-                                    </Button>
+                                    <Dropdown>
+                                        <Dropdown.Button>
+                                            <div className="flex items-center gap-2 duration-150">
+                                                <Avatar size='lg' online={true}></Avatar>
+                                                <div className=" flex flex-col">
+                                                    <div className="flex gap-1 items-center">
+                                                        <p className="font-semibold text-gray-800 text-md">My Store</p>
+                                                        <p className="font-semibold text-gray-800 text-md">·</p>
+                                                        <p className='font-semibold text-emerald-700 text-md duration-150 hover:underline'>Theo dõi</p>
+                                                    </div>
+                                                    <p className="font-semibold text-gray-600 text-xs">@mundoshop</p>
+                                                </div>
+                                            </div>
+                                        </Dropdown.Button>
+                                        <Dropdown.DropdownContainer postion='top'>
+                                            <Dropdown.Item>
+                                            <Dropdown.ItemIcon>
+                                                <FaFacebookMessenger size={20} />
+                                            </Dropdown.ItemIcon>
+                                            <Dropdown.ItemText>Chat với shop</Dropdown.ItemText>
+                                            </Dropdown.Item>
+                                            <Dropdown.Item>
+                                            <Dropdown.ItemIcon>
+                                                <FaStore size={20} />
+                                            </Dropdown.ItemIcon>
+                                            <Dropdown.ItemText>Xem shop</Dropdown.ItemText>
+                                            </Dropdown.Item>
+                                        </Dropdown.DropdownContainer>
+                                    </Dropdown>
                                     </div>
                                     <div className="flex items-center justify-center gap-6 col-span-6">
                                     <Button
@@ -248,35 +278,6 @@ const ProductlModal = ({ children,show,onClose,onOpen,productId, ...props }) => 
                                         <span>Back</span>
                                     </Button>
 
-                                    <Dropdown>
-                                    <Dropdown.Button>
-                                        <div className="flex items-center gap-2 p-1.5 rounded-full bg-white hover:shadow-md duration-150">
-                                        <div className=" flex flex-col pl-3 items-end">
-                                            <p className="font-semibold text-gray-800 text-sm">
-                                            My Store
-                                            </p>
-                                            <p className="font-semibold text-gray-600 text-xs">
-                                            @mundoshop
-                                            </p>
-                                        </div>
-                                        <Avatar></Avatar>
-                                        </div>
-                                    </Dropdown.Button>
-                                    <Dropdown.DropdownContainer>
-                                        <Dropdown.Item>
-                                        <Dropdown.ItemIcon>
-                                            <FaFacebookMessenger size={20} />
-                                        </Dropdown.ItemIcon>
-                                        <Dropdown.ItemText>Chat với shop</Dropdown.ItemText>
-                                        </Dropdown.Item>
-                                        <Dropdown.Item>
-                                        <Dropdown.ItemIcon>
-                                            <FaStore size={20} />
-                                        </Dropdown.ItemIcon>
-                                        <Dropdown.ItemText>Xem shop</Dropdown.ItemText>
-                                        </Dropdown.Item>
-                                    </Dropdown.DropdownContainer>
-                                    </Dropdown>
                                 </div>
                             </div>
                         </div>

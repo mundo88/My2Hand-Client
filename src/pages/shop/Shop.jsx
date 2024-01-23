@@ -65,7 +65,6 @@ const Shop = () => {
                         <div className='w-full max-w-4xl flex flex-col items-center gap-6'>
                             <p className='text-4xl text-white font-bold'>My2Hand</p>
                             <div className='w-full'>
-
                                 <InputField placeholder='Your email or username' size={'lg'}>
                                     <InputField.Icon>
                                         <FiSearch size={24}></FiSearch>
