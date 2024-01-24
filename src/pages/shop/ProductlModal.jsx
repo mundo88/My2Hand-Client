@@ -6,7 +6,7 @@ import React, {
 import { HiArrowLongLeft, HiArrowLongRight } from "react-icons/hi2";
 import { BsCartCheckFill } from "react-icons/bs";
 import Dropdown from "../../components/Dropdown";
-import { BiSolidLike } from "react-icons/bi";
+import { BiDotsHorizontal, BiSolidLike } from "react-icons/bi";
 import {
   FaStar,
   FaStarHalfAlt,
@@ -25,6 +25,8 @@ import { FaPause } from "react-icons/fa6";
 import "swiper/css/thumbs";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { TbListDetails } from "react-icons/tb";
+import { BiMessageDetail } from "react-icons/bi";
 
 const ProductlModal = ({ children,show,onClose,onOpen,productId, ...props }) => {
     const swiperRef = useRef(null);
@@ -70,13 +72,13 @@ const ProductlModal = ({ children,show,onClose,onOpen,productId, ...props }) => 
                         <div className="relative container mx-auto h-full">
                             <div className="absolute -left-20 top-1/2 -translate-y-1/2 flex flex-col gap-4 items-center justify-center">
                                 <Button variant='light' size='lg-icon'> 
-                                    <FaComment size={20}/>    
+                                    <TbListDetails  size={20}/>    
                                 </Button>
                                 <Button variant='light' size='lg-icon'> 
-                                    <FaHeart size={20}/>    
+                                    <BiMessageDetail size={20}/>    
                                 </Button>
                                 <Button variant='light' size='lg-icon'> 
-                                    <FaFacebookMessenger size={20}/>    
+                                    <BiDotsHorizontal size={20}/>    
                                 </Button>
                             </div>
                             <div className="flex h-full justify-center pb-12 items-center">

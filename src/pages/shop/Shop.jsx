@@ -3,6 +3,7 @@ import axios from 'axios';
 import React, {useEffect,useState} from 'react';
 import { Link } from 'react-router-dom';
 import { FiChevronRight,FiChevronLeft,FiSearch } from 'react-icons/fi';
+
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { Navigation } from 'swiper/modules';

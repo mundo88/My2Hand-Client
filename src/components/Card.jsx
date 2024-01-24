@@ -16,8 +16,6 @@ import { IoIosShareAlt } from "react-icons/io";
 import testVideo from "../assets/video/pexels.mp4"
 import { useEffect, useRef, useState } from "react";
 import ReactPlayer from "react-player";
-import { handler } from "@tailwindcss/line-clamp";
- 
 const CreatePostCard = () => {
     return (
         <div className='p-6 card'>
@@ -175,7 +173,7 @@ const ShortCard =({children,url,...props}) => {
     return (
         <div className='relative w-[calc(56.25vh_-_72px)] h-[calc(100vh_-_128px)] bg-neutral-900 min-h-[560px] shadow-lg rounded-2xl overflow-hidden group flex items-center justify-center' key={props.key}>
             <div className="absolute inset-0 flex flex-col justify-between z-10 " >
-                <div className="absolute inset-0  opacity-0 duration-150" onClick={handlePlayVideo}></div>
+                <div className="absolute inset-0 opacity-0 duration-150" onClick={handlePlayVideo}></div>
                 <div className="flex items-center justify-between p-4 group-hover:opacity-100 opacity-0">
                     <button className="p-2 flex items-center justify-center text-white hover:text-gray-100 duration-150" onClick={handlePlayVideo}>
                         {playing ? <IoPause size={26}/> : <IoPlay size={26}/> }
@@ -224,7 +222,7 @@ const ShortCard =({children,url,...props}) => {
                             </Button>
                         </div>
                     </div>
-                    <div className="w-full h-1 relative bg-gray-100">
+                    <div className="w-full h-1 relative bg-gray-100 opacity-0 group-hover:opacity-100">
                         <div className={`absolute bottom-0 left-0 bg-emerald-500 h-1`} style={{width:`${(currentTime/vidTime)*100}%`}}>
                         </div>
                     </div>
