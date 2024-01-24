@@ -111,21 +111,22 @@ const Sidebar = ()=>{
     )
 }
 const Watch = () => {
+    const [urls,setUrls] = useState([])
+    useEffect(()=>{
+        axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/youtube/playlist`).then((response)=>{
+            setUrls(response.data.youtube);
+            console.log(response.data.youtube)
+        })
+    },[])    
     return (
         <div className=' grid grid-cols-12 bg-gray-100'>
             <div className='col-span-4'>
                 <Sidebar/>
             </div>
             <div className='col-span-4 py-8 items-center justify-center flex flex-col gap-8'>
-                <ShortCard></ShortCard>
-                <ShortCard></ShortCard>
-                <ShortCard></ShortCard>
-                <ShortCard></ShortCard>
-                <ShortCard></ShortCard>
-                <ShortCard></ShortCard>
-                <ShortCard></ShortCard>
-                <ShortCard></ShortCard>
-                <ShortCard></ShortCard>
+                {urls.map((url,index)=>(
+                    <ShortCard key={index} url={url.url}></ShortCard>
+                ))}
             </div>
         </div>
     );

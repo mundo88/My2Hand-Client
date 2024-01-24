@@ -16,6 +16,7 @@ import { IoIosShareAlt } from "react-icons/io";
 import testVideo from "../assets/video/pexels.mp4"
 import { useEffect, useRef, useState } from "react";
 import ReactPlayer from "react-player";
+import { handler } from "@tailwindcss/line-clamp";
  
 const CreatePostCard = () => {
     return (
@@ -146,13 +147,13 @@ const PostCard = ({children,props}) => {
     )
 }
 
-const ShortCard =({children,props}) => {
+const ShortCard =({children,url,...props}) => {
     const vidRef = useRef(0)
-    const [playing,setPlaying] = useState(0)
+    const [playing,setPlaying] = useState(false)
     const [vidTime,setVidTime] = useState(0)
     const [currentTime,setCurrentTime] = useState(0)
-    const [muteVid,setMuteVid] = useState(0)
-
+    const [muteVid,setMuteVid] = useState(false)
+    const [like,setLike] = useState(0)
     const handleMuteVid = ()=>{
         setMuteVid(!muteVid)
     }
@@ -161,21 +162,21 @@ const ShortCard =({children,props}) => {
         if (time.playedSeconds===vidTime) {
             setPlaying(false)
         }
-        console.log(time)
     }
     const handleVideoTime = (time)=>{
         setVidTime(time)
-        console.log(time)
     }
     const handlePlayVideo = () => {
         setPlaying(!playing)
     }
-
+    const handleLike = () => {
+        setLike(!like)
+    }
     return (
-        <div className='relative w-[calc(56.25vh_-_72px)] h-[calc(100vh_-_128px)] min-h-[560px] shadow-lg rounded-2xl overflow-hidden group flex items-center justify-center'>
-            <div className="absolute inset-0 flex flex-col justify-between z-10 group-hover:opacity-100 opacity-0" >
-                <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/60 opacity-0 duration-150 " onClick={handlePlayVideo}></div>
-                <div className="flex items-center justify-between p-4">
+        <div className='relative w-[calc(56.25vh_-_72px)] h-[calc(100vh_-_128px)] bg-neutral-900 min-h-[560px] shadow-lg rounded-2xl overflow-hidden group flex items-center justify-center' key={props.key}>
+            <div className="absolute inset-0 flex flex-col justify-between z-10 " >
+                <div className="absolute inset-0  opacity-0 duration-150" onClick={handlePlayVideo}></div>
+                <div className="flex items-center justify-between p-4 group-hover:opacity-100 opacity-0">
                     <button className="p-2 flex items-center justify-center text-white hover:text-gray-100 duration-150" onClick={handlePlayVideo}>
                         {playing ? <IoPause size={26}/> : <IoPlay size={26}/> }
                     </button>
@@ -187,7 +188,7 @@ const ShortCard =({children,props}) => {
                         }
                     </button>
                 </div>
-                <div className="flex flex-col gap-3">
+                <div className="flex flex-col gap-3 relative">
                     <div className="flex justify-between items-end p-4 ">
                         <div>
                             <div className="flex items-center gap-2">
@@ -199,10 +200,10 @@ const ShortCard =({children,props}) => {
                                 #vang10k #lactay ✨ Lắc Nam Đúc Rồng
                             </div>
                         </div>
-                        <div className='flex flex-col justify-end gap-3'>
+                        <div className='flex flex-col justify-end gap-2'>
                             <div className="flex flex-col items-center space-y-1">
-                                <Button variant='light' size='lg-icon' rounded='rounded-full'>
-                                    <TbHeartFilled size={24}></TbHeartFilled>
+                                <Button variant='light' size='lg-icon' rounded='rounded-full' onClick={handleLike}>
+                                    <TbHeartFilled size={24}  className={`duration-150 ${like ? 'text-red-600 animate-jump animate-once animate-ease-linear' :''}`}></TbHeartFilled>
                                 </Button>
                                 <span className="text-sm font-semibold text-white">75</span>
                             </div>
@@ -230,7 +231,7 @@ const ShortCard =({children,props}) => {
                 </div>
             </div>
             <div>
-                <ReactPlayer muted={muteVid} ref={vidRef} playing={playing} onProgress={handleCurrentTime} onDuration={handleVideoTime} className='w-full h-full' width={'100%'} height={'100%'} url={testVideo} thumbnail={'https://i.vimeocdn.com/video/1756262335-6320948b5cab017a918b10924cfa6fce650f7237807b7b812fa726b3c67541a0-d?mw=600&mh=1067'}></ReactPlayer>
+                <ReactPlayer muted={muteVid} ref={vidRef} playing={playing} onProgress={handleCurrentTime} onDuration={handleVideoTime} className='absolute top-0 left-0' width={'100%'} height={'100%'} url={url?url:testVideo} thumbnail={'https://i.vimeocdn.com/video/1756262335-6320948b5cab017a918b10924cfa6fce650f7237807b7b812fa726b3c67541a0-d?mw=600&mh=1067'}></ReactPlayer>
             </div>
         </div>
     )
