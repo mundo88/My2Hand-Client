@@ -6,12 +6,11 @@ import { IoSearch } from "react-icons/io5";
 import { Link } from 'react-router-dom';
 import { useState } from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
-
 import 'swiper/css';
+import { Navigation } from "swiper/modules";
 import { LuHeart } from "react-icons/lu";
 import { useEffect } from "react";
 import axios from "axios";
-import { Navigation } from "swiper/modules";
 
 
 const MySwiperSlide =(props,key)=>{
@@ -119,7 +118,6 @@ const Home = () => {
                                     nextEl: '.button-next',
                                     prevEl: '.button-prev',
                                 }}>
-                                    
                                 {categories.map((category,index) =>
                                 <SwiperSlide>
                                     <Link to={category.id} className='flex flex-col space-y-2 group' key={index}>

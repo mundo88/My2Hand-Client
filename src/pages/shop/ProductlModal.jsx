@@ -132,7 +132,7 @@ const ProductlModal = ({ children,show,onClose,onOpen,productId, ...props }) => 
                                             onBeforeInit={(swiper) => {
                                                 swiperRef.current = swiper;
                                             }}
-                                        >
+                                            >
                                             {data.images&&data.images.map((image,index)=>(
                                                 <SwiperSlide key={index}>
                                                     <img src={image} alt="" className="w-full h-full object-contain" />

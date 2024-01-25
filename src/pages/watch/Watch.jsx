@@ -3,8 +3,6 @@ import {
     TbHomeHeart,TbUsers,TbCompass,TbLivePhoto,TbBrandYoutube,
     TbBookmarks,TbCloudDownload,TbEyeHeart,TbAppWindow
 } from "react-icons/tb";
-
-
 import { NavLink } from 'react-router-dom';
 import Avatar from '../../components/Avatar';
 import Button from '../../components/Button';
@@ -28,69 +26,68 @@ const Sidebar = ()=>{
     },[])
     return (
         <div className='py-6 px-2 w-80 overflow-y-auto main-h overflow-auto scroll sticky top-14' >
-            <div className='pb-4 border-b border-b-gray-300'>
-
+            <div className=''>
                 <SidebarItem to={'/watch/foru'}>
                     <div className={`w-9 h-9 overflow-hidden flex items-center justify-center`}>
-                        <TbHomeHeart size={32}/>
+                        <TbHomeHeart size={28}/>
                     </div>
-                    <span className='font-semibold'>Dành cho bạn</span>
+                    <span>Dành cho bạn</span>
                 </SidebarItem>
                 <SidebarItem to={'/watch/short'}>
                     <div className={`w-9 h-9 overflow-hidden flex items-center justify-center`}>
                         <SiShortcut size={28}/>
                     </div>
-                    <span className='font-semibold'>Short</span>
+                    <span>Short</span>
                 </SidebarItem>
                 <SidebarItem to={'/watch/following'}>
                     <div className={`w-9 h-9 overflow-hidden flex items-center justify-center`}>
-                        <TbUsers size={32}/>
+                        <TbUsers size={28}/>
                     </div>
-                    <span className='font-semibold'>Đang follow</span>
+                    <span>Đang follow</span>
                 </SidebarItem>
                 <SidebarItem to={'/watch/explore'}>
                     <div className={`w-9 h-9 overflow-hidden flex items-center justify-center`}>
-                        <TbCompass size={32}/>
+                        <TbCompass size={28}/>
                     </div>
-                    <span className='font-semibold'>Khám phá</span>
+                    <span>Khám phá</span>
                 </SidebarItem>
                 <SidebarItem to={'/watch/onlive'}>
                     <div className={`w-9 h-9 overflow-hidden flex items-center justify-center`}>
-                        <TbLivePhoto size={32}/>
+                        <TbLivePhoto size={28}/>
                     </div>
-                    <span className='font-semibold'>Live</span>
+                    <span>Live</span>
                 </SidebarItem>
             </div>
-            <div className='py-4 border-b border-b-gray-30'>
-                <p className="text-lg font-semibold mb-2 bg-gradient-to-r from-violet-700 via-emerald-600 to-blue-800  to-blue-500 bg-clip-text text-transparent px-2">Bạn</p>
+            <div className=''>
+                <p className="mb-2 bg-gradient-to-r from-violet-700 via-emerald-600 to-blue-800  to-blue-500 bg-clip-text text-transparent px-2">Bạn</p>
                 <SidebarItem to={'/profile/watch'}>
                     <div className={`w-9 h-9 overflow-hidden flex items-center justify-center`}>
                         <TbBrandYoutube size={32}/>
                     </div>
-                    <span className='font-semibold'>Kênh của bạn</span>
+                    <span>Kênh của bạn</span>
                 </SidebarItem>
                 <SidebarItem to={'/watch/favourite'}>
                     <div className={`w-9 h-9 overflow-hidden flex items-center justify-center`}>
                         <TbBookmarks size={32}/>
                     </div>
-                    <span className='font-semibold'>Đã lưu</span>
+                    <span>Đã lưu</span>
                 </SidebarItem>
                 <SidebarItem to={'/watch/downloaded'}>
                     <div className={`w-9 h-9 overflow-hidden flex items-center justify-center`}>
                         <TbCloudDownload size={32}/>
                     </div>
-                    <span className='font-semibold'>Nội dung tải xuống</span>
+                    <span>Nội dung tải xuống</span>
                 </SidebarItem>
                 <SidebarItem to={'/watch/watched'}>
                     <div className={`w-9 h-9 overflow-hidden flex items-center justify-center`}>
                         <TbEyeHeart size={32}/>
                     </div>
-                    <span className='font-semibold'>watch đã xem</span>
+                    <span>Xem lại</span>
                 </SidebarItem>
             </div>            
-            <div className='pb-4 border-b border-b-gray-300'>
+            <div className=''>
                 <p className="text-lg font-semibold mb-2 bg-gradient-to-r from-violet-700 via-emerald-600 to-blue-800 bg-clip-text text-transparent px-2 pt-4">Shop nổi bật</p>
-                {users.map(user=>(
+                {users.slice(0,6).map(user=>(
                     <SidebarItem to={'/profile/@mundo'} className='px-2 flex items-center py-1.5 hover:bg-gray-200 rounded-lg duration-150 gap-3 [&.active]:text-emerald-700 [&.active]:bg-emerald-50 text-gray-800'>
                         <Avatar img={user.image}/>
                         <span className='font-semibold'>{user.username}</span>
@@ -124,6 +121,7 @@ const Watch = () => {
                 <Sidebar/>
             </div>
             <div className='col-span-4 py-8 items-center justify-center flex flex-col gap-8'>
+                <ShortCard key={111}></ShortCard>
                 {urls.map((url,index)=>(
                     <ShortCard key={index} url={url.url}></ShortCard>
                 ))}
