@@ -5,19 +5,18 @@ import React, {
 } from "react";
 import { HiArrowLongLeft, HiArrowLongRight } from "react-icons/hi2";
 import { BsCartCheckFill } from "react-icons/bs";
-import Dropdown from "../../components/Dropdown";
+import Dropdown from "./Dropdown";
 import { BiDotsHorizontal, BiSolidLike } from "react-icons/bi";
 import {
   FaStar,
   FaStarHalfAlt,
   FaHeart,
   FaPlay,
-  FaComment,
   FaFacebookMessenger,
   FaStore,
 } from "react-icons/fa";
-import Button from "../../components/Button";
-import Avatar from "../../components/Avatar";
+import Button from "./Button";
+import Avatar from "./Avatar";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Navigation, Autoplay, Thumbs } from "swiper/modules";

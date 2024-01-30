@@ -17,18 +17,16 @@ import { Navigation } from 'swiper/modules';
 import { FiPlus,FiChevronRight ,FiChevronLeft  } from "react-icons/fi";
 import PostCard, {StoryCard,CreatePostCard} from "../../components/Card";
 import axios from "axios";
-import ProductlModal from '../shop/ProductlModal'; 
-
+import ProductlModal from '../../components/ProductlModal'; 
+import Avatar from '../../components/Avatar';
 
 const Sidebar = () => {
     return (
-        <div className='min-w-80 py-6 main-h overflow-auto scroll'>
+        <div className='min-w-80 py-6 main-h overflow-auto scroll min-h-screen'>
             <div className='w-full flex flex-col'>
-                <div className='flex flex-col mx-4 px-2 pb-4 border-b border-b-gray-300'>
+                <div className='flex flex-col mx-4 px-2 pb-2'>
                     <div className='flex gap-2 items-center'>
-                        <div className='w-10 h-10 overflow-hidden rounded-full'>
-                            <img src="https://phanmemmkt.vn/wp-content/uploads/2022/11/avatar-tet-2023-cute-31.jpg" className='object-cover' alt="" />
-                        </div>
+                        <Avatar></Avatar>
                         <div>
                             <div className="flex items-center gap-2">
                                 <p className="text-gray-800 font-semibold">Minh Phùng</p>
@@ -39,25 +37,8 @@ const Sidebar = () => {
                             <p className='text-gray-600 text-sm'>Developer & Designer</p>
                         </div>
                     </div>
-                    <div className='flex justify-between mt-3'>
-                        <div className='flex flex-col items-center'>
-                            <p className='text-xs text-gray-600 font-medium'>Followers</p>
-                            <p className='text-gray-800 font-bold text-lg'>2.1m</p>
-                        </div>
-                        <div className='flex flex-col items-center'>
-                            <p className='text-xs text-gray-600 font-medium'>Following</p>
-                            <p className='text-gray-800 font-bold text-lg'>10k</p>
-                        </div>
-                        <div className='flex flex-col items-center'>
-                            <p className='text-xs text-gray-600 font-medium'>Post</p>
-                            <p className='text-gray-800 font-bold text-lg'>100</p>
-                        </div>
-                    </div>
-                    <Button to='/profile/1212' variant='primary' className='mt-4'>
-                        Xem trang cá nhân
-                    </Button>
                 </div>
-                <div className='mx-4 mt-4 '>
+                <div className='mx-4'>
                     <div className='px-2 flex items-center py-1.5 hover:bg-gray-200 rounded-lg duration-150 gap-3'>
                         <div className='w-9 h-9 overflow-hidden'>
                             <div className='w-full h-full bg-[url(https://static.xx.fbcdn.net/rsrc.php/v3/yz/r/4GR4KRf3hN2.png)]' style={{backgroundPosition:'0 -296px'}}></div>
@@ -124,9 +105,9 @@ const Sidebar = () => {
 
 const Newfeed = () => {
     const [tab,setTab] = useState('trending')
-    const [stories,setStories] = useState([])
-    const [modal,setModal] = useState(0)
-    const [productId,setProductId] = useState(0)
+    const [stories,setStories] = useState(null)
+    const [modal,setModal] = useState(false)
+    const [productId,setProductId] = useState(null)
 
     const handleCloseModal =()=>{
         setModal(false)
@@ -141,7 +122,7 @@ const Newfeed = () => {
         });
     },[]);
     
-    const [posts,setpost] = useState([])
+    const [posts,setpost] = useState(0)
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/posts`).then((response) => {
             setpost(response.data.posts);
@@ -191,11 +172,29 @@ const Newfeed = () => {
                                             </div>
                                         </div>
                                     </SwiperSlide>
-                                    {stories.map(story =>
-                                        <SwiperSlide>
-                                            <StoryCard props={story}  key={story.id}/>   
+                         
+                                    {stories ? 
+                                    stories.map((story,index) =>(
+                                        <SwiperSlide key={index}>
+                                            <StoryCard props={story}/>   
                                         </SwiperSlide>
-                                    )}
+                                    ))
+                                    :
+                                    <>
+                                        <SwiperSlide>
+                                            <StoryCard.Loader/>   
+                                        </SwiperSlide>
+                                        <SwiperSlide>
+                                            <StoryCard.Loader/>   
+                                        </SwiperSlide>
+                                        <SwiperSlide>
+                                            <StoryCard.Loader/>   
+                                        </SwiperSlide>
+                                        <SwiperSlide>
+                                            <StoryCard.Loader/>   
+                                        </SwiperSlide>
+                                    </>
+                                    }
                                 </Swiper>
                                 <div >
                                     <button  className='button-next w-10 h-10 bg-white shadow-md text-gray-600 rounded-full flex items-center justify-center absolute top-1/2 -translate-y-1/2 right-5 z-10 active:scale-95 hover:bg-gray-100 duration-150 [&.swiper-button-disabled]:opacity-0'>
@@ -208,17 +207,21 @@ const Newfeed = () => {
                             </div>
                         </div>
                         <div className='flex gap-6 flex-col'>
-                            {
+                            {posts ?
                                 posts.map(post => (
                                     <PostCard post={post} handlePostDetail={handleOpenModal}/> 
-                                ))  
+                                )) :
+                                <>
+                                    <PostCard.Loader/> 
+                                    <PostCard.Loader/> 
+                                </>
                             }        
                         </div>
                     </div>
                 </div>
-                <div className='col-span-4 py-6 flex justify-end items-end sticky top-0'>
+                <div className='col-span-4 py-6 flex justify-end items-end sticky top-14'>
                     <div className="w-80 flex flex-col pr-6">
-                        <div className='space-y-4 pb-4 border-b border-b-gray-300'>
+                        <div className='space-y-4 pb-4'>
                             <p className='text-lg mb-2 bg-gradient-to-r from-violet-700 via-emerald-600 to-blue-500 bg-clip-text text-transparent font-bold'>Trending Hastag</p>
                             <div className='flex flex-col'>
                                 <Link className='py-2 space-y-1 flex flex-col'>
@@ -251,7 +254,7 @@ const Newfeed = () => {
                                 </Link>
                             </div>
                         </div>
-                        <div className='py-4'>
+                        <div className=''>
                             <p className='text-lg mb-2 bg-gradient-to-r from-violet-700 via-emerald-600 to-blue-500 bg-clip-text text-transparent font-bold'>Shop của bạn</p>
                             <div className='px-2 flex items-center py-2 hover:bg-gray-200 rounded-lg duration-150 gap-3'>
                                 <div className='w-9 h-9 overflow-hidden bg-gray-200 text-gray-800 flex items-center justify-center rounded-full'>

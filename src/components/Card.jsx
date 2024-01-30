@@ -55,7 +55,6 @@ const CreatePostCard = () => {
 }
 
 const StoryCard =({children,props})=>{
-    console.log(props)
     return (
         <Link {...props} to={props.story.url} className='rounded-lg h-56 card overflow-hidden relative group flex'>
             <div className='absolute inset-0 rounded-lg'>
@@ -68,7 +67,16 @@ const StoryCard =({children,props})=>{
         </Link>
     )
 }
-
+const StoryCardLoader =({children,props})=>{
+    return (
+        <div className='rounded-lg h-56 card overflow-hidden relative group flex bg-black/60 w-full'>
+            <div className='w-full h-full bg-black/60 relative flex flex-col justify-between p-3'>
+                <div className="w-10 h-10 bg-gray-200 animate-pulse rounded-full"></div>
+                <div className="w-24 h-4 rounded-full bg-gray-200 animate-pulse"></div>
+            </div>
+        </div>
+    )
+}
 const PostCard = ({children,post,handlePostDetail,...props}) => {
     const swiperRef = useRef(null);
     const nextRef = useRef(null)
@@ -76,13 +84,7 @@ const PostCard = ({children,post,handlePostDetail,...props}) => {
     const paginationRef = useRef(null)
     const [_, setInit] = useState(false)
     const [like,setLike] = useState(false)
-    const pagination = {   
-        el : paginationRef.current,
-        clickable: true,
-        renderBullet: function (index, className) {
-          return `<div class="w-2 h-2 bg-gray-100 rounded-full [&.swiper-pagination-bullet-active]:w-5 [&.swiper-pagination-bullet-active]:bg-emerald-500 ${className}"></div>`;
-        }
-    }
+
     const handleLike = ()=>{
         setLike(!like)
     }
@@ -111,7 +113,12 @@ const PostCard = ({children,post,handlePostDetail,...props}) => {
             <div className='bg-gray-100 overflow-hidden relative'>  
                 <Swiper
                     modules={[Navigation,Pagination]}
-                    pagination={pagination}
+                    pagination={{   
+                        el : paginationRef.current,
+                        clickable: true,
+                        renderBullet: function (index, className) {
+                          return (`<div className="w-2 h-2 bg-gray-100 rounded-full [&.swiper-pagination-bullet-active]:w-5 [&.swiper-pagination-bullet-active]:bg-emerald-500 ${className}"></div>`)
+                    }}}
                     navigation={{
                         nextEl: nextRef.current,
                         prevEl: prevRef.current,
@@ -119,9 +126,7 @@ const PostCard = ({children,post,handlePostDetail,...props}) => {
                     onBeforeInit={(swiper) => {
                         swiperRef.current = swiper;
                     }}
-                    onInit={(swiper) => {
-                        setInit(true)
-                    }}
+                    onInit={() => setInit(true)}
                 >
                     {post.product.images.map((image,index)=>(
                         <SwiperSlide key={index}>
@@ -200,8 +205,24 @@ const PostCard = ({children,post,handlePostDetail,...props}) => {
         </div>        
     )
 }
+const PostCardLoader = ({children,...props}) =>{
+    return (
+        <div className="card">
+            <div className="p-4 flex gap-2">
+                <div className="w-10 h-10 bg-gray-200 animate-pulse rounded-full"></div>
+                <div className="flex flex-col gap-2">
+                    <div className="w-36 h-4 rounded-full bg-gray-200 animate-pulse"></div>
+                    <div className="w-24 h-4 rounded-full bg-gray-200 animate-pulse"></div>
+                </div>
+            </div>
+            <div className="w-full h-auto aspect-square bg-gray-200 animate-pulse"></div>
+            <div className="p-4">
 
-const ShortCard =({children,url,...props}) => {
+            </div>
+        </div>
+    )
+}
+const ShortCard =({children,video,...props}) => {
     const vidRef = useRef(0)
     const [playing,setPlaying] = useState(false)
     const [vidTime,setVidTime] = useState(0)
@@ -227,10 +248,10 @@ const ShortCard =({children,url,...props}) => {
         setLike(!like)
     }
     return (
-        <div className='relative w-[calc(56.25vh_-_72px)] h-[calc(100vh_-_128px)] bg-neutral-900 min-h-[560px] shadow-lg rounded-2xl  group flex items-center justify-center' key={props.key}>
+        <div className='relative w-[calc(56.25vh_-_72px)] h-[calc(100vh_-_128px)] bg-neutral-900 min-h-[560px] shadow-lg rounded-md  group flex items-center justify-center' key={props.key}>
             <div className="flex flex-col justify-between z-10 h-full w-full" >
                 <div className="absolute inset-0 opacity-0 duration-150" onClick={handlePlayVideo}></div>
-                <div className="flex items-center justify-between p-4 group-hover:opacity-100 opacity-0 bg-gradient-to-b from-black/60 via-black/30 to-transparent rounded-t-2xl">
+                <div className="flex items-center justify-between p-4 group-hover:opacity-100 opacity-0 bg-gradient-to-b from-black/60 via-black/30 to-transparent rounded-t-md duration-150">
                     <button className="p-2 flex items-center justify-center text-white hover:text-gray-100 duration-150" onClick={handlePlayVideo}>
                         {playing ? <IoPause size={26}/> : <IoPlay size={26}/> }
                     </button>
@@ -243,59 +264,116 @@ const ShortCard =({children,url,...props}) => {
                     </button>
                 </div>
                 <div className='flex flex-col justify-end gap-2 absolute bottom-0 -right-16'>
-                    <div className="flex flex-col items-center space-y-1">
-                        <Button variant='light' size='lg-icon' rounded='rounded-full' onClick={handleLike}>
+                    <div className="flex flex-col items-center">
+                        <Button variant='secondary' size='lg-icon' rounded='rounded-full' onClick={handleLike}>
                             <TbHeartFilled size={24}  className={`duration-150 ${like ? 'text-red-600 animate-jump animate-once animate-ease-linear' :''}`}></TbHeartFilled>
                         </Button>
                         <span className="text-sm font-semibold text-gray-800">75</span>
                     </div>
-                    <div className="flex flex-col items-center space-y-1">
-                        <Button variant='light' size='lg-icon' rounded='rounded-full'>
+                    <div className="flex flex-col items-center">
+                        <Button variant='secondary' size='lg-icon' rounded='rounded-full'>
                             <BiSolidMessageDetail size={24}></BiSolidMessageDetail>
                         </Button>
                         <span className="text-sm font-semibold text-gray-800">12</span>
                     </div>
-                    <div className="flex flex-col items-center space-y-1">
-                        <Button variant='light' size='lg-icon' rounded='rounded-full'>
+                    <div className="flex flex-col items-center">
+                        <Button variant='secondary' size='lg-icon' rounded='rounded-full'>
                             <IoIosShareAlt size={24}></IoIosShareAlt>
                         </Button>
                         <span className="text-sm font-semibold text-gray-800">3</span>
                     </div>
-                    <Button variant='light' size='lg-icon' rounded='rounded-full'>
+                    <Button variant='secondary' size='lg-icon' rounded='rounded-full'>
                         <HiOutlineDotsHorizontal size={24}></HiOutlineDotsHorizontal>
                     </Button>
                 </div>
-                <div className="flex flex-col gap-3 relative overflow-hidden rounded-b-2xl bg-gradient-to-t from-black/60 via-black/60 to-transparent">
+                <div className="flex flex-col gap-3 relative overflow-hidden rounded-b-md bg-gradient-to-t from-black/60 via-black/60 to-transparent">
                     <div className="flex justify-between items-end p-4">
                         <div>
                             <div className="flex items-center gap-2">
                                 <Avatar online={true}></Avatar>
-                                <p className='font-semibold text-white text-md'>Minh Phùng</p>
+                                <p className='font-semibold text-white text-md'>{video.author}</p>
                                 <Button variant='light' size='sm' rounded='rounded-full'className='!px-3'>Theo dõi</Button>
                             </div>
-                            <div className="text-white">
-                                #vang10k #lactay ✨ Lắc Nam Đúc Rồng
+                            <div className="text-white text-sm font-semibold line-clamp-2 mt-1">
+                                {video.title}
                             </div>
                         </div>
                     </div>
-                    <div className="w-full h-1 relative bg-gray-100 opacity-0 group-hover:opacity-100">
+                    <div className="w-full h-1 relative bg-gray-100 opacity-0 group-hover:opacity-100 duration-150">
                         <div className={`absolute bottom-0 left-0 bg-emerald-500 h-1`} style={{width:`${(currentTime/vidTime)*100}%`}}>
                         </div>
                     </div>
                 </div>
             </div>
             <div className="absolute inset-0 ">
-                <ReactPlayer muted={muteVid} ref={vidRef} playing={playing} onProgress={handleCurrentTime} onDuration={handleVideoTime} className='rounded-2xl overflow-hidden relative w-full h-full' width={'100%'} height={'100%'} url={url?url:testVideo} thumbnail={'https://i.vimeocdn.com/video/1756262335-6320948b5cab017a918b10924cfa6fce650f7237807b7b812fa726b3c67541a0-d?mw=600&mh=1067'}></ReactPlayer>
+                <ReactPlayer muted={muteVid} ref={vidRef} playing={playing} onProgress={handleCurrentTime} onDuration={handleVideoTime} className='rounded-md overflow-hidden relative w-full h-full' width={'100%'} height={'100%'} url={video.url?video.url:testVideo}></ReactPlayer>
             </div>
         </div>
     )
 }
 
+
+const WatchCardContent =({children,views,title,avatar,author,publish_date,...props}) =>{
+    return(
+        <div className={`p-2 ${avatar&&'flex gap-2'}`}>
+            {avatar&&<Avatar></Avatar>}
+            <div>
+                {title&&<div className="text-sm font-semibold text-gray-800 line-clamp-2">{title}</div>}
+                {author&&<div className="text-xs text-gray-500">{author}</div>}
+                <div className="text-xs text-gray-500 flex items-center gap-1">
+                    {views&&<span>{new Intl.NumberFormat( 'vi-Vn', { maximumFractionDigits: 1,notation: "compact" , compactDisplay: "short" }).format(views)} lượt xem</span>}
+                    {publish_date&&
+                        <>
+                            <span className="w-[3px] h-[3px] bg-gray-500 rounded-full"></span>
+                            <span>{publish_date}</span>
+                        </>
+                    }
+                </div>
+            </div>
+        </div>
+    )
+}
+
+const WatchCardThumbnail =({children,thumbnail,...props}) =>{
+    return (
+        <div className="rounded-md overflow-hidden w-full relative m-0 aspect-video min-w-[168px] min-h-[94px]">
+            <img src={thumbnail} className="w-full h-full object-cover group-hover/thumbnail:scale-110 duration-150" alt="" />
+        </div>
+    )
+}
+const WatchCard = ({children,videoId,...props}) =>{
+    return (
+        <Link to={`/watch/${videoId}`} className={`group/thumbnail ${props.className || ''}`}>
+            {children}
+        </Link>
+    )
+}
+const WatchCardLoader = () =>{
+    return (
+        <div >
+            <div className="aspect-video rounded-md overflow-hidden bg-gray-200 animate-pulse w-full"></div>
+            <div className="p-2 flex gap-2">
+                <div className="w-10 h-10 rounded-full bg-gray-200 animate-pulse"></div>
+                <div className="flex flex-col gap-1">
+                    <div className="w-32 h-5 rounded-full bg-gray-200 animate-pulse"></div>
+                    <div className="w-16 h-5 rounded-full bg-gray-200 animate-pulse"></div>
+                </div>
+            </div>
+        </div>
+    )
+}
+PostCard.Loader = PostCardLoader
+StoryCard.Loader = StoryCardLoader
+WatchCard.Loader = WatchCardLoader
+WatchCard.Thumbnail = WatchCardThumbnail
+WatchCard.Content = WatchCardContent
+
 export default PostCard
 export  {
     StoryCard,
     CreatePostCard,
-    ShortCard
+    ShortCard,
+    WatchCard
 }
 
 

@@ -14,16 +14,8 @@ import Avatar from './Avatar';
 
 const NavItem = ({children,...props})=>{
     return (
-        <NavLink to={props.to} className={`flex items-center justify-center text-md font-medium text-gray-800 hover:text-gray-800 duration-150 group h-11 min-w-28 rounded-lg relative hover:bg-gray-100 [&.active]:text-emerald-700 ${props.className ? props.className : ""}`}>
-            {({isActive})=>(
-                isActive ? 
-                <>
-                    {children}
-                    <div className='overflow-hidden absolute -bottom-1.5 w-full h-[3px] flex items-center justify-center'>
-                        <span className={`-translate-y-3 opacity-100 bg-emerald-600 h-1 transition-transform w-full group-[.active]:translate-y-0 duration-300`} ></span>
-                    </div>
-                </>: <>{children}</>
-            )}
+        <NavLink to={props.to} className={`flex items-center justify-center text-md font-medium text-gray-500 hover:text-gray-800 duration-150 group h-11 min-w-11 rounded-lg relative hover:bg-gray-100 [&.active]:text-emerald-700 ${props.className ? props.className : ""}`}>
+            {children}
         </NavLink>
     )
 }
@@ -76,7 +68,7 @@ const NavMiniBarButton = ()=>{
 
 const Nav = ({children,...props}) => {
     return (
-        <div {...props} className={`h-14 bg-white sticky z-50 top-0 grid grid-cols-12 duration-150 ${props.className ? props.className : ""}`}>
+        <div {...props} className={`h-14 bg-white sticky z-50 top-0 grid grid-cols-12 duration-150 backdrop-blur-3xl ${props.className ? props.className : ""}`}>
             {children}
             <NavCol className="justify-end">
                 {

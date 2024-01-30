@@ -11,7 +11,10 @@ import { Navigation } from "swiper/modules";
 import { LuHeart } from "react-icons/lu";
 import { useEffect } from "react";
 import axios from "axios";
-
+import { GoHome } from "react-icons/go";
+import { IoGridOutline } from "react-icons/io5";
+import { PiCompassLight ,PiYoutubeLogoLight } from "react-icons/pi";
+import { AiOutlineFire } from "react-icons/ai";
 
 const MySwiperSlide =(props,key)=>{
     return (
@@ -87,12 +90,15 @@ const Home = () => {
                         <Nav.Col>
                             <Nav.MiniBarButton/>
                         </Nav.Col>
-                        <Nav.Col className={'justify-center !space-x-0'}>
-                            <Nav.Item to='/shop'>
-                                Cửa hàng
+                        <Nav.Col className={'justify-between'}>
+                            <Nav.Item className='w-full' to='/shop'>
+                                <GoHome size={28}></GoHome>
                             </Nav.Item>
-                            <Nav.Item to='/watch'>
-                                Watch
+                            <Nav.Item className='w-full' to='/newfeed'>
+                                <IoGridOutline size={28}></IoGridOutline>
+                            </Nav.Item>
+                            <Nav.Item className='w-full' to='/watch'>
+                               <PiYoutubeLogoLight  size={32}></PiYoutubeLogoLight>
                             </Nav.Item>
                         </Nav.Col>
                     </Nav>

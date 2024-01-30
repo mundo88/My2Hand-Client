@@ -11,8 +11,10 @@ import Button from '../../components/Button';
 import { FaStar} from "react-icons/fa";
 import  Avatar  from "../../components/Avatar";
 import Product from '../../components/Product';
-import ProductlModal from './ProductlModal';
+import ProductlModal from '../../components/ProductlModal';
 import InputField from '../../components/InputField';
+
+
 const ShopCardContainer = ({children,...props}) => {
     return (
         <div className={`relative max-w-7xl mx-auto w-full ${props.className}`} >
@@ -58,10 +60,10 @@ const Shop = () => {
     }, 1000);
     return (
         <>
-            <div className={`flex flex-col h-full w-full relative gap-6 bg-gray-100 pb-12 ${modal? 'overflow-hidden':'overflow-auto'}`}>
+            <div className={`flex flex-col min-h-screen h-full w-full relative gap-6 bg-gray-100 pb-12 ${modal? 'overflow-hidden':'overflow-auto'}`}>
                 <div className='w-full relative overflow-hidden '>
                     <div className='absolute inset-0 bg-black/80'></div>
-                    <video loop="loop" autoplay="autoplay" preload="" muted="muted" src="https://a.sinaimg.cn/mintra/pic/2112130543/weibo_login.mp4" poster="https://a.sinaimg.cn/mintra/pic/2112130400/18weibo_login.png" class="LoginTopNav_video_1W33g"></video>
+                    <video loop="loop" autoPlay="autoplay" preLoad="" muted="muted" src="https://a.sinaimg.cn/mintra/pic/2112130543/weibo_login.mp4" poster="https://a.sinaimg.cn/mintra/pic/2112130400/18weibo_login.png" class="LoginTopNav_video_1W33g"></video>
                     <div className='absolute inset-0 max-w-7xl w-full mx-auto flex items-center justify-center mb-20'>
                         <div className='w-full max-w-4xl flex flex-col items-center gap-6'>
                             <p className='text-4xl text-white font-bold'>My2Hand</p>
