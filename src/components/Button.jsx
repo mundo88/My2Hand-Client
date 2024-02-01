@@ -23,9 +23,9 @@ const Button = ({children,...props})=>{
     }
     
     return (
-        <Link {...props} className={`${props.rounded || 'rounded-lg'} font-medium duration-150 active:scale-95 ${sizeProps[props.size] || sizeProps['md']} ${variantProps[props.variant] || variantProps['secondary']} ${props.className ? props.className : ""} flex items-center justify-center gap-2 whitespace-nowrap` }>
+        <button {...props} className={`${props.rounded || 'rounded-lg'} font-medium duration-150 active:scale-95 ${sizeProps[props.size] || sizeProps['md']} ${variantProps[props.variant] || variantProps['secondary']} ${props.className ? props.className : ""} flex items-center justify-center gap-2 whitespace-nowrap` }>
             {children}
-        </Link>
+        </button>
     )
 }
 

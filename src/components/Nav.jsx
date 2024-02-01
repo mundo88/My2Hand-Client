@@ -1,6 +1,6 @@
 import React from 'react';
 import { HiMiniBars3BottomLeft } from "react-icons/hi2";
-import { NavLink,Link } from 'react-router-dom';
+import { NavLink,Link, useNavigate } from 'react-router-dom';
 import Dropdown from './Dropdown';
 import { TbSettingsFilled,TbShirtFilled,TbHeartFilled,TbUserFilled  } from "react-icons/tb";
 import { IoLogOut } from "react-icons/io5";
@@ -52,10 +52,12 @@ const NavCol =({children,...props})=>{
     )
 }
 const NavLogo =()=>{
+    const navigate = useNavigate();
+
     return (
-        <Link className='min-w-10 min-h-10 flex items-center justify-center' to={"/"}>
+        <Link className='min-w-10 min-h-10 flex items-center justify-center' onClick={() => navigate(-1)}>
             <img src={LogoImage} alt="" className='object-cover w-10 h-10' />
-        </Link>
+        </Link>                         
     )
 }
 const NavMiniBarButton = ()=>{

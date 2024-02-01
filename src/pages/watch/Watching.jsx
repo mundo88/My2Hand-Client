@@ -26,13 +26,12 @@ const Watching = () => {
     const [products,setProducts] = useState(null)
     const [modal,setModal] = useState(false)
     const [productId,setProductId] = useState(null)
-    const [showProduct,setShowProduct] = useState(false)
+    const [showProduct,setShowProduct] = useState(true)
     const [videos,setVideos] = useState(null)
     const [users,setUsers] = useState(null)
-
     useEffect(()=>{
-        axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/youtube/playlist`).then((response)=>{
-            setVideos(response.data.youtube);
+        axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/videos`).then((response)=>{
+            setVideos(response.data.data);
         })
     },[])
     useEffect(() =>{
@@ -58,6 +57,7 @@ const Watching = () => {
             },
             data: JSON.stringify({video_id:video_id.str}),
         }).then(response => {
+            console.log(response.data)
             setVideo(response.data)
         })
         axios({
@@ -79,46 +79,52 @@ const Watching = () => {
                         </div>
                         <div className='py-4 text-xl font-semibold'>
                             <h1 className='text-gray-800'>{video.title}</h1>
-                            <div className="text-xs text-gray-500 flex items-center gap-1">
+                        </div>
+                        <div className='flex justify-between'>
+                            <div className='flex gap-4 items-center'>
+                                <div className='flex gap-2 items-center'>
+                                    <Avatar online={true} img={video&&video.author.photo_picture}></Avatar>
+                                    <div>
+                                        <div className="flex items-center gap-2">
+                                            <p className="text-gray-800 font-semibold">{video&&video.author.name}</p>
+                                            <span className='text-emerald-700'>
+                                                <BsPatchCheckFill size={16} />
+                                            </span>
+                                        </div>
+                                        <p className='text-gray-600 text-sm'>{video&&new Intl.NumberFormat( 'vi-Vn', { maximumFractionDigits: 1,notation: "compact" , compactDisplay: "short"}).format(video.author.followCount)} người theo dõi</p>
+                                    </div>
+                                </div>
+                                <div className="flex gap-1">
+                                <Button rounded={'rounded-full'} size={'sm'} variant={'black'}>Theo dõi</Button>
+                                <Button rounded={'rounded-full'} size={'sm'} variant={'outline'}>Xem trang</Button>
+                                </div>
+                            </div>
+                            <div className='flex gap-1'>
+                                <Button rounded="rounded-full">
+                                    <BiLike size={24}></BiLike>
+                                    <span>{video&&new Intl.NumberFormat( 'vi-Vn', { maximumFractionDigits: 1,notation: "compact" , compactDisplay: "short"}).format(video.likeCount)}</span>
+                                </Button>
+                                <Button rounded="rounded-full">
+                                    <PiShareFat size={24}></PiShareFat>
+                                    <span>Chia sẻ</span>
+                                </Button>
+                                <Button rounded="rounded-full">
+                                    <GoBookmark size={24}></GoBookmark>
+                                    <span>Lưu vào xem sau</span>
+                                </Button>
+                                <Button size={'md-icon'} rounded="rounded-full">
+                                    <HiOutlineDotsHorizontal size={24}></HiOutlineDotsHorizontal>
+                                </Button>
+                            </div>
+                        </div>
+                        <div className='rounded-md w-full bg-gray-100 relative p-4 my-4'>
+                            <div className="text-sm text-gray-800 flex items-center gap-1 px-2 font-semibold">
                                 <span>{new Intl.NumberFormat( 'vi-Vn', { maximumFractionDigits: 1}).format(video.views)} lượt xem</span>
                                 <span className="w-[3px] h-[3px] bg-gray-500 rounded-full"></span>
                                 <span>{video.publish_date}</span>
                             </div>
-                        </div>
-                        <div className='rounded-md w-full bg-gray-50 relative p-4 mb-4'>
-                            <div className='flex justify-between'>
-                                <div className='flex gap-4'>
-                                    <div className='flex gap-2 items-center'>
-                                        <Avatar online={true}></Avatar>
-                                        <div>
-                                            <div className="flex items-center gap-2">
-                                                <p className="text-gray-800 font-semibold">{video.author}</p>
-                                                <span className='text-emerald-700'>
-                                                    <BsPatchCheckFill size={16} />
-                                                </span>
-                                            </div>
-                                            <p className='text-gray-600 text-sm'>284 N người theo dõi</p>
-                                        </div>
-                                    </div>
-                                    <Button rounded={'rounded-full'} variant={'black'}>Theo dõi</Button>
-                                </div>
-                                <div className='flex gap-1'>
-                                    <Button rounded="rounded-full">
-                                        <BiLike size={24}></BiLike>
-                                        <span>299 N</span>
-                                    </Button>
-                                    <Button rounded="rounded-full">
-                                        <PiShareFat size={24}></PiShareFat>
-                                        <span>Chia sẻ</span>
-                                    </Button>
-                                    <Button rounded="rounded-full">
-                                        <GoBookmark size={24}></GoBookmark>
-                                        <span>Lưu vào xem sau</span>
-                                    </Button>
-                                    <Button size={'md-icon'} rounded="rounded-full">
-                                        <HiOutlineDotsHorizontal size={24}></HiOutlineDotsHorizontal>
-                                    </Button>
-                                </div>
+                            <div className='p-2 whitespace-pre-line text-sm text-gray-800'>
+                                {video.description}
                             </div>
                             <div className='px-2 font-semibold text-gray-800 text-sm pt-4 pb-2'>
                                 <button className='flex gap-1 items-center' onClick={()=>setShowProduct(!showProduct)}>
@@ -126,7 +132,7 @@ const Watching = () => {
                                     {showProduct ? <IoIosArrowUp size={16}></IoIosArrowUp>: <IoIosArrowDown size={16}></IoIosArrowDown>}
                                 </button>
                             </div>
-                            <div className={showProduct?'block':'hidden'}>
+                            <div className={showProduct?'block relative':'hidden'}>
                                 <Swiper 
                                     className="mySwiper w-full relative h-full !p-2"
                                     spaceBetween={16}
@@ -172,11 +178,11 @@ const Watching = () => {
                             </div>
                         </div>
                         <div className='my-4'>
-                            <div className='text-gray-800 text-xl font-semibold'>255 bình luận</div>
+                            <div className='text-gray-800 text-xl font-semibold'>{video.commentCount} bình luận</div>
                         </div>   
-                        <div className="w-full flex items-center gap-2">
+                        <div className="w-full flex items-center gap-2 mb-12">
                             <Avatar size={'lg'} ></Avatar>
-                            <div className="flex items-center w-full h-12 rounded-full bg-white">
+                            <div className="flex items-center w-full h-12 rounded-full bg-gray-100">
                                 <input type="text" className="h-full w-full bg-transparent px-4 outline-none" placeholder="Nhập bình luận của bạn về bài viết" />
                             </div>
                             <Button variant='light' size='lg-icon' rounded='rounded-full' >
@@ -187,20 +193,26 @@ const Watching = () => {
                             </Button>
                         </div>
                         <div className="w-full flex flex-col gap-6 mt-6">
-                            {users && users.map(user => (
+                            {video.comments && video.comments.map(comment => (
                                 <div className='flex gap-2 items-start relative'>
-                                    <Avatar img={user.image}></Avatar>
+                                    <Avatar img={comment.authorProfileImageUrl}></Avatar>
                                     <div className='flex flex-col gap-1 rounded-xl '>
                                         <div className='flex gap-1 items-center'>
-                                            <span className='text-sm font-semibold text-gray-800'>@{user.username}</span>
+                                            <span className='text-sm font-semibold text-gray-800'>{comment.authorDisplayName}</span>
                                         </div>
-                                        <p className='text-black text-md'>Giọng Quân kiểu trầm Giọng Quân kiểu trầm Giọng Quân kiểu trầm ấm áp còn giọng Phúc kiểu trong trẻo ý mê lắm lun</p>
+                                        <p className='text-black text-md'>{comment.textDisplay}</p>
                                         <div className="flex gap-4 mt-1">
                                             <span className='text-sm text-gray-500'>{'9 tháng trước'}</span>
-                                            <button className='text-sm text-gray-800 font-semibold hover:text-emerald-700 duration-150 hover:underline'>366 Thích</button>
-                                            <button className='text-sm text-gray-800 font-semibold hover:text-emerald-700 duration-150 hover:underline'>7 Phản hồi</button>
-                                            <button className='text-sm text-gray-800 font-semibold hover:text-emerald-700 duration-150 hover:underline'>21 Chia sẻ</button>
+                                            <button className='text-sm text-gray-800 font-semibold hover:text-emerald-700 duration-150 hover:underline'>{comment.likeCount !=0 &&comment.likeCount} Thích</button>
+                                            <button className='text-sm text-gray-800 font-semibold hover:text-emerald-700 duration-150 hover:underline'>Phản hồi</button>
+                                            <button className='text-sm text-gray-800 font-semibold hover:text-emerald-700 duration-150 hover:underline'>Chia sẻ</button>
                                         </div>
+                                        {comment.totalReplyCount!=0 && 
+                                            <Button className='w-fit mt-2' rounded='rounded-full'>
+                                                <span>{comment.totalReplyCount} phản hồi</span>
+                                                <IoIosArrowDown size={16}></IoIosArrowDown>
+                                            </Button>
+                                        }
                                     </div>
                                 </div>           
                             ))}
@@ -209,9 +221,9 @@ const Watching = () => {
                 </div>
                 <div className='col-span-3 flex flex-col gap-2'>
                     {videos ? videos.map(video =>(
-                        <WatchCard className='flex items-center' videoId={video.id}>
+                        <WatchCard videoId={video.id} className='flex'>
                             <WatchCard.Thumbnail thumbnail={video.thumbnail}/>
-                            <WatchCard.Content author={video.author} title={video.title} publish_date={video.publish_date} views={video.views}/>
+                            <WatchCard.Content author={video.author} title={video.title} publish_date={video.publish_date} views={video.views} avatar={true} />
                         </WatchCard>
                         )):
                         <>

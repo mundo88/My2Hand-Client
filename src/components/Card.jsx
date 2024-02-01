@@ -313,13 +313,14 @@ const ShortCard =({children,video,...props}) => {
 }
 
 
-const WatchCardContent =({children,views,title,avatar,author,publish_date,...props}) =>{
+const WatchCardContent =({children,views,title,author,publish_date,...props}) =>{
+    console.log(author)
     return(
-        <div className={`p-2 ${avatar&&'flex gap-2'}`}>
-            {avatar&&<Avatar></Avatar>}
+        <div className={`p-2 flex gap-2`}>
+            {children}
             <div>
-                {title&&<div className="text-sm font-semibold text-gray-800 line-clamp-2">{title}</div>}
-                {author&&<div className="text-xs text-gray-500">{author}</div>}
+                {title&&<div className="text-sm font-semibold text-gray-800 line-clamp-2 min-w-[220px]">{title}</div>}
+                {author.name&&<div className="text-xs text-gray-500">{author.name}</div>}
                 <div className="text-xs text-gray-500 flex items-center gap-1">
                     {views&&<span>{new Intl.NumberFormat( 'vi-Vn', { maximumFractionDigits: 1,notation: "compact" , compactDisplay: "short" }).format(views)} lượt xem</span>}
                     {publish_date&&
