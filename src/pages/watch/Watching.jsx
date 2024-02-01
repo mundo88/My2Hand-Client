@@ -46,8 +46,8 @@ const Watching = () => {
         setModal(true)
         setProductId(productId)
     }
-    const video_api = `${process.env.REACT_APP_API_ENDPOINT}api/video`
-    const product_api = `${process.env.REACT_APP_API_ENDPOINT}api/products`
+    const video_api = `${process.env.REACT_APP_API_ENDPOINT}/api/video`
+    const product_api = `${process.env.REACT_APP_API_ENDPOINT}/api/products`
     useEffect(() => {
         axios({
             url:video_api,
