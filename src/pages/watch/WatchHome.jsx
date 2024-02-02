@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { WatchCard } from '../../components/Card';
 import axios from 'axios';
-import { useLocation } from 'react-router-dom';
 import Avatar from '../../components/Avatar';
 const WatchHome = () => {
     const [videos,setVideos] = useState(null)

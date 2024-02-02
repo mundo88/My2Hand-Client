@@ -13,8 +13,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import { GoHome } from "react-icons/go";
 import { IoGridOutline } from "react-icons/io5";
-import { PiCompassLight ,PiYoutubeLogoLight } from "react-icons/pi";
-import { AiOutlineFire } from "react-icons/ai";
+import { PiYoutubeLogoLight } from "react-icons/pi";
 
 const MySwiperSlide =(props,key)=>{
     return (

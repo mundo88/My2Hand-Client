@@ -1,10 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BsPatchCheckFill } from "react-icons/bs";
 import { FaPlus } from "react-icons/fa6";
 import { HiOutlineSpeakerphone } from "react-icons/hi";
-
-import Button from '../../components/Button';
-
 
 import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';

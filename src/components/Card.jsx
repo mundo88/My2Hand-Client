@@ -14,7 +14,7 @@ import {RiMessengerFill } from "react-icons/ri";
 import { MdOutlineInsertEmoticon,MdOutlineBookmarkBorder } from "react-icons/md";
 import { IoIosShareAlt } from "react-icons/io";
 import testVideo from "../assets/video/pexels.mp4"
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import ReactPlayer from "react-player";
 import { FiChevronRight,FiChevronLeft } from "react-icons/fi";
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -349,9 +349,9 @@ const WatchCard = ({children,videoId,...props}) =>{
         </Link>
     )
 }
-const WatchCardLoader = () =>{
+const WatchCardLoader = ({...props}) =>{
     return (
-        <div >
+        <div {...props} >
             <div className="aspect-video rounded-md overflow-hidden bg-gray-200 animate-pulse w-full"></div>
             <div className="p-2 flex gap-2">
                 <div className="w-10 h-10 rounded-full bg-gray-200 animate-pulse"></div>

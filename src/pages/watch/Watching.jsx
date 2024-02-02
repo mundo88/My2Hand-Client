@@ -20,6 +20,7 @@ import { MdOutlineInsertEmoticon } from "react-icons/md";
 import { WatchCard } from '../../components/Card';
 
 
+
 const Watching = () => {
     const video_id = useParams()
     const [video,setVideo] = useState(0)
@@ -28,17 +29,12 @@ const Watching = () => {
     const [productId,setProductId] = useState(null)
     const [showProduct,setShowProduct] = useState(true)
     const [videos,setVideos] = useState(null)
-    const [users,setUsers] = useState(null)
     useEffect(()=>{
         axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/videos`).then((response)=>{
             setVideos(response.data.data);
         })
     },[])
-    useEffect(() =>{
-        axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/users`).then((response)=>{
-            setUsers(response.data.users);
-        })
-    },[])
+
     const handleCloseModal =()=>{
         setModal(false)
     }
@@ -203,11 +199,11 @@ const Watching = () => {
                                         <p className='text-black text-md'>{comment.textDisplay}</p>
                                         <div className="flex gap-4 mt-1">
                                             <span className='text-sm text-gray-500'>{'9 tháng trước'}</span>
-                                            <button className='text-sm text-gray-800 font-semibold hover:text-emerald-700 duration-150 hover:underline'>{comment.likeCount !=0 &&comment.likeCount} Thích</button>
+                                            <button className='text-sm text-gray-800 font-semibold hover:text-emerald-700 duration-150 hover:underline'>{comment.likeCount !==0 &&comment.likeCount} Thích</button>
                                             <button className='text-sm text-gray-800 font-semibold hover:text-emerald-700 duration-150 hover:underline'>Phản hồi</button>
                                             <button className='text-sm text-gray-800 font-semibold hover:text-emerald-700 duration-150 hover:underline'>Chia sẻ</button>
                                         </div>
-                                        {comment.totalReplyCount!=0 && 
+                                        {comment.totalReplyCount!==0 && 
                                             <Button className='w-fit mt-2' rounded='rounded-full'>
                                                 <span>{comment.totalReplyCount} phản hồi</span>
                                                 <IoIosArrowDown size={16}></IoIosArrowDown>
@@ -227,21 +223,21 @@ const Watching = () => {
                         </WatchCard>
                         )):
                         <>
-                            <WatchCard.Loader/>
-                            <WatchCard.Loader/>
-                            <WatchCard.Loader/>
-                            <WatchCard.Loader/>
-                            <WatchCard.Loader/>
-                            <WatchCard.Loader/>
-                            <WatchCard.Loader/>
-                            <WatchCard.Loader/>
-                            <WatchCard.Loader/>
-                            <WatchCard.Loader/>
-                            <WatchCard.Loader/>
-                            <WatchCard.Loader/>
-                            <WatchCard.Loader/>
-                            <WatchCard.Loader/>
-                            <WatchCard.Loader/>
+                            <WatchCard.Loader className='flex'/>
+                            <WatchCard.Loader className='flex'/>
+                            <WatchCard.Loader className='flex'/>
+                            <WatchCard.Loader className='flex'/>
+                            <WatchCard.Loader className='flex'/>
+                            <WatchCard.Loader className='flex'/>
+                            <WatchCard.Loader className='flex'/>
+                            <WatchCard.Loader className='flex'/>
+                            <WatchCard.Loader className='flex'/>
+                            <WatchCard.Loader className='flex'/>
+                            <WatchCard.Loader className='flex'/>
+                            <WatchCard.Loader className='flex'/>
+                            <WatchCard.Loader className='flex'/>
+                            <WatchCard.Loader className='flex'/>
+                            <WatchCard.Loader className='flex'/>
                         </>
                     }
                 </div>

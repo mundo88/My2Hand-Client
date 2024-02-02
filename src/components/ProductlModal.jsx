@@ -4,9 +4,8 @@ import React, {
   useEffect
 } from "react";
 import { HiArrowLongLeft, HiArrowLongRight } from "react-icons/hi2";
-import { BsCartCheckFill } from "react-icons/bs";
 import Dropdown from "./Dropdown";
-import { BiDotsHorizontal, BiSolidLike } from "react-icons/bi";
+import { BiDotsHorizontal } from "react-icons/bi";
 import {
   FaStar,
   FaStarHalfAlt,
@@ -23,7 +22,6 @@ import { Navigation, Autoplay, Thumbs } from "swiper/modules";
 import { FaPause } from "react-icons/fa6";
 import "swiper/css/thumbs";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import { TbListDetails } from "react-icons/tb";
 import { BiMessageDetail } from "react-icons/bi";
 
