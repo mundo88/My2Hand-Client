@@ -3,17 +3,18 @@ import { ShortCard } from '../../components/Card';
 import axios from 'axios';
 
 const Short = () => {
-    const [videos,setVideos] = useState([])
+    const [videos,setVideos] = useState(null)
     useEffect(()=>{
-        axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/youtube/playlist`).then((response)=>{
-            setVideos(response.data.youtube);
+        axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/videos`).then((response)=>{
+            setVideos(response.data.data);
+            console.log(response.data.data)
         })
     },[])    
     return (
         <div className='py-8 items-center justify-center flex flex-col w-full gap-8'>
-            {videos.map((video,index)=>(
+            {videos ? videos.map((video,index)=>(
                 <ShortCard key={index} video={video}></ShortCard>
-            ))}
+            )):<><ShortCard.Loader/><ShortCard.Loader/><ShortCard.Loader/><ShortCard.Loader/><ShortCard.Loader/><ShortCard.Loader/><ShortCard.Loader/></>}
         </div>
     );
 }

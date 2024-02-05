@@ -1,84 +1,88 @@
 import React from 'react';
 import Nav from '../components/Nav';
-import { Outlet} from "react-router-dom";
+import { Link, NavLink, Outlet} from "react-router-dom";
 import Button from '../components/Button';
 import { RiMessengerFill} from "react-icons/ri";
-import { GoHome, GoHomeFill } from "react-icons/go";
-import { IoGrid, IoGridOutline } from "react-icons/io5";
-import { PiCompassLight ,PiCompassFill, PiYoutubeLogoFill,PiYoutubeLogoLight } from "react-icons/pi";
-import { AiOutlineFire,AiFillFire } from "react-icons/ai";
 
-const ActiveBordered=()=>{
+import { GoHeart, GoHome } from "react-icons/go";
+import { HiOutlineShoppingBag } from "react-icons/hi2";
+import { PiCompass, PiVideo } from 'react-icons/pi';
+import { IoIosSearch } from 'react-icons/io';
+import {  BsPlusSquare } from "react-icons/bs";
+
+
+
+
+const SidebarLeft = () => {
     return (
-        <div className='animate-fade duration-50 overflow-hidden absolute -bottom-1.5 w-full h-[3px] flex items-center justify-center'>
-            <span className={`-translate-y-3 opacity-100 bg-emerald-600 h-1 transition-transform w-full group-[.active]:translate-y-0 duration-300`} ></span>
+        <div className='w-full py-6 bg-white h-screen border-r'>
+            <div className='w-full flex flex-col'>
+                <p className='text-2xl font-bold hover:text text-gray-800 mx-6 py-8'>My2hand</p>
+                <div className='mx-4 space-y-3'>
+                    <NavLink to={'/newfeed'} className='px-2 flex items-center py-1.5 hover:bg-gray-200 rounded-lg duration-150 gap-3'>
+                        <div className='w-9 h-9 overflow-hidden flex items-center justify-center'>
+                            <GoHome size={30}></GoHome>
+                        </div>
+                        <span className='text-gray-800'>Trang chủ</span>
+                    </NavLink>
+                    <NavLink className='px-2 flex items-center py-1.5 hover:bg-gray-200 rounded-lg duration-150 gap-3'>
+                        <div className='w-9 h-9 overflow-hidden flex items-center justify-center'>
+                            <IoIosSearch size={30}></IoIosSearch>
+                        </div>
+                        <span className='text-gray-800'>Tìm kiếm</span>
+                    </NavLink>
+                    <NavLink to={'/shop'} className='px-2 flex items-center py-1.5 hover:bg-gray-200 rounded-lg duration-150 gap-3'>
+                        <div className='w-9 h-9 overflow-hidden flex items-center justify-center'>
+                            <HiOutlineShoppingBag size={28}></HiOutlineShoppingBag>
+                        </div>
+                        <span className='text-gray-800'>Mua sắm</span>
+                    </NavLink>
+                    <NavLink to={'/watch'} className='px-2 flex items-center py-1.5 hover:bg-gray-200 rounded-lg duration-150 gap-3'>
+                        <div className='w-9 h-9 overflow-hidden flex items-center justify-center'>
+                            <PiVideo  size={30}></PiVideo>
+                        </div>
+                        <span className='text-gray-800'>Video</span>
+                    </NavLink>
+                    <NavLink to={'/explore'} className='px-2 flex items-center py-1.5 hover:bg-gray-200 rounded-lg duration-150 gap-3'>
+                        <div className='w-9 h-9 overflow-hidden flex items-center justify-center'>
+                            <PiCompass  size={30}></PiCompass>
+                        </div>
+                        <span className='text-gray-800'>Khám phá</span>
+                    </NavLink>
+                    <NavLink to={'/favourite'} className='px-2 flex items-center py-1.5 hover:bg-gray-200 rounded-lg duration-150 gap-3'>
+                        <div className='w-9 h-9 overflow-hidden flex items-center justify-center'>
+                            <GoHeart size={28}></GoHeart>
+                        </div>
+                        <span className='text-gray-800'>Đã lưu</span>
+                    </NavLink>
+                    <NavLink className='px-2 flex items-center py-1.5 hover:bg-gray-200 rounded-lg duration-150 gap-3'>
+                        <div className='w-9 h-9 overflow-hidden flex items-center justify-center'>
+                            <BsPlusSquare size={23}></BsPlusSquare>
+                        </div>
+                        <span className='text-gray-800'>Tạo</span>
+                    </NavLink>
+                </div>
+            </div>
         </div>
-    )
+    );
 }
+
 
 const Layout = () => {
     return (
-           <>
-            <Nav className='px-4'>
-                <Nav.Col>
-                    <Nav.Logo/>
-                    <Nav.Searchbar width='72'/>
-                </Nav.Col>
-                <Nav.Col className={'justify-between'}>
-                    <Nav.Item className='w-full' to='/shop'>
-                        {({isActive})=>(
-                            isActive ? 
-                            <>
-                                <GoHomeFill  size={28}></GoHomeFill>
-                                <ActiveBordered/> 
-                            </>: <><GoHome size={28}></GoHome></>
-                        )}
-                    </Nav.Item>
-                    <Nav.Item className='w-full' to='/newfeed'>
-                        {({isActive})=>(
-                            isActive ? 
-                            <>
-                                <IoGrid size={28}></IoGrid>
-                                <ActiveBordered/> 
-                            </>: <><IoGridOutline size={28}></IoGridOutline></>
-                        )}
-                    </Nav.Item>
-                    <Nav.Item className='w-full' to='/watch'>
-                        {({isActive})=>(
-                            isActive ? 
-                            <>
-                                <PiYoutubeLogoFill size={32}></PiYoutubeLogoFill>
-                                <ActiveBordered/> 
-                            </>: <><PiYoutubeLogoLight  size={32}></PiYoutubeLogoLight></>
-                        )}
-                    </Nav.Item>
-                    <Nav.Item className='w-full' to='/explore'>
-                        {({isActive})=>(
-                            isActive ? 
-                            <>
-                                <PiCompassFill size={32}></PiCompassFill>
-                                <ActiveBordered/> 
-                            </>: <><PiCompassLight  size={32}></PiCompassLight></>
-                        )}
-                    </Nav.Item>                    
-                    <Nav.Item className='w-full' to='/hot'>
-                        {({isActive})=>(
-                            isActive ? 
-                            <>
-                                <AiFillFire size={32}></AiFillFire>
-                                <ActiveBordered/> 
-                            </>: <><AiOutlineFire size={32}></AiOutlineFire></>
-                        )}
-                    </Nav.Item>
-                </Nav.Col>
-            </Nav>
-            <Outlet/>
-            <div className='fixed bottom-4 right-4'>
-                <Button variant='light' size='lg-icon' rounded='rounded-full' className="shadow-md hover:text-emerald-700 hover:!bg-white">
-                    <RiMessengerFill size={24}/>
-                </Button>
-            </div>
-           </>
+           <div className='h-full relative flex bg-gray-100 items-start min-h-screen'>
+                <div className='min-w-80 sticky top-0 flex'>
+                    <SidebarLeft/>
+                </div>
+                <div className='flex-1 w-full overflow-hidden'>
+                    <Outlet/>
+                </div>
+                <div className='fixed bottom-4 right-4'>
+                    <Button variant='light' size='lg-icon' rounded='rounded-full' className="shadow-md hover:text-emerald-700 hover:!bg-white">
+                        <RiMessengerFill size={24}/>
+                    </Button>
+                </div>
+           </div>
     );
 }
 

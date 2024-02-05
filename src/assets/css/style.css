@@ -9,6 +9,9 @@
     .main-h {
         max-height: calc(100vh - 56px);
     }
+    .content-container {
+        width: calc(100vw - 320px);
+      }
     .scroll:active::-webkit-scrollbar-thumb,
     .scroll:focus::-webkit-scrollbar-thumb,
     .scroll:hover::-webkit-scrollbar-thumb {

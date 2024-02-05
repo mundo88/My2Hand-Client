@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { BsPatchCheckFill } from "react-icons/bs";
-import { FaPlus } from "react-icons/fa6";
-import { HiOutlineSpeakerphone } from "react-icons/hi";
 
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { RiUserSharedLine } from "react-icons/ri";
 
 import 'swiper/css';
 
@@ -15,13 +11,54 @@ import { FiPlus,FiChevronRight ,FiChevronLeft  } from "react-icons/fi";
 import PostCard, {StoryCard,CreatePostCard} from "../../components/Card";
 import axios from "axios";
 import ProductlModal from '../../components/ProductlModal'; 
+
+
+import { FaPlus } from "react-icons/fa6";
+import { HiOutlineSpeakerphone } from "react-icons/hi";
+import { BsPatchCheckFill } from "react-icons/bs";
+
+import { RiUserSharedLine } from "react-icons/ri";
 import Avatar from '../../components/Avatar';
 
-const Sidebar = () => {
+const Sidebar =()=>{
     return (
-        <div className='min-w-80 py-6 main-h overflow-auto scroll min-h-screen'>
-            <div className='w-full flex flex-col'>
-                <div className='flex flex-col mx-4 px-2 pb-2'>
+        <div className="min-w-80 flex flex-col pr-6 bg-white py-6 h-screen px-6">
+            <div className='space-y-4 pb-4'>
+                <p className='text-lg mb-2 bg-gradient-to-r from-violet-700 via-emerald-600 to-blue-500 bg-clip-text text-transparent font-bold'>Trending Hastag</p>
+                <div className='flex flex-col'>
+                    <Link className='py-2 space-y-1 flex flex-col'>
+                        <span className='text-gray-800 text-md hover:text-emerald-700'>#art</span>
+                        <span className='text-gray-600 text-sm'>400 post</span>
+                    </Link>
+                    <Link className='py-2 space-y-1 flex flex-col'>
+                        <span className='text-gray-800 text-md hover:text-emerald-700'>#illustration</span>
+                        <span className='text-gray-600 text-sm'>370 post</span>
+                    </Link>
+                    <Link className='py-2 space-y-1 flex flex-col'>
+                        <span className='text-gray-800 text-md hover:text-emerald-700'>#painingtimelapse</span>
+                        <span className='text-gray-600 text-sm'>352 post</span>
+                    </Link>
+                    <Link className='py-2 space-y-1 flex flex-col'>
+                        <span className='text-gray-800 text-md hover:text-emerald-700'>#andscapepaintings</span>
+                        <span className='text-gray-600 text-sm'>157 post</span>
+                    </Link>
+                    <Link className='py-2 space-y-1 flex flex-col'>
+                        <span className='text-gray-800 text-md hover:text-emerald-700'>#acrylycoaintings</span>
+                        <span className='text-gray-600 text-sm'>112 post</span>
+                    </Link>
+                    <Link className='py-2 space-y-1 flex flex-col'>
+                        <span className='text-gray-800 text-md hover:text-emerald-700'>#HowToPaint</span>
+                        <span className='text-gray-600 text-sm'>76 post</span>
+                    </Link>
+                    <Link className='py-2 space-y-1 flex flex-col'>
+                        <span className='text-gray-800 text-md hover:text-emerald-700'>#paperflower</span>
+                        <span className='text-gray-600 text-sm'>50 post</span>
+                    </Link>
+                </div>
+            </div>
+            <div className=''>
+                <p className='text-lg mb-8 bg-gradient-to-r from-violet-700 via-emerald-600 to-blue-500 bg-clip-text text-transparent font-bold'>Shop của bạn</p>
+                <div  className='flex flex-col px-2 pb-2'>
                     <div className='flex gap-2 items-center'>
                         <Avatar></Avatar>
                         <div>
@@ -35,70 +72,30 @@ const Sidebar = () => {
                         </div>
                     </div>
                 </div>
-                <div className='mx-4'>
-                    <div className='px-2 flex items-center py-1.5 hover:bg-gray-200 rounded-lg duration-150 gap-3'>
-                        <div className='w-9 h-9 overflow-hidden'>
-                            <div className='w-full h-full bg-[url(https://static.xx.fbcdn.net/rsrc.php/v3/yz/r/4GR4KRf3hN2.png)]' style={{backgroundPosition:'0 -296px'}}></div>
-                        </div>
-                        <span className='text-gray-800'>Bạn bè</span>
+            
+                <div className='px-2 flex items-center py-2 hover:bg-gray-200 rounded-lg duration-150 gap-3'>
+                    <div className='w-9 h-9 overflow-hidden bg-gray-200 text-gray-800 flex items-center justify-center rounded-full'>
+                        <RiUserSharedLine size={20}></RiUserSharedLine>
                     </div>
-                    <div className='px-2 flex items-center py-1.5 hover:bg-gray-200 rounded-lg duration-150 gap-3'>
-                        <img src={'https://static.xx.fbcdn.net/rsrc.php/v3/yD/r/CwKNCefmHON.png'} alt="" />
-                        <span className='text-gray-800'>Trung tâm quảng cáo</span>
+                    <span className='text-gray-800'>Truy cập shop</span>
+                </div>                        
+                <div className='px-2 flex items-center py-2 hover:bg-gray-200 rounded-lg duration-150 gap-3'>
+                    <div className='w-9 h-9 overflow-hidden bg-gray-200 text-gray-800 flex items-center justify-center rounded-full'>
+                        <FaPlus  size={20}></FaPlus>
                     </div>
-                    <div className='px-2 flex items-center py-1.5 hover:bg-gray-200 rounded-lg duration-150 gap-3'>
-                        <img src={'https://static.xx.fbcdn.net/rsrc.php/v3/yb/r/eECk3ceTaHJ.png'} alt="" />
-                        <span className='text-gray-800'>Bảng feed</span>
+                    <span className='text-gray-800'>Thêm sản phẩm</span>
+                </div>                        
+                <div className='px-2 flex items-center py-2 hover:bg-gray-200 rounded-lg duration-150 gap-3'>
+                    <div className='w-9 h-9 overflow-hidden bg-gray-200 text-gray-800 flex items-center justify-center rounded-full'>
+                        <HiOutlineSpeakerphone size={20}></HiOutlineSpeakerphone>
                     </div>
-                    <div className='px-2 flex items-center py-1.5 hover:bg-gray-200 rounded-lg duration-150 gap-3'>
-                        <div className='w-9 h-9 overflow-hidden'>
-                            <div className='w-full h-full bg-[url(https://static.xx.fbcdn.net/rsrc.php/v3/yz/r/4GR4KRf3hN2.png)]' style={{backgroundPosition:'0 -37px'}}></div>
-                        </div>
-                        <span className='text-gray-800'>Nhóm</span>
-                    </div>
-                    <div className='px-2 flex items-center py-1.5 hover:bg-gray-200 rounded-lg duration-150 gap-3'>
-                        <div className='w-9 h-9 overflow-hidden'>
-                            <div className='w-full h-full bg-[url(https://static.xx.fbcdn.net/rsrc.php/v3/yz/r/4GR4KRf3hN2.png)]' style={{backgroundPosition:'0 -407px'}}></div>
-                        </div>
-                        <span className='text-gray-800'>Marketplace</span>
-                    </div>
-                    <div className='px-2 flex items-center py-1.5 hover:bg-gray-200 rounded-lg duration-150 gap-3'>
-                        <img src={'https://static.xx.fbcdn.net/rsrc.php/v3/y5/r/UcI9fM2oUUV.png'} alt="" />
-                        <span className='text-gray-800'>Bảng điều khiển chuyên nghiệp</span>
-                    </div>
-                    <div className='px-2 flex items-center py-1.5 hover:bg-gray-200 rounded-lg duration-150 gap-3'>
-                        <div className='w-9 h-9 overflow-hidden'>
-                            <div className='w-full h-full bg-[url(https://static.xx.fbcdn.net/rsrc.php/v3/yz/r/4GR4KRf3hN2.png)]' style={{backgroundPosition:'0 -185px'}}></div>
-                        </div>
-                        <span className='text-gray-800'>Đã lưu</span>
-                    </div>
-                    <div className='px-2 flex items-center py-1.5 hover:bg-gray-200 rounded-lg duration-150 gap-3'>
-                        <div className='w-9 h-9 overflow-hidden'>
-                            <div className='w-full h-full bg-[url(https://static.xx.fbcdn.net/rsrc.php/v3/yV/r/vTDQ3deAsEh.png)]' style={{backgroundPosition:'0 -37px'}}></div>
-                        </div>
-                        <span className='text-gray-800'>Sự kiện</span>
-                    </div>
-                    <div className='px-2 flex items-center py-1.5 hover:bg-gray-200 rounded-lg duration-150 gap-3'>
-                        <img src={'https://static.xx.fbcdn.net/rsrc.php/v3/yK/r/mAnT0r8GSOm.png'} alt="" />
-                        <span className='text-gray-800'>Yêu thích</span>
-                    </div>
-                    <div className='px-2 flex items-center py-1.5 hover:bg-gray-200 rounded-lg duration-150 gap-3'>
-                        <div className='w-9 h-9 overflow-hidden'>
-                            <div className='w-full h-full bg-[url(https://static.xx.fbcdn.net/rsrc.php/v3/yz/r/4GR4KRf3hN2.png)]' style={{backgroundPosition:'0 -518px'}}></div>
-                        </div>
-                        <span className='text-gray-800'>Video</span>
-                    </div>
-                    <div className='px-2 flex items-center py-1.5 hover:bg-gray-200 rounded-lg duration-150 gap-3'>
-                        <div className='w-9 h-9 overflow-hidden'>
-                            <div className='w-full h-full bg-[url(https://static.xx.fbcdn.net/rsrc.php/v3/yz/r/4GR4KRf3hN2.png)]' style={{backgroundPosition:'0 -370px'}}></div>
-                        </div>
-                        <span className='text-gray-800'>Live</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
+                    <span className='text-gray-800'>Tạo quảng cáo</span>
+                </div>                        
+            </div>    
+        </div>         
+    )
 }
+
 
 const Newfeed = () => {
     const [tab,setTab] = useState('trending')
@@ -127,12 +124,8 @@ const Newfeed = () => {
     },[]);
 
     return (
-        <>
-            <div className='h-full relative grid grid-cols-12 bg-gray-100 items-start min-h-screen'>
-                <div className='col-span-4 sticky top-14 flex'>
-                    <Sidebar/>
-                </div>
-                <div className='col-span-4 py-6'>
+        <div className='flex justify-between items-start w-full'>
+            <div className='max-w-2xl py-6 mx-auto'>
                     <div className='flex-col gap-6 flex'>
                         <CreatePostCard/>
                         <div className=' flex flex-col'>
@@ -215,68 +208,12 @@ const Newfeed = () => {
                             }        
                         </div>
                     </div>
-                </div>
-                <div className='col-span-4 py-6 flex justify-end items-end sticky top-14'>
-                    <div className="w-80 flex flex-col pr-6">
-                        <div className='space-y-4 pb-4'>
-                            <p className='text-lg mb-2 bg-gradient-to-r from-violet-700 via-emerald-600 to-blue-500 bg-clip-text text-transparent font-bold'>Trending Hastag</p>
-                            <div className='flex flex-col'>
-                                <Link className='py-2 space-y-1 flex flex-col'>
-                                    <span className='text-gray-800 text-md hover:text-emerald-700'>#art</span>
-                                    <span className='text-gray-600 text-sm'>400 post</span>
-                                </Link>
-                                <Link className='py-2 space-y-1 flex flex-col'>
-                                    <span className='text-gray-800 text-md hover:text-emerald-700'>#illustration</span>
-                                    <span className='text-gray-600 text-sm'>370 post</span>
-                                </Link>
-                                <Link className='py-2 space-y-1 flex flex-col'>
-                                    <span className='text-gray-800 text-md hover:text-emerald-700'>#painingtimelapse</span>
-                                    <span className='text-gray-600 text-sm'>352 post</span>
-                                </Link>
-                                <Link className='py-2 space-y-1 flex flex-col'>
-                                    <span className='text-gray-800 text-md hover:text-emerald-700'>#andscapepaintings</span>
-                                    <span className='text-gray-600 text-sm'>157 post</span>
-                                </Link>
-                                <Link className='py-2 space-y-1 flex flex-col'>
-                                    <span className='text-gray-800 text-md hover:text-emerald-700'>#acrylycoaintings</span>
-                                    <span className='text-gray-600 text-sm'>112 post</span>
-                                </Link>
-                                <Link className='py-2 space-y-1 flex flex-col'>
-                                    <span className='text-gray-800 text-md hover:text-emerald-700'>#HowToPaint</span>
-                                    <span className='text-gray-600 text-sm'>76 post</span>
-                                </Link>
-                                <Link className='py-2 space-y-1 flex flex-col'>
-                                    <span className='text-gray-800 text-md hover:text-emerald-700'>#paperflower</span>
-                                    <span className='text-gray-600 text-sm'>50 post</span>
-                                </Link>
-                            </div>
-                        </div>
-                        <div className=''>
-                            <p className='text-lg mb-2 bg-gradient-to-r from-violet-700 via-emerald-600 to-blue-500 bg-clip-text text-transparent font-bold'>Shop của bạn</p>
-                            <div className='px-2 flex items-center py-2 hover:bg-gray-200 rounded-lg duration-150 gap-3'>
-                                <div className='w-9 h-9 overflow-hidden bg-gray-200 text-gray-800 flex items-center justify-center rounded-full'>
-                                    <RiUserSharedLine size={20}></RiUserSharedLine>
-                                </div>
-                                <span className='text-gray-800'>Truy cập shop</span>
-                            </div>                        
-                            <div className='px-2 flex items-center py-2 hover:bg-gray-200 rounded-lg duration-150 gap-3'>
-                                <div className='w-9 h-9 overflow-hidden bg-gray-200 text-gray-800 flex items-center justify-center rounded-full'>
-                                    <FaPlus  size={20}></FaPlus>
-                                </div>
-                                <span className='text-gray-800'>Thêm sản phẩm</span>
-                            </div>                        
-                            <div className='px-2 flex items-center py-2 hover:bg-gray-200 rounded-lg duration-150 gap-3'>
-                                <div className='w-9 h-9 overflow-hidden bg-gray-200 text-gray-800 flex items-center justify-center rounded-full'>
-                                    <HiOutlineSpeakerphone size={20}></HiOutlineSpeakerphone>
-                                </div>
-                                <span className='text-gray-800'>Tạo quảng cáo</span>
-                            </div>                        
-                        </div>    
-                    </div>         
-                </div>
             </div>
+            {/* <div className='sticky top-0 flex h-full'>
+                <Sidebar></Sidebar>          
+            </div>      */}
             {modal && <ProductlModal productId={productId} show={modal} onClose={handleCloseModal}></ProductlModal>}
-        </>
+        </div>
     );
 }
 

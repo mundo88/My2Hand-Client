@@ -27,7 +27,7 @@ const Watching = () => {
     const [products,setProducts] = useState(null)
     const [modal,setModal] = useState(false)
     const [productId,setProductId] = useState(null)
-    const [showProduct,setShowProduct] = useState(true)
+    const [fullDes,setfullDes] = useState(false)
     const [videos,setVideos] = useState(null)
     useEffect(()=>{
         axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/videos`).then((response)=>{
@@ -63,13 +63,15 @@ const Watching = () => {
             setProducts(response.data.products)
         })
         window.scrollTo(0, 0)
+        return setVideo(null)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [video_id]);
     return (
         <>
-            <div className='w-full grid grid-cols-12 py-8 px-28 gap-6 '>
+            <div className='w-full grid grid-cols-12 py-8 px-8 gap-6 '>
                 <div className='col-span-9'>
-                    <div>
+
+                    {video?<div>
                         <div className='w-full h-auto aspect-video bg-neutral-900 rounded-md overflow-hidden relative'>
                             <ReactPlayer url={video.url} playing={true} width={'100%'} height={'100%'} controls></ReactPlayer>
                         </div>
@@ -95,90 +97,102 @@ const Watching = () => {
                                 <Button rounded={'rounded-full'} size={'sm'} variant={'outline'}>Xem trang</Button>
                                 </div>
                             </div>
-                            <div className='flex gap-1'>
-                                <Button rounded="rounded-full">
+                            <div className='flex gap-2'>
+                                <Button variant='light' rounded="rounded-full">
                                     <BiLike size={24}></BiLike>
                                     <span>{video&&new Intl.NumberFormat( 'vi-Vn', { maximumFractionDigits: 1,notation: "compact" , compactDisplay: "short"}).format(video.likeCount)}</span>
                                 </Button>
-                                <Button rounded="rounded-full">
+                                <Button variant='light' rounded="rounded-full">
                                     <PiShareFat size={24}></PiShareFat>
                                     <span>Chia sẻ</span>
                                 </Button>
-                                <Button rounded="rounded-full">
+                                <Button variant='light' rounded="rounded-full">
                                     <GoBookmark size={24}></GoBookmark>
                                     <span>Lưu vào xem sau</span>
                                 </Button>
-                                <Button size={'md-icon'} rounded="rounded-full">
+                                <Button size={'md-icon'} variant='light' rounded="rounded-full">
                                     <HiOutlineDotsHorizontal size={24}></HiOutlineDotsHorizontal>
                                 </Button>
                             </div>
                         </div>
-                        <div className='rounded-md w-full bg-gray-100 relative p-4 my-4'>
+                        <div className='rounded-md w-full bg-gray-200 relative p-4 my-4'>
                             <div className="text-sm text-gray-800 flex items-center gap-1 px-2 font-semibold">
                                 <span>{new Intl.NumberFormat( 'vi-Vn', { maximumFractionDigits: 1}).format(video.views)} lượt xem</span>
                                 <span className="w-[3px] h-[3px] bg-gray-500 rounded-full"></span>
                                 <span>{video.publish_date}</span>
                             </div>
-                            <div className='p-2 whitespace-pre-line text-sm text-gray-800'>
-                                {video.description}
-                            </div>
-                            <div className='px-2 font-semibold text-gray-800 text-sm pt-4 pb-2'>
-                                <button className='flex gap-1 items-center' onClick={()=>setShowProduct(!showProduct)}>
-                                    <span>Sản phẩm trong video</span>
-                                    {showProduct ? <IoIosArrowUp size={16}></IoIosArrowUp>: <IoIosArrowDown size={16}></IoIosArrowDown>}
-                                </button>
-                            </div>
-                            <div className={showProduct?'block relative':'hidden'}>
-                                <Swiper 
-                                    className="mySwiper w-full relative h-full !p-2"
-                                    spaceBetween={16}
-                                    slidesPerView={6.3}
-                                    slidesPerGroup={6}
-                                    modules={[Navigation]}
-                                    navigation={{
-                                        nextEl: '.button-next',
-                                        prevEl: '.button-prev',
-                                    }}>
-                                    {products&&products.map(product => 
-                                        <SwiperSlide key={product.id} onClick={()=>handleOpenModal(product.id)}>
-                                            <Product className='flex flex-col border rounded-lg group hover:border-emerald-700 duration-150 overflow-hidden'>
-                                                <Product.Thumbnail>
-                                                    <img src={product.images[0]} alt="" className='w-full h-full object-contain'/>
-                                                </Product.Thumbnail>
-                                                <Product.Content>
-                                                    <div className='text-xs text-gray-600 font-semibold'>{product.category.name}</div>
-                                                    <div className='text-gray-800 text-sm font-semibold duration-150 mt-0.5 truncate'>{product.title}</div>
-                                                    <div className='flex items-center justify-between mt-3'>
-                                                        <span className='font-semibold text-emerald-700 text-md'>${product.price}</span>
-                                                        <div className='flex items-center gap-1'>
-                                                            <span className='text-yellow-500'>
-                                                                <FaStar size={12}/>
-                                                            </span>
-                                                            <span className='text-xs text-gray-600'>293</span>
-                                                            <span className='text-xs text-gray-600'>|</span>
-                                                            <span className='text-xs text-gray-600'>2356</span>
-                                                        </div>
-                                                    </div>
-                                                    <Product.Sold sold='32' stock={product.stock || 999}/>
-                                                </Product.Content>
-                                            </Product>
-                                        </SwiperSlide>
-                                    )}
-                                </Swiper>
-                                <Button variant='light' className='button-next [&.swiper-button-disabled]:opacity-0 absolute right-2 border top-1/2 -translate-y-1/2 z-10' size='sm-icon' rounded='rounded-full'>
-                                    <FiChevronRight size={24}></FiChevronRight>
-                                </Button>
-                                <Button variant='light' className='button-prev [&.swiper-button-disabled]:opacity-0 absolute left-2 border top-1/2 -translate-y-1/2 z-10' size='sm-icon' rounded='rounded-full'>
-                                    <FiChevronLeft size={24}></FiChevronLeft>
-                                </Button>
-                            </div>
+                            {!fullDes ?
+                                <div className='px-2 mt-2 text-sm text-gray-800 flex'>
+                                    <span className='whitespace-nowrap relative'>
+                                        {video.description&& video.description.slice(0,66)}
+                                        <span className='absolute right-0 top-0 h-full w-10 bg-gradient-to-l from-gray-200 to-transparent'></span>
+                                    </span>
+                                    <button className='font-semibold ml-1 hover:text-emerald-700 duration-150' onClick={()=>{setfullDes(true)}}>...xem thêm</button>
+                                </div>
+                                :
+                                <div >
+                                    <div className='p-2 text-sm text-gray-800 flex'>
+                                        <span className='whitespace-pre-wrap relative'>
+                                            {video.description}
+                                        </span>
+                                    </div>
+                                    <div className='px-2 font-semibold text-gray-800 text-sm pt-4'>
+                                        <span>Sản phẩm trong video</span>
+                                    </div>
+                                    <div className='relative'>
+                                        <Swiper 
+                                            className="mySwiper w-full relative h-full !p-2"
+                                            spaceBetween={16}
+                                            slidesPerView={6.3}
+                                            slidesPerGroup={6}
+                                            modules={[Navigation]}
+                                            navigation={{
+                                                nextEl: '.button-next',
+                                                prevEl: '.button-prev',
+                                            }}>
+                                            {products&&products.map(product => 
+                                                <SwiperSlide key={product.id} onClick={()=>handleOpenModal(product.id)}>
+                                                    <Product className='flex flex-col border rounded-lg group hover:border-emerald-700 duration-150 overflow-hidden'>
+                                                        <Product.Thumbnail>
+                                                            <img src={product.images[0]} alt="" className='w-full h-full object-contain'/>
+                                                        </Product.Thumbnail>
+                                                        <Product.Content>
+                                                            <div className='text-xs text-gray-600 font-semibold'>{product.category.name}</div>
+                                                            <div className='text-gray-800 text-sm font-semibold duration-150 mt-0.5 truncate'>{product.title}</div>
+                                                            <div className='flex items-center justify-between mt-3'>
+                                                                <span className='font-semibold text-emerald-700 text-md'>${product.price}</span>
+                                                                <div className='flex items-center gap-1'>
+                                                                    <span className='text-yellow-500'>
+                                                                        <FaStar size={12}/>
+                                                                    </span>
+                                                                    <span className='text-xs text-gray-600'>293</span>
+                                                                    <span className='text-xs text-gray-600'>|</span>
+                                                                    <span className='text-xs text-gray-600'>2356</span>
+                                                                </div>
+                                                            </div>
+                                                            <Product.Sold sold='32' stock={product.stock || 999}/>
+                                                        </Product.Content>
+                                                    </Product>
+                                                </SwiperSlide>
+                                            )}
+                                        </Swiper>
+                                        <Button variant='light' className='button-next [&.swiper-button-disabled]:opacity-0 absolute right-2 border top-1/2 -translate-y-1/2 z-10' size='sm-icon' rounded='rounded-full'>
+                                            <FiChevronRight size={24}></FiChevronRight>
+                                        </Button>
+                                        <Button variant='light' className='button-prev [&.swiper-button-disabled]:opacity-0 absolute left-2 border top-1/2 -translate-y-1/2 z-10' size='sm-icon' rounded='rounded-full'>
+                                            <FiChevronLeft size={24}></FiChevronLeft>
+                                        </Button>
+                                    </div>
+                                    <Button variant='text' onClick={()=>{setfullDes(false)}}>Ẩn bớt</Button>
+                                </div>
+                            }
                         </div>
                         <div className='my-4'>
                             <div className='text-gray-800 text-xl font-semibold'>{video.commentCount} bình luận</div>
                         </div>   
-                        <div className="w-full flex items-center gap-2 mb-12">
+                        <div className="w-full flex items-center gap-2 mb-8">
                             <Avatar size={'lg'} ></Avatar>
-                            <div className="flex items-center w-full h-12 rounded-full bg-gray-100">
+                            <div className="flex items-center w-full h-12 rounded-full bg-gray-200">
                                 <input type="text" className="h-full w-full bg-transparent px-4 outline-none" placeholder="Nhập bình luận của bạn về bài viết" />
                             </div>
                             <Button variant='light' size='lg-icon' rounded='rounded-full' >
@@ -214,6 +228,38 @@ const Watching = () => {
                             ))}
                         </div> 
                     </div>
+                    :
+                    <>
+                        <div className='w-full h-auto aspect-video bg-gray-200 animate-pulse rounded-md overflow-hidden relative'>
+                        </div>
+                        <div className='my-4 text-xl font-semibold h-7 w-96 bg-gray-200 animate-pulse rounded-full'></div>
+                            <div className='flex justify-between animate-pulse'>
+                                <div className='flex gap-4 items-center'>
+                                    <div className='flex gap-2 items-center'>
+                                        <div className='w-10 h-10 bg-gray-200 animate-pulse rounded-full'></div>
+                                        <div>
+                                            <div className="flex items-center gap-2">
+                                                <p className="text-gray-800 font-semibold w-24 h-5 rounded-full bg-gray-200"></p>
+                                                <span className='w-5 h-5 bg-gray-200 rounded-full'>
+                                                </span>
+                                            </div>
+                                            <p className="text-gray-800 font-semibold w-32 h-5 rounded-full bg-gray-200 mt-2"></p>
+                                        </div>
+                                    </div>
+                                    <div className="flex gap-1">
+                                        <div className='w-16 h-8 bg-gray-200 animate-pulse rounded-full' ></div>
+                                        <div className='w-16 h-8 bg-gray-200 animate-pulse rounded-full'></div>
+                                    </div>
+                                </div>
+                                <div className='flex gap-2'>
+                                    <div className='w-24 h-10 bg-gray-200 animate-pulse rounded-full'></div>
+                                    <div className='w-24 h-10 bg-gray-200 animate-pulse rounded-full'></div>
+                                    <div className='w-40 h-10 bg-gray-200 animate-pulse rounded-full'></div>
+                                    <div className='w-10 h-10 bg-gray-200 animate-pulse rounded-full'></div>
+                                </div>
+                        </div>
+                    </>
+                    }
                 </div>
                 <div className='col-span-3 flex flex-col gap-2'>
                     {videos ? videos.map(video =>(

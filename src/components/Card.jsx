@@ -248,7 +248,7 @@ const ShortCard =({children,video,...props}) => {
         setLike(!like)
     }
     return (
-        <div className='relative w-[calc(56.25vh_-_72px)] h-[calc(100vh_-_128px)] bg-neutral-900 min-h-[560px] shadow-lg rounded-md  group flex items-center justify-center' key={props.key}>
+        <div className='relative w-[calc(56.25vh_-_72px)] h-[calc(100vh_-_128px)] bg-neutral-900 min-h-[560px] shadow-lg rounded-md  group flex items-center justify-center' key={video.id}>
             <div className="flex flex-col justify-between z-10 h-full w-full" >
                 <div className="absolute inset-0 opacity-0 duration-150" onClick={handlePlayVideo}></div>
                 <div className="flex items-center justify-between p-4 group-hover:opacity-100 opacity-0 bg-gradient-to-b from-black/60 via-black/30 to-transparent rounded-t-md duration-150">
@@ -268,13 +268,13 @@ const ShortCard =({children,video,...props}) => {
                         <Button variant='secondary' size='lg-icon' rounded='rounded-full' onClick={handleLike}>
                             <TbHeartFilled size={24}  className={`duration-150 ${like ? 'text-red-600 animate-jump animate-once animate-ease-linear' :''}`}></TbHeartFilled>
                         </Button>
-                        <span className="text-sm font-semibold text-gray-800">75</span>
+                        <span className="text-sm font-semibold text-gray-800">{video&&new Intl.NumberFormat( 'vi-Vn', { maximumFractionDigits: 1,notation: "compact" , compactDisplay: "short"}).format(video.likeCount)}</span>
                     </div>
                     <div className="flex flex-col items-center">
                         <Button variant='secondary' size='lg-icon' rounded='rounded-full'>
                             <BiSolidMessageDetail size={24}></BiSolidMessageDetail>
                         </Button>
-                        <span className="text-sm font-semibold text-gray-800">12</span>
+                        <span className="text-sm font-semibold text-gray-800">{video&&new Intl.NumberFormat( 'vi-Vn', { maximumFractionDigits: 1,notation: "compact" , compactDisplay: "short"}).format(video.commentCount)}</span>
                     </div>
                     <div className="flex flex-col items-center">
                         <Button variant='secondary' size='lg-icon' rounded='rounded-full'>
@@ -290,8 +290,8 @@ const ShortCard =({children,video,...props}) => {
                     <div className="flex justify-between items-end p-4">
                         <div>
                             <div className="flex items-center gap-2">
-                                <Avatar online={true}></Avatar>
-                                <p className='font-semibold text-white text-md'>{video.author}</p>
+                                <Avatar online={true} img={video.author.photo_picture}></Avatar>
+                                <p className='font-semibold text-white text-md'>{video.author.name}</p>
                                 <Button variant='light' size='sm' rounded='rounded-full'className='!px-3'>Theo dõi</Button>
                             </div>
                             <div className="text-white text-sm font-semibold line-clamp-2 mt-1">
@@ -306,7 +306,23 @@ const ShortCard =({children,video,...props}) => {
                 </div>
             </div>
             <div className="absolute inset-0 ">
-                <ReactPlayer muted={muteVid} ref={vidRef} playing={playing} onProgress={handleCurrentTime} onDuration={handleVideoTime} className='rounded-md overflow-hidden relative w-full h-full' width={'100%'} height={'100%'} url={video.url?video.url:testVideo}></ReactPlayer>
+                <ReactPlayer muted={muteVid} ref={vidRef} playing={playing} onProgress={handleCurrentTime} onDuration={handleVideoTime} className='rounded-md overflow-hidden relative w-full h-full' width={'100%'} height={'100%'} thumbnail={video.thumbnail} url={video.id?"https://www.youtube.com/watch?v="+video.id:testVideo}></ReactPlayer>
+            </div>
+        </div>
+    )
+}
+const ShortCardLoader =() => {
+    return (
+        <div className='relative w-[calc(56.25vh_-_72px)] h-[calc(100vh_-_128px)] bg-neutral-900/50 animate-pulse min-h-[560px] shadow-lg rounded-md overflow-hidden group flex items-center justify-center'>
+            <div className="flex flex-col justify-between z-10 h-full w-full p-4" >
+                <div className="flex flex-col justify-between"></div>
+                <div className="p-2 flex gap-2">
+                <div className="w-10 h-10 rounded-full bg-gray-200 animate-pulse"></div>
+                    <div className="flex flex-col gap-1">
+                        <div className="w-32 h-5 rounded-full bg-gray-200 animate-pulse"></div>
+                        <div className="w-16 h-5 rounded-full bg-gray-200 animate-pulse"></div>
+                    </div>
+                </div>
             </div>
         </div>
     )
@@ -319,7 +335,7 @@ const WatchCardContent =({children,views,title,author,publish_date,...props}) =>
         <div className={`p-2 flex gap-2`}>
             {children}
             <div>
-                {title&&<div className="text-sm font-semibold text-gray-800 line-clamp-2 min-w-[220px]">{title}</div>}
+                {title&&<div className="text-sm font-semibold text-gray-800 line-clamp-2 min-w-[180px]">{title}</div>}
                 {author.name&&<div className="text-xs text-gray-500">{author.name}</div>}
                 <div className="text-xs text-gray-500 flex items-center gap-1">
                     {views&&<span>{new Intl.NumberFormat( 'vi-Vn', { maximumFractionDigits: 1,notation: "compact" , compactDisplay: "short" }).format(views)} lượt xem</span>}
@@ -368,7 +384,7 @@ StoryCard.Loader = StoryCardLoader
 WatchCard.Loader = WatchCardLoader
 WatchCard.Thumbnail = WatchCardThumbnail
 WatchCard.Content = WatchCardContent
-
+ShortCard.Loader = ShortCardLoader
 export default PostCard
 export  {
     StoryCard,

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 const Product = ({children,...props}) => {
     return (
-        <Link {...props} className='flex flex-col border rounded-lg group hover:shadow-md overflow-hidden bg-white hover:border-emerald-700 duration-150'>
+        <Link {...props} className='flex flex-col border rounded-lg group hover:shadow-md overflow-hidden bg-white hover:border-gray-800 duration-150'>
             {children}
         </Link>
     )
