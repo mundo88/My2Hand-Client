@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Favourite = () => {
+const Saved = () => {
     return (
         <div  className=' flex items-center justify-center h-screen'>
-            <p className='text-8xl font-bold text-emerald-700'>Favourite</p>
+            <p className='text-8xl font-bold text-emerald-700'>Saved</p>
         </div>
     );
 }
 
-export default Favourite;
+export default Saved;

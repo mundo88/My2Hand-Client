@@ -12,13 +12,14 @@ import {
 } from "react-router-dom";
 import Layout from './layout/Layout';
 import WatchHome from './pages/watch/WatchHome';
-import Favourite from './pages/favourite/Favourite';
+import Saved from './pages/saved/Saved';
 import Explore from './pages/explore/Explore';
 import Newfeed from './pages/newfeed/Newfeed';
 import AuthLayout from './pages/auth/AuthLayout';
 import Short from './pages/watch/Short';
 import Watching from './pages/watch/Watching';
 import Watch from './pages/watch/Watch';
+import Message from './pages/message/Message';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
               <Route exact path="/" element={<Home />} />
               <Route element={<Layout/>}>
                 <Route path="/newfeed" element={<Newfeed />}/>
+                <Route path="/message" element={<Message />}/>
                 <Route path="/shop" element={<Shop />}/>
                 <Route element={<Watch></Watch>}>
                   <Route path="/watch/:str" element={<Watching />}/>
@@ -34,7 +36,7 @@ function App() {
                   <Route path="/watch/home" element={<WatchHome />}/>
                   <Route path="/watch/short" element={<Short />}/>
                 </Route>
-                <Route path="/favourite" element={<Favourite />}/>
+                <Route path="/saved" element={<Saved />}/>
                 <Route path="/Explore" element={<Explore />}/>
                 <Route path="/profile/:int" element={<Newfeed />}/>
               </Route>

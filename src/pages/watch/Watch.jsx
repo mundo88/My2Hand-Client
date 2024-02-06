@@ -3,7 +3,7 @@ import { NavLink, Outlet } from 'react-router-dom';
 
 const Watch = () => {
     return (
-        <div>
+        <div className='h-screen flex flex-col'>
             <nav>
                 <div className='py-3 px-8 flex bg-white border-b'>
                     <div className='flex items-center space-x-2'>
@@ -23,7 +23,9 @@ const Watch = () => {
                     </div>
                 </div>
             </nav>
-            <Outlet></Outlet>
+            <div className='h-full overflow-y-auto'>
+                <Outlet></Outlet>
+            </div>
         </div>
     );
 }
