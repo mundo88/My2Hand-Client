@@ -18,11 +18,11 @@ const Layout = () => {
                 <div className='flex-1 w-full overflow-hidden'>
                     <Outlet/>
                 </div>
-                <div className='fixed bottom-4 right-4'>
+                {/* <div className='fixed bottom-4 right-4'>
                     <Button variant='light' size='lg-icon' rounded='rounded-full' className="shadow-md hover:text-emerald-700 hover:!bg-white">
                         <RiMessengerFill size={24}/>
                     </Button>
-                </div>
+                </div> */}
            </div>
     );
 }
