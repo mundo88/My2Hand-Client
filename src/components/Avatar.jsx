@@ -16,7 +16,7 @@ const Avatar = ({children,...props}) => {
             <div className='overflow-hidden rounded-full w-full h-full'>
                 <img src={props.img ||'https://phanmemmkt.vn/wp-content/uploads/2022/11/avatar-tet-2023-cute-31.jpg'} className="object-cover w-full h-full" alt=""/>
             </div>
-            {props.online && <div className='absolute h-3 w-3 bg-emerald-700 rounded-full right-0 -bottom-0.5'></div>}
+            {props.online && <div className='absolute h-2.5 w-2.5 bg-green-700 rounded-full right-0 -bottom-0'></div>}
         </div>
     );
 }

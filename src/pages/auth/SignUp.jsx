@@ -19,7 +19,7 @@ const SignUp = () => {
       <>
           <div className='max-w-md w-full mx-auto mb-8'>
               <p className='text-4xl font-semibold text-gray-800'>Đăng ký</p>
-              <p className='text-md font-semibold text-gray-800 mt-4'>Đã có tài khoản? <Link to={'/login'} className='text-emerald-700'>Đăng nhập ngay.</Link></p>
+              <p className='text-md font-semibold text-gray-800 mt-4'>Đã có tài khoản? <Link to={'/login'} className='text-cyan-700'>Đăng nhập ngay.</Link></p>
           </div>
           <div className='flex flex-col mt-8 max-w-md w-full mx-auto gap-6'>
               <InputField placeholder='Your email or username' size={'lg'}>
@@ -44,7 +44,7 @@ const SignUp = () => {
                   </button>
               </InputField>
               <div className='flex items-center justify-between'>
-                  <label className='has-[:checked]:text-emerald-700 flex items-center justify-center text-gray-600 hover:text-emerald-600 gap-2 duration-150'>
+                  <label className='has-[:checked]:text-cyan-700 flex items-center justify-center text-gray-600 hover:text-cyan-600 gap-2 duration-150'>
                       {sendNotification ? <ImCheckboxUnchecked size={16}/> :<ImCheckboxChecked size={16}/> }
                       <input type="checkbox" ref={sendNotificationRef} hidden onInput={()=>{setSendNotification(!sendNotification)}}/>
                       <span className='font-semibold text-sm'>Gửi thông báo qua email của tôi</span>

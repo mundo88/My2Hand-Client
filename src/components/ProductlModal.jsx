@@ -33,15 +33,16 @@ const ProductlModal = ({ children,show,onClose,onOpen,productId, ...props }) => 
     useEffect(() => {
 		function close(event) {
 			if (event.keyCode === 27) {
-                console.log('hehe')
 				onClose();
 			}
 		}
         if (show) {
             window.addEventListener("keydown", close);
+            document.body.classList.add('overflow-hidden')
         }
         return function removeListener() {
             window.removeEventListener("keydown", close);
+            document.body.classList.remove('overflow-hidden')
         }// eslint-disable-next-line react-hooks/exhaustive-deps
     }, [show]); 
     useEffect(()=>{
@@ -60,7 +61,6 @@ const ProductlModal = ({ children,show,onClose,onOpen,productId, ...props }) => 
     };
     return(
         <div className={`fixed w-screen h-screen top-0 left-0 z-[100] duration-200`} {...props}>
-
             <div className={`absolute inset-0 bg-black/80 z-10 duration-100`} onClick={()=>onClose()}></div>
             <div className="h-full pt-12">
                 <div className={`bg-gray-100 z-20 relative rounded-t-3xl duration-300 transition-transform h-full ${show? 'ModalOpen':'ModalClosed'}`}>
@@ -171,7 +171,7 @@ const ProductlModal = ({ children,show,onClose,onOpen,productId, ...props }) => 
                                         Color
                                         </span>
                                         <div className="flex justify-between items-center gap-3 mt-4">
-                                        <div className="w-full h-auto aspect-square rounded-xl duration-150 bg-sky-500 border"></div>
+                                        <div className="w-full h-auto aspect-square rounded-xl duration-150 bg-cyan-500 border"></div>
                                         <div className="w-full h-auto aspect-square rounded-xl duration-150 bg-yellow-300 border"></div>
                                         <div className="w-full h-auto aspect-square rounded-xl duration-150 bg-green-500 border"></div>
                                         <div className="w-full h-auto aspect-square rounded-xl duration-150 bg-white border"></div>
@@ -212,7 +212,7 @@ const ProductlModal = ({ children,show,onClose,onOpen,productId, ...props }) => 
                                                     <div className="flex gap-1 items-center">
                                                         <p className="font-semibold text-gray-800 text-md">My Store</p>
                                                         <p className="font-semibold text-gray-800 text-md">·</p>
-                                                        <p className='font-semibold text-emerald-700 text-md duration-150 hover:underline'>Theo dõi</p>
+                                                        <p className='font-semibold text-cyan-700 text-md duration-150 hover:underline'>Theo dõi</p>
                                                     </div>
                                                     <p className="font-semibold text-gray-600 text-xs">@mundoshop</p>
                                                 </div>

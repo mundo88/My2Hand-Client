@@ -98,7 +98,7 @@ const PostCard = ({children,post,handlePostDetail,...props}) => {
                 <div>
                     <div className="flex items-center gap-2">
                         <p className='font-semibold text-gray-800 text-sm'>{post.author.name}</p>
-                        <span className='text-emerald-700'>
+                        <span className='text-cyan-700'>
                             <BsPatchCheckFill size={16} />
                         </span>
                     </div>
@@ -117,7 +117,7 @@ const PostCard = ({children,post,handlePostDetail,...props}) => {
                         el : paginationRef.current,
                         clickable: true,
                         renderBullet: function (index, className) {
-                          return (`<div className="w-2 h-2 bg-gray-100 rounded-full [&.swiper-pagination-bullet-active]:w-5 [&.swiper-pagination-bullet-active]:bg-emerald-500 ${className}"></div>`)
+                          return (`<div className="w-2 h-2 bg-gray-100 rounded-full [&.swiper-pagination-bullet-active]:w-5 [&.swiper-pagination-bullet-active]:bg-cyan-500 ${className}"></div>`)
                     }}}
                     navigation={{
                         nextEl: nextRef.current,
@@ -168,17 +168,17 @@ const PostCard = ({children,post,handlePostDetail,...props}) => {
             <div className='px-4 pt-2'>
                 <div className='text-sm text-gray-800 whitespace-pre-line'>
                     <Interweave content={post.content} />
-                <p className='text-emerald-700 hover:*:underline *:cursor-pointer'><span>#Neymarsport</span> <span>#DaiNeymar</span> <span>#PremierLeague</span> <span>#Coach </span><span>#Challenge</span></p>
+                <p className='text-cyan-700 hover:*:underline *:cursor-pointer'><span>#Neymarsport</span> <span>#DaiNeymar</span> <span>#PremierLeague</span> <span>#Coach </span><span>#Challenge</span></p>
                 </div>
             </div>
             <div className='px-2 mt-2 flex items-center justify-between'>
                 <div className="flex items-center gap-1">
                     <Button variant='text' size='sm' rounded='rounded-full' onClick={handleLike}>
                        { like ? 
-                         <BiSolidLike className="text-emerald-700" size={16}></BiSolidLike>:
+                         <BiSolidLike className="text-cyan-700" size={16}></BiSolidLike>:
                          <BiLike size={16}></BiLike>
                        }
-                        <span className={like &&'text-emerald-700'}>312</span>
+                        <span className={like &&'text-cyan-700'}>312</span>
                     </Button>
                     <Button variant='text' size='sm' rounded='rounded-full'>
                         <GoComment size={16}></GoComment>
@@ -300,7 +300,7 @@ const ShortCard =({children,video,...props}) => {
                         </div>
                     </div>
                     <div className="w-full h-1 relative bg-gray-100 opacity-0 group-hover:opacity-100 duration-150">
-                        <div className={`absolute bottom-0 left-0 bg-emerald-500 h-1`} style={{width:`${(currentTime/vidTime)*100}%`}}>
+                        <div className={`absolute bottom-0 left-0 bg-cyan-500 h-1`} style={{width:`${(currentTime/vidTime)*100}%`}}>
                         </div>
                     </div>
                 </div>

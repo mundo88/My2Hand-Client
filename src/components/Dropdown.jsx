@@ -15,13 +15,16 @@ const DropdownContext = createContext({
 const DropdownContainer =({ children ,...props})=> {
     const { open } = useContext(DropdownContext); // get the context
     const postion = {
-        top:'mb-2 bottom-full',
-        bottom:'mt-2 top-full'
+        top:'bottom-full',
+        bottom:'top-full',
+        'bottom-left':'top-full -right-0',
+        'bottom-center':'top-full right-1/2 translate-x-1/2',
+        'bottom-right':'top-full -left-0',
     }
     return (
       <>
         {open &&
-            <div className={`absolute max-w-xs w-56 p-2 ${props.postion ? postion[props.postion]:'mt-2 top-full'} bg-white rounded-lg shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] right-0 z-50`} >
+            <div className={`absolute max-w-xs w-56 p-2 ${props.postion ? postion[props.postion]:postion['top-center']} bg-white rounded-lg shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] right-0 z-50 ${props.className}`} >
                 {children}
             </div>
         }
@@ -49,10 +52,9 @@ const DropdownItemIcon = ({children}) => {
         </span>
     )
 }
-    
-const DropdownItem = ({ children, ...props }) => {
+const DropdownItem = ({to, children, ...props }) => {
   return (
-    <Link to="#" {...props} className="flex items-center px-3 py-1.5 text-sm text-gray-800 capitalize transition-colors duration-150 transform hover:bg-gray-200 rounded-md">
+    <Link to={to} className="flex items-center px-3 py-1.5 text-sm text-gray-800 capitalize transition-colors duration-150 transform hover:bg-gray-200 rounded-md">
         {children}
     </Link>
   );
@@ -67,7 +69,7 @@ const DropdownButton =({ children, ...props }) => {
       console.log(open);
     }
     return (
-        <div className='cursor-pointer' onClick={toggleOpen} {...props}>
+        <div className={`cursor-pointer ${open ? 'first:ring-2 first:ring-gray-200': ''}`} onClick={toggleOpen} {...props}>
             {children}
         </div>
     )

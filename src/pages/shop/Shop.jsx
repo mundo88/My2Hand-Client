@@ -53,7 +53,7 @@ const Shop = () => {
                 <div className=''>
                     <div className="flex justify-between items-center">
                         <div className='font-semibold text-md text-gray-800'>Danh mục</div>
-                        <Link className='font-semibold text-md text-emerald-700'>Xem thêm</Link>
+                        <Link className='font-semibold text-md text-cyan-700'>Xem thêm</Link>
                     </div>
                     <div className='relative mt-4'>
                         <div className='flex gap-3 '>
@@ -101,7 +101,7 @@ const Shop = () => {
                                 <div className='w-7 h-7 rounded-md bg-gray-800 flex items-center justify-center text-white font-semibold'>{counter}</div>
                             </div>
                         </div>
-                        <Link className='font-semibold text-md text-emerald-700'>Xem thêm</Link>
+                        <Link className='font-semibold text-md text-cyan-700'>Xem thêm</Link>
                     </div>
                     <div className='relative'>
                         <Swiper 
@@ -124,7 +124,7 @@ const Shop = () => {
                                             <div className='text-xs text-gray-600 font-semibold'>{product.category.name}</div>
                                             <div className='text-gray-800 text-sm font-semibold duration-150 mt-0.5 truncate'>{product.title}</div>
                                             <div className='flex items-center justify-between mt-3'>
-                                                <span className='font-semibold text-emerald-700 text-md'>${product.price}</span>
+                                                <span className='font-semibold text-cyan-700 text-md'>${product.price}</span>
                                                 <div className='flex items-center gap-1'>
                                                     <span className='text-yellow-500'>
                                                         <FaStar size={12}/>
@@ -156,7 +156,7 @@ const Shop = () => {
                             </div>
                             <div className='font-semibold text-md text-gray-800'>Shop tiêu biểu</div>
                         </div>
-                        <Link className='font-semibold text-md text-emerald-700'>Xem thêm</Link>
+                        <Link className='font-semibold text-md text-cyan-700'>Xem thêm</Link>
                     </div>
                     <div className='mt-4'>
                         <div className='relative w-full rounded-lg overflow-hidden'>
@@ -173,7 +173,7 @@ const Shop = () => {
                                         <div className='text-sm text-gray-800 font-semibold mr-2 truncate'>{product.category.name}</div>
                                     </div>
                                     <div className='max-'>
-                                        <div className='text-sm text-emerald-700 font-semibold mr-2 truncate'>{product.title}</div>
+                                        <div className='text-sm text-cyan-700 font-semibold mr-2 truncate'>{product.title}</div>
                                     </div>
                                 </div>
                             ))}

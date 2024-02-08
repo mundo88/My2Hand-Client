@@ -11,9 +11,11 @@ import { Navigation } from "swiper/modules";
 import { LuHeart } from "react-icons/lu";
 import { useEffect } from "react";
 import axios from "axios";
-import { GoHome } from "react-icons/go";
-import { IoGridOutline } from "react-icons/io5";
-import { PiYoutubeLogoLight } from "react-icons/pi";
+import Dropdown from "../../components/Dropdown";
+
+import { GoHeartFill,  GoHomeFill } from "react-icons/go";
+import { HiShoppingBag } from "react-icons/hi2";
+import { PiCompassFill, PiMessengerLogoFill, PiVideoFill } from 'react-icons/pi';
 
 const MySwiperSlide =(props,key)=>{
     return (
@@ -41,7 +43,7 @@ const MySwiperSlide =(props,key)=>{
                         <p className="text-sm text-white font-semibold">
                             Áo mùa đông chất liệu vải nhập đài loan
                         </p>
-                        <p className="text-sm text-white bg-emerald-600 w-fit py-1 px-2 font-semibold rounded-md mt-1.5">
+                        <p className="text-sm text-white bg-cyan-600 w-fit py-1 px-2 font-semibold rounded-md mt-1.5">
                             ${props.price}
                         </p>
                     </div>
@@ -84,20 +86,62 @@ const Home = () => {
                 </div>
                 <div className="bg-white col-span-5 p-10 flex flex-col">
                     <Nav>
-                        <Nav.Col>
-                            <Nav.MiniBarButton/>
-                        </Nav.Col>
-                        <Nav.Col className={'justify-between'}>
-                            <Nav.Item className='w-full' to='/shop'>
-                                <GoHome size={28}></GoHome>
-                            </Nav.Item>
-                            <Nav.Item className='w-full' to='/newfeed'>
-                                <IoGridOutline size={28}></IoGridOutline>
-                            </Nav.Item>
-                            <Nav.Item className='w-full' to='/watch'>
-                               <PiYoutubeLogoLight  size={32}></PiYoutubeLogoLight>
-                            </Nav.Item>
-                        </Nav.Col>
+                        <Dropdown >
+                            <Dropdown.Button>
+                                <Nav.MiniBarButton/>
+                            </Dropdown.Button>
+                            <Dropdown.DropdownContainer postion={'bottom-right'} className='mt-2'>
+                                <Dropdown.Item  to={'/newfeed'}>
+                                    <Dropdown.ItemIcon>
+                                        <GoHomeFill size={20} />
+                                    </Dropdown.ItemIcon>
+                                    <Dropdown.ItemText>
+                                        Bảng tin
+                                    </Dropdown.ItemText>
+                                </Dropdown.Item>
+                                <Dropdown.Item to={'/explore'}>
+                                    <Dropdown.ItemIcon>
+                                        <PiCompassFill size={20} />
+                                    </Dropdown.ItemIcon>
+                                    <Dropdown.ItemText>
+                                        Khám phá
+                                    </Dropdown.ItemText>
+                                </Dropdown.Item>
+                                <Dropdown.Item to={'/watch'}>
+                                    <Dropdown.ItemIcon>
+                                        <PiVideoFill size={20} />
+                                    </Dropdown.ItemIcon>
+                                    <Dropdown.ItemText>
+                                        Video
+                                    </Dropdown.ItemText>
+                                </Dropdown.Item>
+                                <Dropdown.Item to={'/shop'}>
+                                    <Dropdown.ItemIcon>
+                                        <HiShoppingBag size={20} />
+                                    </Dropdown.ItemIcon>
+                                    <Dropdown.ItemText>
+                                        Mua sắm
+                                    </Dropdown.ItemText>
+                                </Dropdown.Item>
+                                <Dropdown.Item to={'/message'}>
+                                    <Dropdown.ItemIcon>
+                                        <PiMessengerLogoFill size={20} />
+                                    </Dropdown.ItemIcon>
+                                    <Dropdown.ItemText>
+                                        Trò chuyện
+                                    </Dropdown.ItemText>
+                                </Dropdown.Item>
+                                <Dropdown.Item to={'/saved'}>
+                                    <Dropdown.ItemIcon>
+                                        <GoHeartFill size={20} />
+                                    </Dropdown.ItemIcon>
+                                    <Dropdown.ItemText>
+                                        Đã lưu
+                                    </Dropdown.ItemText>
+                                </Dropdown.Item>
+                            </Dropdown.DropdownContainer>
+                        </Dropdown>  
+                        
                     </Nav>
                     <div className='mt-16'>
                         <div>
@@ -127,7 +171,7 @@ const Home = () => {
                                         <div className='w-full h-auto aspect-square overflow-hidden rounded-lg'>
                                             <img src={category.image} alt=""  className='w-full h-full object-cover group-hover:scale-110 duration-150'/>
                                         </div>
-                                        <span className='text-sm text-center group-hover:text-emerald-700 duration-150 truncate'>{category.name}</span>
+                                        <span className='text-sm text-center group-hover:text-cyan-700 duration-150 truncate'>{category.name}</span>
                                     </Link>
                                 </SwiperSlide>
                                 )}
@@ -136,16 +180,16 @@ const Home = () => {
                     </div>
                     <div className='mt-16 flex flex-col flex-1'>
                         <div className='flex items-center space-x-8 border-b border-b-gray-100'>
-                            <button onClick={ ()=>setTab('foru') } className={`py-2 flex items-center border-b-2 duration-150 translate-y-0.5 ${tab==='foru' ? 'font-semibold border-emerald-700 text-emerald-700':'border-transparent font-semibold text-gray-600'}`} >
+                            <button onClick={ ()=>setTab('foru') } className={`py-2 flex items-center border-b-2 duration-150 translate-y-0.5 ${tab==='foru' ? 'font-semibold border-cyan-700 text-cyan-700':'border-transparent font-semibold text-gray-600'}`} >
                                 <span>Dành cho bạn</span>
                             </button>
-                            <button onClick={ ()=>setTab('all') } className={`py-2 flex items-center border-b-2 duration-150 translate-y-0.5 ${tab==='all' ? 'font-semibold border-emerald-700 text-emerald-700':'border-transparent font-semibold text-gray-600'}`} >
+                            <button onClick={ ()=>setTab('all') } className={`py-2 flex items-center border-b-2 duration-150 translate-y-0.5 ${tab==='all' ? 'font-semibold border-cyan-700 text-cyan-700':'border-transparent font-semibold text-gray-600'}`} >
                                 <span>Tất cả</span>
                             </button>
-                            <button onClick={ ()=>setTab('selling') } className={`py-2 flex items-center border-b-2 duration-150 translate-y-0.5 ${tab==='selling' ? 'font-semibold border-emerald-700 text-emerald-700':'border-transparent font-semibold text-gray-600'}`} >
+                            <button onClick={ ()=>setTab('selling') } className={`py-2 flex items-center border-b-2 duration-150 translate-y-0.5 ${tab==='selling' ? 'font-semibold border-cyan-700 text-cyan-700':'border-transparent font-semibold text-gray-600'}`} >
                                 <span>Bán chạy</span>
                             </button>
-                            <button onClick={ ()=>setTab('new')}  className={`py-2 flex items-center border-b-2 duration-150 translate-y-0.5 ${tab==='new' ? 'font-semibold border-emerald-700 text-emerald-700':'border-transparent font-semibold text-gray-600'}`} >
+                            <button onClick={ ()=>setTab('new')}  className={`py-2 flex items-center border-b-2 duration-150 translate-y-0.5 ${tab==='new' ? 'font-semibold border-cyan-700 text-cyan-700':'border-transparent font-semibold text-gray-600'}`} >
                                 <span>Sản phẩm mới</span>
                             </button>
                         </div>

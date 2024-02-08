@@ -8,9 +8,9 @@ const InputFieldIcon =({children,...props})=>{
         </div>
     )
 };
-const InputFieldInput = ({children,...props})=>{
+const InputFieldInput = ({children,className,...props})=>{
     return (
-        <input className='h-full outline-none w-full bg-transparent' {...props}/>
+        <input className={`h-full outline-none w-full bg-transparent ${className}`} {...props}/>
     )
 }
 const InputField = ({children,...props}) => {
@@ -23,7 +23,7 @@ const InputField = ({children,...props}) => {
         'default':'h-10'
     }
     return (
-        <div className={`flex ${size[props.size] || size['default']} bg-gray-100 overflow-hidden items-center rounded-${props.rounded || 'md'} relative focus-within:ring-2 ring-offset-2 ring-offset-emerald-50 duration-150 ring-emerald-200 overflow-hidden`}>
+        <div className={`flex ${size[props.size] || size['default']} bg-gray-100 overflow-hidden items-center rounded-${props.rounded || 'md'} relative focus-within:ring-2 ring-offset-2 ring-offset-cyan-50 duration-150 ring-cyan-200 overflow-hidden ${props.className}`}>
             {children}
         </div>
     );

@@ -2,12 +2,12 @@ import React from 'react'
 
 const Button = ({children,...props})=>{
     var variantProps = {
-        'primary': `${props.text || 'text-white'} bg-emerald-600 hover:bg-emerald-700`,
+        'primary': `${props.text || 'text-white'} bg-cyan-600 hover:bg-cyan-700`,
         'secondary' :`${props.text || 'text-gray-800'} bg-gray-100 hover:bg-gray-200`,
         'outline' : `${props.text || 'text-gray-800'} bg-white border border-gray-300 hover:bg-gray-100`,
-        'text' : `${props.text || 'text-gray-600'} hover:text-emerald-700 bg-transparent hover:bg-gray-100`,
+        'text' : `${props.text || 'text-gray-600'} hover:text-cyan-700 bg-transparent hover:bg-gray-100`,
         'light' :`${props.text || 'text-gray-800'} bg-white hover:bg-gray-200`,
-        'gradient':`${props.text || 'text-white'} bg-gradient-to-r from-purple-700 via-emerald-600 to-emerald-700`,
+        'gradient':`${props.text || 'text-white'} bg-gradient-to-r from-purple-700 via-cyan-600 to-cyan-700`,
         'black':`${props.text || 'text-white'} bg-gray-800 hover:bg-gray-900`,
     }
     var sizeProps = {

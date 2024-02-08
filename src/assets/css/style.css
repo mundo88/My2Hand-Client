@@ -33,11 +33,11 @@
     .ModalOpen {
         animation: openModal 0.3s ease-out forwards;
         -webkit-animation: openModal 0.3s ease-out forwards;
-}
+    }
     .ModalClosed {
         animation: closeModal 0.3s ease-out forwards;
         -webkit-animation: closeModal 0.3s ease-out forwards;
-}
+    }
     
     @keyframes openModal {
         0% { 

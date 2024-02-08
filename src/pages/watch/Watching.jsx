@@ -85,7 +85,7 @@ const Watching = () => {
                                     <div>
                                         <div className="flex items-center gap-2">
                                             <p className="text-gray-800 font-semibold">{video&&video.author.name}</p>
-                                            <span className='text-emerald-700'>
+                                            <span className='text-cyan-700'>
                                                 <BsPatchCheckFill size={16} />
                                             </span>
                                         </div>
@@ -127,7 +127,7 @@ const Watching = () => {
                                         {video.description&& video.description.slice(0,66)}
                                         <span className='absolute right-0 top-0 h-full w-10 bg-gradient-to-l from-gray-200 to-transparent'></span>
                                     </span>
-                                    <button className='font-semibold ml-1 hover:text-emerald-700 duration-150' onClick={()=>{setfullDes(true)}}>...xem thêm</button>
+                                    <button className='font-semibold ml-1 hover:text-cyan-700 duration-150' onClick={()=>{setfullDes(true)}}>...xem thêm</button>
                                 </div>
                                 :
                                 <div >
@@ -152,7 +152,7 @@ const Watching = () => {
                                             }}>
                                             {products&&products.map(product => 
                                                 <SwiperSlide key={product.id} onClick={()=>handleOpenModal(product.id)}>
-                                                    <Product className='flex flex-col border rounded-lg group hover:border-emerald-700 duration-150 overflow-hidden'>
+                                                    <Product className='flex flex-col border rounded-lg group hover:border-cyan-700 duration-150 overflow-hidden'>
                                                         <Product.Thumbnail>
                                                             <img src={product.images[0]} alt="" className='w-full h-full object-contain'/>
                                                         </Product.Thumbnail>
@@ -160,7 +160,7 @@ const Watching = () => {
                                                             <div className='text-xs text-gray-600 font-semibold'>{product.category.name}</div>
                                                             <div className='text-gray-800 text-sm font-semibold duration-150 mt-0.5 truncate'>{product.title}</div>
                                                             <div className='flex items-center justify-between mt-3'>
-                                                                <span className='font-semibold text-emerald-700 text-md'>${product.price}</span>
+                                                                <span className='font-semibold text-cyan-700 text-md'>${product.price}</span>
                                                                 <div className='flex items-center gap-1'>
                                                                     <span className='text-yellow-500'>
                                                                         <FaStar size={12}/>
@@ -213,9 +213,9 @@ const Watching = () => {
                                         <p className='text-black text-md'>{comment.textDisplay}</p>
                                         <div className="flex gap-4 mt-1">
                                             <span className='text-sm text-gray-500'>{'9 tháng trước'}</span>
-                                            <button className='text-sm text-gray-800 font-semibold hover:text-emerald-700 duration-150 hover:underline'>{comment.likeCount !==0 &&comment.likeCount} Thích</button>
-                                            <button className='text-sm text-gray-800 font-semibold hover:text-emerald-700 duration-150 hover:underline'>Phản hồi</button>
-                                            <button className='text-sm text-gray-800 font-semibold hover:text-emerald-700 duration-150 hover:underline'>Chia sẻ</button>
+                                            <button className='text-sm text-gray-800 font-semibold hover:text-cyan-700 duration-150 hover:underline'>{comment.likeCount !==0 &&comment.likeCount} Thích</button>
+                                            <button className='text-sm text-gray-800 font-semibold hover:text-cyan-700 duration-150 hover:underline'>Phản hồi</button>
+                                            <button className='text-sm text-gray-800 font-semibold hover:text-cyan-700 duration-150 hover:underline'>Chia sẻ</button>
                                         </div>
                                         {comment.totalReplyCount!==0 && 
                                             <Button className='w-fit mt-2' rounded='rounded-full'>

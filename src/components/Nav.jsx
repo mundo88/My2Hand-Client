@@ -14,7 +14,7 @@ import Avatar from './Avatar';
 
 const NavItem = ({children,...props})=>{
     return (
-        <NavLink to={props.to} className={`flex items-center justify-center text-md font-medium text-gray-500 hover:text-gray-800 duration-150 group h-11 min-w-11 rounded-lg relative hover:bg-gray-100 [&.active]:text-emerald-700 ${props.className ? props.className : ""}`}>
+        <NavLink to={props.to} className={`flex items-center justify-center text-md font-medium text-gray-500 hover:text-gray-800 duration-150 group h-11 min-w-11 rounded-lg relative hover:bg-gray-100 [&.active]:text-cyan-700 ${props.className ? props.className : ""}`}>
             {children}
         </NavLink>
     )
@@ -22,7 +22,7 @@ const NavItem = ({children,...props})=>{
 
 const NavSearchbarButton = ({props})=>{
     return (
-        <button className='h-10 min-w-10 w-12 rounded-full flex items-center justify-center text-gray-600 hover:text-emerald-700'>
+        <button className='h-10 min-w-10 w-12 rounded-full flex items-center justify-center text-gray-600 hover:text-cyan-700'>
             <IoSearchOutline size={20}/>
         </button>
     )
@@ -36,7 +36,7 @@ const NavSearchbarInput = (props)=>{
 
 const NavSearchbar =({children,...props})=>{
     return (
-        <div className={`relative flex items-center h-10 rounded-full bg-gray-100 focus-within:border-emerald-600 focus-within: border border-transparent ${props.className ? props.className : ""} ${props.width ? `w-[${props.width}]`: 'w-full'}`}>
+        <div className={`relative flex items-center h-10 rounded-full bg-gray-100 focus-within:border-cyan-600 focus-within: border border-transparent ${props.className ? props.className : ""} ${props.width ? `w-[${props.width}]`: 'w-full'}`}>
             {children}
             <NavSearchbarInput/>
             <NavSearchbarButton/>
@@ -44,13 +44,6 @@ const NavSearchbar =({children,...props})=>{
     )
 }
 
-const NavCol =({children,...props})=>{
-    return (
-        <div className={`col-span-4 flex items-center space-x-3 ${props.className ? props.className : ""}`}>
-            {children}
-        </div>
-    )
-}
 const NavLogo =()=>{
     const navigate = useNavigate();
 
@@ -67,12 +60,64 @@ const NavMiniBarButton = ()=>{
         </Button>
     )
 }
+const NavCurrentUser = ({children,...props}) => {
+    return (
+        <Dropdown>
+        <Dropdown.Button>
+            <Avatar></Avatar>
+        </Dropdown.Button>
+        <Dropdown.DropdownContainer postion='top-left' className='mt-2'>
+            <Dropdown.Item>
+                <Dropdown.ItemIcon>
+                    <TbUserFilled size={20} />
+                </Dropdown.ItemIcon>
+                <Dropdown.ItemText>
+                    Trang cá nhân
+                </Dropdown.ItemText>
+            </Dropdown.Item>
+            <Dropdown.Item>
+                <Dropdown.ItemIcon>
+                    <TbSettingsFilled size={20} />
+                </Dropdown.ItemIcon>
+                <Dropdown.ItemText>
+                    Cài đặt
+                </Dropdown.ItemText>
+            </Dropdown.Item>
+            <Dropdown.Item>
+                <Dropdown.ItemIcon>
+                    <TbShirtFilled size={20} />
+                </Dropdown.ItemIcon>
+                <Dropdown.ItemText>
+                    Đơn mua
+                </Dropdown.ItemText>
+            </Dropdown.Item>
+            <Dropdown.Item>
+                <Dropdown.ItemIcon>
+                    <TbHeartFilled size={20} />
+                </Dropdown.ItemIcon>
+                <Dropdown.ItemText>
+                    Yêu thích
+                </Dropdown.ItemText>
+            </Dropdown.Item>
+            <Dropdown.Separator/>
+            <Dropdown.Item>
+                <Dropdown.ItemIcon>
+                    <IoLogOut size={20} />
+                </Dropdown.ItemIcon>
+                <Dropdown.ItemText>
+                    Đăng xuất
+                </Dropdown.ItemText>
+            </Dropdown.Item>
+        </Dropdown.DropdownContainer>
+    </Dropdown> 
+    )
 
+}
 const Nav = ({children,...props}) => {
     return (
-        <div {...props} className={`h-14 bg-white sticky z-50 top-0 grid grid-cols-12 duration-150 backdrop-blur-3xl ${props.className ? props.className : ""}`}>
+        <div {...props} className={`h-14 bg-white sticky z-50 top-0 flex justify-between items-center duration-150 backdrop-blur-3xl ${props.className ? props.className : ""}`}>
             {children}
-            <NavCol className="justify-end">
+            <div className="justify-end flex items-center">
                 {
                     window.location.pathname !=='/' && (
                         <>
@@ -88,55 +133,8 @@ const Nav = ({children,...props}) => {
                         </>
                     )
                 }
-                <Dropdown>
-                    <Dropdown.Button>
-                        <Avatar></Avatar>
-                    </Dropdown.Button>
-                    <Dropdown.DropdownContainer>
-                        <Dropdown.Item>
-                            <Dropdown.ItemIcon>
-                                <TbUserFilled size={20} />
-                            </Dropdown.ItemIcon>
-                            <Dropdown.ItemText>
-                                Trang cá nhân
-                            </Dropdown.ItemText>
-                        </Dropdown.Item>
-                        <Dropdown.Item>
-                            <Dropdown.ItemIcon>
-                                <TbSettingsFilled size={20} />
-                            </Dropdown.ItemIcon>
-                            <Dropdown.ItemText>
-                                Cài đặt
-                            </Dropdown.ItemText>
-                        </Dropdown.Item>
-                        <Dropdown.Item>
-                            <Dropdown.ItemIcon>
-                                <TbShirtFilled size={20} />
-                            </Dropdown.ItemIcon>
-                            <Dropdown.ItemText>
-                                Đơn mua
-                            </Dropdown.ItemText>
-                        </Dropdown.Item>
-                        <Dropdown.Item>
-                            <Dropdown.ItemIcon>
-                                <TbHeartFilled size={20} />
-                            </Dropdown.ItemIcon>
-                            <Dropdown.ItemText>
-                                Yêu thích
-                            </Dropdown.ItemText>
-                        </Dropdown.Item>
-                        <Dropdown.Separator/>
-                        <Dropdown.Item>
-                            <Dropdown.ItemIcon>
-                                <IoLogOut size={20} />
-                            </Dropdown.ItemIcon>
-                            <Dropdown.ItemText>
-                                Đăng xuất
-                            </Dropdown.ItemText>
-                        </Dropdown.Item>
-                    </Dropdown.DropdownContainer>
-                </Dropdown>                
-            </NavCol>
+                 <NavCurrentUser></NavCurrentUser>          
+            </div>
         </div>
     );
 }
@@ -145,7 +143,6 @@ Nav.Item = NavItem;
 Nav.Searchbar = NavSearchbar;
 Nav.SearchbarButton = NavSearchbarButton
 Nav.SearchbarInput = NavSearchbarInput
-Nav.Col = NavCol
 Nav.MiniBarButton = NavMiniBarButton
 Nav.Logo = NavLogo
 
