@@ -155,11 +155,11 @@ const PostCard = ({children,post,handlePostDetail,...props}) => {
                         </div>
                     </div>
                     <div className='flex space-x-2'>
-                        <Button variant='primary' rounded='rounded-full'>Chi tiết</Button>
-                        <Button variant="light" size='md-icon' rounded='rounded-full'>
+                        <Button variant='primary' rounded='full'>Chi tiết</Button>
+                        <Button variant="light" size='md-icon' rounded='full'>
                             <RiMessengerFill size={20}></RiMessengerFill>
                         </Button>
-                        <Button variant="light" size='md-icon' rounded='rounded-full'>
+                        <Button variant="light" size='md-icon' rounded='full'>
                             <TbHeartFilled size={20}></TbHeartFilled>
                         </Button>
                     </div>
@@ -173,23 +173,23 @@ const PostCard = ({children,post,handlePostDetail,...props}) => {
             </div>
             <div className='px-2 mt-2 flex items-center justify-between'>
                 <div className="flex items-center gap-1">
-                    <Button variant='text' size='sm' rounded='rounded-full' onClick={handleLike}>
+                    <Button variant='text' size='sm' rounded='full' onClick={handleLike}>
                        { like ? 
                          <BiSolidLike className="text-cyan-700" size={16}></BiSolidLike>:
                          <BiLike size={16}></BiLike>
                        }
                         <span className={like &&'text-cyan-700'}>312</span>
                     </Button>
-                    <Button variant='text' size='sm' rounded='rounded-full'>
+                    <Button variant='text' size='sm' rounded='full'>
                         <GoComment size={16}></GoComment>
                         <span >17</span>
                     </Button>
-                    <Button variant='text' size='sm' rounded='rounded-full'>
+                    <Button variant='text' size='sm' rounded='full'>
                         <IoShareSocialOutline size={16}></IoShareSocialOutline>
                         <span >3</span>
                     </Button>
                 </div>
-                <Button variant='text' size='sm' rounded='rounded-full'>
+                <Button variant='text' size='sm' rounded='full'>
                     <MdOutlineBookmarkBorder  size={16}></MdOutlineBookmarkBorder >
                 </Button>
             </div> 
@@ -197,7 +197,7 @@ const PostCard = ({children,post,handlePostDetail,...props}) => {
                 <Avatar ></Avatar>
                 <div className="flex items-center w-full h-10 rounded-full bg-gray-100">
                     <input type="text" className="h-full w-full bg-transparent px-4 outline-none" placeholder="Nhập bình luận của bạn về bài viết" />
-                    <Button variant='secondary' size='sm' rounded='rounded-full' className="mr-1">
+                    <Button variant='secondary' size='sm' rounded='full' className="mr-1">
                         <MdOutlineInsertEmoticon size={20}/>
                     </Button>
                 </div>
@@ -265,24 +265,24 @@ const ShortCard =({children,video,...props}) => {
                 </div>
                 <div className='flex flex-col justify-end gap-2 absolute bottom-0 -right-16'>
                     <div className="flex flex-col items-center">
-                        <Button variant='secondary' size='lg-icon' rounded='rounded-full' onClick={handleLike}>
+                        <Button variant='secondary' size='lg-icon' rounded='full' onClick={handleLike}>
                             <TbHeartFilled size={24}  className={`duration-150 ${like ? 'text-red-600 animate-jump animate-once animate-ease-linear' :''}`}></TbHeartFilled>
                         </Button>
                         <span className="text-sm font-semibold text-gray-800">{video&&new Intl.NumberFormat( 'vi-Vn', { maximumFractionDigits: 1,notation: "compact" , compactDisplay: "short"}).format(video.likeCount)}</span>
                     </div>
                     <div className="flex flex-col items-center">
-                        <Button variant='secondary' size='lg-icon' rounded='rounded-full'>
+                        <Button variant='secondary' size='lg-icon' rounded='full'>
                             <BiSolidMessageDetail size={24}></BiSolidMessageDetail>
                         </Button>
                         <span className="text-sm font-semibold text-gray-800">{video&&new Intl.NumberFormat( 'vi-Vn', { maximumFractionDigits: 1,notation: "compact" , compactDisplay: "short"}).format(video.commentCount)}</span>
                     </div>
                     <div className="flex flex-col items-center">
-                        <Button variant='secondary' size='lg-icon' rounded='rounded-full'>
+                        <Button variant='secondary' size='lg-icon' rounded='full'>
                             <IoIosShareAlt size={24}></IoIosShareAlt>
                         </Button>
                         <span className="text-sm font-semibold text-gray-800">3</span>
                     </div>
-                    <Button variant='secondary' size='lg-icon' rounded='rounded-full'>
+                    <Button variant='secondary' size='lg-icon' rounded='full'>
                         <HiOutlineDotsHorizontal size={24}></HiOutlineDotsHorizontal>
                     </Button>
                 </div>
@@ -292,7 +292,7 @@ const ShortCard =({children,video,...props}) => {
                             <div className="flex items-center gap-2">
                                 <Avatar online={true} img={video.author.photo_picture}></Avatar>
                                 <p className='font-semibold text-white text-md'>{video.author.name}</p>
-                                <Button variant='light' size='sm' rounded='rounded-full'className='!px-3'>Theo dõi</Button>
+                                <Button variant='light' size='sm' rounded='full'className='!px-3'>Theo dõi</Button>
                             </div>
                             <div className="text-white text-sm font-semibold line-clamp-2 mt-1">
                                 {video.title}

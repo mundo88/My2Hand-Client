@@ -176,10 +176,10 @@ const Watching = () => {
                                                 </SwiperSlide>
                                             )}
                                         </Swiper>
-                                        <Button variant='light' className='button-next [&.swiper-button-disabled]:opacity-0 absolute right-2 border top-1/2 -translate-y-1/2 z-10' size='sm-icon' rounded='rounded-full'>
+                                        <Button variant='light' className='button-next [&.swiper-button-disabled]:opacity-0 absolute right-2 border top-1/2 -translate-y-1/2 z-10' size='sm-icon' rounded='full'>
                                             <FiChevronRight size={24}></FiChevronRight>
                                         </Button>
-                                        <Button variant='light' className='button-prev [&.swiper-button-disabled]:opacity-0 absolute left-2 border top-1/2 -translate-y-1/2 z-10' size='sm-icon' rounded='rounded-full'>
+                                        <Button variant='light' className='button-prev [&.swiper-button-disabled]:opacity-0 absolute left-2 border top-1/2 -translate-y-1/2 z-10' size='sm-icon' rounded='full'>
                                             <FiChevronLeft size={24}></FiChevronLeft>
                                         </Button>
                                     </div>
@@ -195,10 +195,10 @@ const Watching = () => {
                             <div className="flex items-center w-full h-12 rounded-full bg-gray-200">
                                 <input type="text" className="h-full w-full bg-transparent px-4 outline-none" placeholder="Nhập bình luận của bạn về bài viết" />
                             </div>
-                            <Button variant='light' size='lg-icon' rounded='rounded-full' >
+                            <Button variant='light' size='lg-icon' rounded='full' >
                                 <MdOutlineInsertEmoticon size={24}/>
                             </Button>
-                            <Button variant='light' size='lg-icon' rounded='rounded-full'>
+                            <Button variant='light' size='lg-icon' rounded='full'>
                                 <IoMdSend size={24} className='ml-1'/>
                             </Button>
                         </div>
@@ -218,7 +218,7 @@ const Watching = () => {
                                             <button className='text-sm text-gray-800 font-semibold hover:text-cyan-700 duration-150 hover:underline'>Chia sẻ</button>
                                         </div>
                                         {comment.totalReplyCount!==0 && 
-                                            <Button className='w-fit mt-2' rounded='rounded-full'>
+                                            <Button className='w-fit mt-2' rounded='full'>
                                                 <span>{comment.totalReplyCount} phản hồi</span>
                                                 <IoIosArrowDown size={16}></IoIosArrowDown>
                                             </Button>

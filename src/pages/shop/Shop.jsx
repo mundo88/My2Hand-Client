@@ -79,10 +79,10 @@ const Shop = () => {
                             )}
                             </Swiper>
                         </div>
-                        <Button variant='light' className='button-next [&.swiper-button-disabled]:opacity-0 absolute -right-3 border top-1/2 -translate-y-1/2 z-10' size='sm-icon' rounded='rounded-full'>
+                        <Button variant='light' className='button-next [&.swiper-button-disabled]:opacity-0 absolute -right-3 border top-1/2 -translate-y-1/2 z-10' size='sm-icon' rounded='full'>
                             <FiChevronRight size={24}></FiChevronRight>
                         </Button>
-                        <Button variant='light' className='button-prev [&.swiper-button-disabled]:opacity-0 absolute -left-3 border top-1/2 -translate-y-1/2 z-10' size='sm-icon' rounded='rounded-full'>
+                        <Button variant='light' className='button-prev [&.swiper-button-disabled]:opacity-0 absolute -left-3 border top-1/2 -translate-y-1/2 z-10' size='sm-icon' rounded='full'>
                             <FiChevronLeft size={24}></FiChevronLeft>
                         </Button>
                     </div>
@@ -140,10 +140,10 @@ const Shop = () => {
                                 </SwiperSlide>
                             )}
                         </Swiper>
-                        <Button variant='light' className='button-next [&.swiper-button-disabled]:opacity-0 absolute -right-1 border top-1/2 -translate-y-1/2 z-10' size='sm-icon' rounded='rounded-full'>
+                        <Button variant='light' className='button-next [&.swiper-button-disabled]:opacity-0 absolute -right-1 border top-1/2 -translate-y-1/2 z-10' size='sm-icon' rounded='full'>
                             <FiChevronRight size={24}></FiChevronRight>
                         </Button>
-                        <Button variant='light' className='button-prev [&.swiper-button-disabled]:opacity-0 absolute -left-1 border top-1/2 -translate-y-1/2 z-10' size='sm-icon' rounded='rounded-full'>
+                        <Button variant='light' className='button-prev [&.swiper-button-disabled]:opacity-0 absolute -left-1 border top-1/2 -translate-y-1/2 z-10' size='sm-icon' rounded='full'>
                             <FiChevronLeft size={24}></FiChevronLeft>
                         </Button>
                     </div>

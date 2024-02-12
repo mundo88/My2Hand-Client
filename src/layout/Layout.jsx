@@ -19,7 +19,7 @@ const Layout = () => {
                     <Outlet/>
                 </div>
                 {/* <div className='fixed bottom-4 right-4'>
-                    <Button variant='light' size='lg-icon' rounded='rounded-full' className="shadow-md hover:text-cyan-700 hover:!bg-white">
+                    <Button variant='light' size='lg-icon' rounded='full' className="shadow-md hover:text-cyan-700 hover:!bg-white">
                         <RiMessengerFill size={24}/>
                     </Button>
                 </div> */}
