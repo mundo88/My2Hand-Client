@@ -1,14 +1,14 @@
 import React from 'react'
 
-const Button = ({children,...props})=>{
+const Button = ({children,text,...props})=>{
     var variantProps = {
-        'primary': `${props.text || 'text-white'} bg-cyan-600 hover:bg-cyan-700`,
-        'secondary' :`${props.text || 'text-gray-800'} bg-gray-100 hover:bg-gray-200`,
-        'outline' : `${props.text || 'text-gray-800'} bg-white border border-gray-300 hover:bg-gray-100`,
-        'text' : `${props.text || 'text-gray-600'} hover:text-cyan-700 bg-transparent hover:bg-gray-100`,
-        'light' :`${props.text || 'text-gray-800'} bg-white hover:bg-gray-200`,
-        'gradient':`${props.text || 'text-white'} bg-gradient-to-r from-purple-700 via-cyan-600 to-cyan-700`,
-        'black':`${props.text || 'text-white'} bg-gray-800 hover:bg-gray-900`,
+        'primary': `${text || 'text-white'} bg-cyan-600 hover:bg-cyan-700`,
+        'secondary' :`${text || 'text-gray-800'} bg-gray-100 hover:bg-gray-200`,
+        'outline' : `${text || 'text-gray-800'} bg-white border border-gray-300 hover:bg-gray-100`,
+        'text' : `${text || 'text-gray-600'} hover:text-cyan-700 bg-transparent hover:bg-gray-100`,
+        'light' :`${text || 'text-gray-800'} bg-white hover:bg-gray-200`,
+        'gradient':`${text || 'text-white'} bg-gradient-to-r from-purple-700 via-cyan-600 to-cyan-700`,
+        'black':`${text || 'text-white'} bg-gray-800 hover:bg-gray-900`,
     }
     var sizeProps = {
         'sm': 'text-sm px-2 h-8 min-h-8',
