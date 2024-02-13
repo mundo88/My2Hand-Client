@@ -115,7 +115,7 @@ const Message = () => {
                     <div className='flex items-center justify-between px-4 pb-2'>
                         <div className='text-sm text-gray-500 flex items-center gap-1'>
                             <IoMail size={16}></IoMail>
-                            <span>Đã liên hệ</span>
+                            <span>Liên hệ gần đây</span>
                         </div>
                         <button className='text-gray-800 hover:text-black flex items-center justify-center'>
                             <HiOutlineDotsHorizontal  size={20}></HiOutlineDotsHorizontal>
