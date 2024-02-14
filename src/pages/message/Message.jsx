@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { HiGif, HiMiniVideoCamera, HiOutlinePencilSquare } from "react-icons/hi2";
 import InputField from "../../components/InputField"
-import { BiCart, BiLock, BiPin, BiSearch, BiSolidCustomize } from 'react-icons/bi';
+import {  BiSearch, BiSolidCustomize } from 'react-icons/bi';
 import { TiPin } from "react-icons/ti";
 import { HiOutlineDotsHorizontal } from 'react-icons/hi';
 import Avatar from '../../components/Avatar';
@@ -39,7 +39,7 @@ const Message = () => {
                     </div>
                     <div className='px-4 mt-2'>
                         <InputField rounded='full' size={'md'}>
-                            <InputField.Input  className={'pl-4'} placeholder={'Tìm kiếm tin nhắn'}/>
+                            <InputField.Input  className={'pl-4'} placeholder={'Tìm kiếm liên hệ'}/>
                             <InputField.Icon>
                                 <BiSearch size={24} className='text-gray-500 hover:text-gray-800'></BiSearch>
                             </InputField.Icon>

@@ -15,7 +15,7 @@ import Product from '../../components/Product';
 import ProductlModal from '../../components/ProductlModal';
 import { FaStar } from 'react-icons/fa';
 import { FiChevronRight,FiChevronLeft } from 'react-icons/fi';
-import { IoIosArrowUp,IoIosArrowDown, IoMdSend } from "react-icons/io";
+import { IoIosArrowDown, IoMdSend } from "react-icons/io";
 import { MdOutlineInsertEmoticon } from "react-icons/md";
 import { WatchCard } from '../../components/Card';
 
@@ -93,24 +93,24 @@ const Watching = () => {
                                     </div>
                                 </div>
                                 <div className="flex gap-1">
-                                <Button rounded={'rounded-full'} size={'sm'} variant={'black'}>Theo dõi</Button>
-                                <Button rounded={'rounded-full'} size={'sm'} variant={'outline'}>Xem trang</Button>
+                                <Button rounded={'full'} size={'sm'} variant={'black'}>Theo dõi</Button>
+                                <Button rounded={'full'} size={'sm'} variant={'outline'}>Xem trang</Button>
                                 </div>
                             </div>
                             <div className='flex gap-2'>
-                                <Button variant='light' rounded="rounded-full">
+                                <Button variant='light' rounded="full">
                                     <BiLike size={24}></BiLike>
                                     <span>{video&&new Intl.NumberFormat( 'vi-Vn', { maximumFractionDigits: 1,notation: "compact" , compactDisplay: "short"}).format(video.likeCount)}</span>
                                 </Button>
-                                <Button variant='light' rounded="rounded-full">
+                                <Button variant='light' rounded="full">
                                     <PiShareFat size={24}></PiShareFat>
                                     <span>Chia sẻ</span>
                                 </Button>
-                                <Button variant='light' rounded="rounded-full">
+                                <Button variant='light' rounded="full">
                                     <GoBookmark size={24}></GoBookmark>
                                     <span>Lưu vào xem sau</span>
                                 </Button>
-                                <Button size={'md-icon'} variant='light' rounded="rounded-full">
+                                <Button size={'md-icon'} variant='light' rounded="full">
                                     <HiOutlineDotsHorizontal size={24}></HiOutlineDotsHorizontal>
                                 </Button>
                             </div>

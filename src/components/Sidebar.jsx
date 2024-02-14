@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import { NavLink, useLocation, useMatch} from "react-router-dom";
+import { Link, NavLink, useMatch} from "react-router-dom";
 
 import { GoHeart, GoHeartFill, GoHome, GoHomeFill } from "react-icons/go";
 import { HiOutlineShoppingBag, HiShoppingBag } from "react-icons/hi2";
@@ -27,7 +27,7 @@ const Sidebar = () => {
                 <div className='w-full flex flex-col justify-between h-full'>
                     <div>
                         <div className='mx-6 mb-10'>
-                            {mini ?<img alt='logo' src={logoImg} className='h-8 w-auto'/> : <p className='text-2xl font-bold hover:text-gray-800'>My2hand</p>}
+                            {mini ?<img alt='logo' src={logoImg} className='h-8 w-auto'/> : <Link to={'/'} className='text-2xl font-bold hover:text-gray-800'>My2hand</Link>}
                         </div>
                         <div className='mx-4 space-y-3'>
                             <NavLink to={'/newfeed'} className='px-2 flex items-center py-1.5 hover:bg-gray-200 text-gray-800 rounded-lg duration-150 gap-3 group'>
@@ -35,52 +35,40 @@ const Sidebar = () => {
                                     isActive ?
                                     <>
                                         <div className='w-9 h-9 overflow-hidden flex items-center justify-center' >
-                                            <GoHomeFill className='text-gray-800' size={30}></GoHomeFill> 
+                                            <GoHomeFill className='text-gray-800' size={28}></GoHomeFill> 
                                         </div>
                                         {!mini && <span className=' text-gray-800 font-bold'>Bảng tin</span>}
                                     </>
                                     :
                                     <>
                                         <div className='w-9 h-9 overflow-hidden flex items-center justify-center' >
-                                            <GoHome className='text-gray-500' size={30}></GoHome> 
+                                            <GoHome className='text-gray-800' size={28}></GoHome> 
                                         </div>
                                         {!mini && <span className=' text-gray-800'>Bảng tin</span>}
                                     </>
                                 )}
                             </NavLink>
-                            <NavLink to={'/search'}  className='px-2 flex items-center py-1.5 hover:bg-gray-200 text-gray-800 rounded-lg duration-150 gap-3 group'>
-                                {({isActive})=>(
-                                    isActive ?
-                                    <>
-                                        <div className='w-9 h-9 overflow-hidden flex items-center justify-center' >
-                                            <IoIosSearch className='text-gray-800' size={30}></IoIosSearch> 
-                                        </div>
-                                        {!mini &&<span className=' text-gray-800 font-bold'>Tìm kiếm</span>}
-                                    </>
-                                    :
-                                    <>
-                                        <div className='w-9 h-9 overflow-hidden flex items-center justify-center' >
-                                            <IoIosSearch className='text-gray-500' size={30}></IoIosSearch> 
-                                        </div>
-                                        {!mini &&<span className=' text-gray-800'>Tìm kiếm</span>}
-                                    </>
-                                )}
-                            </NavLink>
+                            <button className='px-2 w-full flex items-center py-1.5 hover:bg-gray-200 text-gray-800 rounded-lg duration-150 gap-3 group'>
+                                <div className='w-9 h-9 overflow-hidden flex items-center justify-center' >
+                                    <IoIosSearch className='text-gray-800' size={30}></IoIosSearch> 
+                                </div>
+                                {!mini &&<span className=' text-gray-800'>Tìm kiếm</span>}
+                            </button>
                             <NavLink to={'/explore'}  className='px-2 flex items-center py-1.5 hover:bg-gray-200 text-gray-800 rounded-lg duration-150 gap-3 group'>
                                 {({isActive})=>(
                                     isActive ?
                                     <>
                                         <div className='w-9 h-9 overflow-hidden flex items-center justify-center' >
-                                            <PiCompassFill className='text-gray-800' size={30}></PiCompassFill> 
+                                            <PiCompassFill className='text-gray-800' size={28}></PiCompassFill> 
                                         </div>
                                         {!mini &&<span className=' text-gray-800 font-bold'>Khám phá</span>}
                                     </>
                                     :
                                     <>
                                         <div className='w-9 h-9 overflow-hidden flex items-center justify-center' >
-                                            <PiCompass className='text-gray-500' size={30}></PiCompass> 
+                                            <PiCompass className='text-gray-800' size={28}></PiCompass> 
                                         </div>
-                                        {!mini &&<span className=' text-gray-800'>Khám phá</span>}
+                                        {!mini &&<span className=' text-gray-800'>Khám phá́</span>}
                                     </>
                                 )}
                             </NavLink>
@@ -89,14 +77,14 @@ const Sidebar = () => {
                                     isActive ?
                                     <>
                                         <div className='w-9 h-9 overflow-hidden flex items-center justify-center' >
-                                            <HiShoppingBag className='text-gray-800' size={30}></HiShoppingBag> 
+                                            <HiShoppingBag className='text-gray-800' size={28}></HiShoppingBag> 
                                         </div>
                                         {!mini &&<span className=' text-gray-800 font-bold'>Mua sắm</span>}
                                     </>
                                     :
                                     <>
                                         <div className='w-9 h-9 overflow-hidden flex items-center justify-center' >
-                                            <HiOutlineShoppingBag className='text-gray-500' size={30}></HiOutlineShoppingBag> 
+                                            <HiOutlineShoppingBag className='text-gray-800' size={28}></HiOutlineShoppingBag> 
                                         </div>
                                         {!mini &&<span className=' text-gray-800'>Mua sắm</span>}
                                     </>
@@ -107,14 +95,14 @@ const Sidebar = () => {
                                     isActive ?
                                     <>
                                         <div className='w-9 h-9 overflow-hidden flex items-center justify-center' >
-                                            <PiVideoFill className='text-gray-800' size={30}></PiVideoFill> 
+                                            <PiVideoFill className='text-gray-800' size={28}></PiVideoFill> 
                                         </div>
                                         {!mini &&<span className=' text-gray-800 font-bold'>Video</span>}
                                     </>
                                     :
                                     <>
                                         <div className='w-9 h-9 overflow-hidden flex items-center justify-center' >
-                                            <PiVideo className='text-gray-500' size={30}></PiVideo> 
+                                            <PiVideo className='text-gray-800' size={28}></PiVideo> 
                                         </div>
                                         {!mini &&<span className=' text-gray-800'>Video</span>}
                                     </>
@@ -125,14 +113,14 @@ const Sidebar = () => {
                                     isActive ?
                                     <>
                                         <div className='w-9 h-9 overflow-hidden flex items-center justify-center' >
-                                            <PiMessengerLogoFill className='text-gray-800' size={30}></PiMessengerLogoFill> 
+                                            <PiMessengerLogoFill className='text-gray-800' size={28}></PiMessengerLogoFill> 
                                         </div>
                                         {!mini &&<span className=' text-gray-800 font-bold'>Trò chuyện</span>}
                                     </>
                                     :
                                     <>
                                         <div className='w-9 h-9 overflow-hidden flex items-center justify-center' >
-                                            <PiMessengerLogo className='text-gray-500' size={30}></PiMessengerLogo> 
+                                            <PiMessengerLogo className='text-gray-800' size={28}></PiMessengerLogo> 
                                         </div>
                                         {!mini &&<span className=' text-gray-800'>Trò chuyện</span>}
                                     </>
@@ -144,25 +132,25 @@ const Sidebar = () => {
                                     isActive ?
                                     <>
                                         <div className='w-9 h-9 overflow-hidden flex items-center justify-center' >
-                                            <GoHeartFill className='text-gray-800' size={30}></GoHeartFill> 
+                                            <GoHeartFill className='text-gray-800' size={28}></GoHeartFill> 
                                         </div>
                                         {!mini &&<span className=' text-gray-800 font-bold'>Đã lưu</span>}
                                     </>
                                     :
                                     <>
                                         <div className='w-9 h-9 overflow-hidden flex items-center justify-center' >
-                                            <GoHeart className='text-gray-500' size={30}></GoHeart> 
+                                            <GoHeart className='text-gray-800' size={28}></GoHeart> 
                                         </div>
                                         {!mini &&<span className=' text-gray-800'>Đã lưu</span>}
                                     </>
                                 )}
                             </NavLink>
-                            <NavLink to={'/create'}  className='px-2 flex items-center py-1.5 hover:bg-gray-200 text-gray-800 rounded-lg duration-150 gap-3 group'>
+                            <button className='px-2 w-full flex items-center py-1.5 hover:bg-gray-200 text-gray-800 rounded-lg duration-150 gap-3 group'>
                                 <div className='w-9 h-9 overflow-hidden flex items-center justify-center'>
-                                    <BsPlusSquare className='text-gray-500 group-[.active]:text-gray-800' size={23}></BsPlusSquare>
+                                    <BsPlusSquare className='text-gray-800 group-[.active]:text-gray-800' size={23}></BsPlusSquare>
                                 </div>
                                 {!mini &&<span className='group-[.active]:font-bold text-gray-800'>Tạo</span>}
-                            </NavLink>
+                            </button>
                             <NavLink to={'/user/hihi'}  className='px-2 flex items-center py-1.5 hover:bg-gray-200 text-gray-800 rounded-lg duration-150 gap-3 group'>
                                 <div className='w-9 h-9 overflow-hidden flex items-center justify-center rounded-full'>
                                     <div>
@@ -174,12 +162,12 @@ const Sidebar = () => {
                         </div>
                     </div>
                     <div className='px-4'>
-                        <NavLink onClick={()=>{setMini(!mini)}} className='px-2 flex items-center py-1.5 hover:bg-gray-200 text-gray-800 rounded-lg duration-150 gap-3 group'>
+                        <button className='px-2 w-full flex items-center py-1.5 hover:bg-gray-200 text-gray-800 rounded-lg duration-150 gap-3 group'>
                             <div className='w-9 h-9 overflow-hidden flex items-center justify-center' >
-                                <SlMenu className='text-gray-500 group-[.active]:text-gray-800' size={20}></SlMenu>
+                                <SlMenu className='text-gray-800 group-[.active]:text-gray-800' size={20}></SlMenu>
                             </div>
                             {!mini &&<span className='group-[.active]:font-bold text-gray-800'>Xem thêm</span>}
-                        </NavLink>
+                        </button>
                     </div>
                 </div>
             </div>

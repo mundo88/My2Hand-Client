@@ -22,15 +22,17 @@ const Login = () => {
                 <p className='text-md font-semibold text-gray-800 mt-4'>Chưa có tài khoản? <Link to={'/signup'} className='text-cyan-700'>Đăng ký ngay.</Link></p>
             </div>
             <div className='flex flex-col mt-8 max-w-md w-full mx-auto gap-6'>
-                <InputField placeholder='Your email or username' size={'lg'}>
+                <InputField  size={'lg'}>
                     <InputField.Icon>
                         <MdEmail size={24}></MdEmail>
                     </InputField.Icon>
+                    <InputField.Input placeholder='Your email or username'></InputField.Input>
                 </InputField>
                 <InputField placeholder='Your password' type={pwShow ? 'text' : 'password'} size={'lg'}>
                     <InputField.Icon>
                         <PiPasswordFill size={24}></PiPasswordFill>
                     </InputField.Icon>
+                    <InputField.Input placeholder='Your password' type={pwShow ? 'text' : 'password'}></InputField.Input>
                     <button onClick={()=>setPwShow(!pwShow)} className='absolute min-w-12 h-12 right-0 flex items-center justify-center text-gray-600 hover:text-gray-800 duration-150 active:scale-95'>
                         <PiEyeFill size={24}></PiEyeFill>
                     </button>
@@ -45,7 +47,7 @@ const Login = () => {
                         Quên mật khẩu?
                     </Link>
                 </div>
-                <Button variant='gradient' size={'lg'}>
+                <Button variant='primary' size={'lg'}>
                     Đăng nhập
                 </Button>
                 <div className='relative mx-auto w-full text-center py-4'>

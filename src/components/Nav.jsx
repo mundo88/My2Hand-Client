@@ -117,23 +117,23 @@ const Nav = ({children,...props}) => {
     return (
         <div {...props} className={`h-14 bg-white sticky z-50 top-0 flex justify-between items-center duration-150 backdrop-blur-3xl ${props.className ? props.className : ""}`}>
             {children}
-            <div className="justify-end flex items-center">
-                {
-                    window.location.pathname !=='/' && (
-                        <>
-                            <button className='w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-800 duration-150 flex items-center justify-center'>
-                                <BsGridFill size={20}></BsGridFill>
-                            </button>
-                            <button className='w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-800 duration-150 flex items-center justify-center'>
-                                <FaFacebookMessenger  size={20}></FaFacebookMessenger>
-                            </button>
-                            <button className='w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-800 duration-150 flex items-center justify-center'>
-                                <FaBell size={20}></FaBell>
-                            </button>
-                        </>
-                    )
-                }
-                 <NavCurrentUser></NavCurrentUser>          
+            <div className="justify-end flex items-center gap-2">
+                {/* <Button size='md-icon' rounded='full'>
+                    <BsGridFill size={20}></BsGridFill>
+                </Button>
+                <Button size='md-icon' rounded='full'>
+                    <FaFacebookMessenger  size={20}></FaFacebookMessenger>
+                </Button>
+                <Button size='md-icon' rounded='full'>
+                    <FaBell size={20}></FaBell>
+                </Button> */}
+                <Button rounded='full' variant='primary'>
+                    <Link to={'/login'}>Đăng nhập</Link>
+                </Button>
+                <Button rounded='full' variant='outline'>
+                    <Link to={'/signup'}>Đăng ký</Link>
+                </Button>
+                 {/* <NavCurrentUser></NavCurrentUser>           */}
             </div>
         </div>
     );
@@ -145,5 +145,6 @@ Nav.SearchbarButton = NavSearchbarButton
 Nav.SearchbarInput = NavSearchbarInput
 Nav.MiniBarButton = NavMiniBarButton
 Nav.Logo = NavLogo
+Nav.CurrentUser = NavCurrentUser
 
 export default Nav;

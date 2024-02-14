@@ -22,23 +22,26 @@ const SignUp = () => {
               <p className='text-md font-semibold text-gray-800 mt-4'>Đã có tài khoản? <Link to={'/login'} className='text-cyan-700'>Đăng nhập ngay.</Link></p>
           </div>
           <div className='flex flex-col mt-8 max-w-md w-full mx-auto gap-6'>
-              <InputField placeholder='Your email or username' size={'lg'}>
+              <InputField size={'lg'}>
                   <InputField.Icon>
                       <MdEmail size={24}></MdEmail>
                   </InputField.Icon>
+                  <InputField.Input placeholder='Your email or username'></InputField.Input>
               </InputField>
-              <InputField placeholder='Your password' type={pwShow ? 'text' : 'password'} size={'lg'}>
+              <InputField size={'lg'}>
                   <InputField.Icon>
                       <PiPasswordFill size={24}></PiPasswordFill>
                   </InputField.Icon>
+                  <InputField.Input placeholder='Your password' type={pwShow ? 'text' : 'password'}></InputField.Input>
                   <button onClick={()=>setPwShow(!pwShow)} className='absolute min-w-12 h-12 right-0 flex items-center justify-center text-gray-600 hover:text-gray-800 duration-150 active:scale-95'>
                       <PiEyeFill size={24}></PiEyeFill>
                   </button>
               </InputField>
-              <InputField placeholder='re password' type={pwShow ? 'text' : 'password'} size={'lg'}>
+              <InputField  size={'lg'}>
                   <InputField.Icon>
                       <PiPasswordFill size={24}></PiPasswordFill>
                   </InputField.Icon>
+                  <InputField.Input placeholder='re password' type={pwShow ? 'text' : 'password'} size={'lg'}></InputField.Input>
                   <button onClick={()=>setPwShow(!pwShow)} className='absolute min-w-12 h-12 right-0 flex items-center justify-center text-gray-600 hover:text-gray-800 duration-150 active:scale-95'>
                       <PiEyeFill size={24}></PiEyeFill>
                   </button>
@@ -50,7 +53,7 @@ const SignUp = () => {
                       <span className='font-semibold text-sm'>Gửi thông báo qua email của tôi</span>
                   </label>
               </div>
-              <Button variant='gradient' size={'lg'}>
+              <Button variant='primary' size={'lg'}>
                   <FaArrowRightLong size={24}></FaArrowRightLong>
                   <span className='ml-1'>Tiếp tục</span>
               </Button>

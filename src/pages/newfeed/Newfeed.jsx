@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import 'swiper/css';
@@ -211,7 +211,7 @@ const Newfeed = () => {
             </div>
             {/* <div className='sticky top-0 flex h-full'>
                 <Sidebar></Sidebar>          
-            </div>      */}
+            </div>*/}
             {modal && <ProductlModal productId={productId} show={modal} onClose={handleCloseModal}></ProductlModal>}
         </div>
     );

@@ -12,7 +12,7 @@ const Avatar = ({children,...props}) => {
     }
     
     return (
-        <div className={`${ size[props.size] || size['md'] } rounded-full bg-white relative`}>
+        <div className={`${ size[props.size] || size['md'] } rounded-full bg-white relative border`}>
             <div className='overflow-hidden rounded-full w-full h-full'>
                 <img src={props.img ||'https://phanmemmkt.vn/wp-content/uploads/2022/11/avatar-tet-2023-cute-31.jpg'} className="object-cover w-full h-full" alt=""/>
             </div>

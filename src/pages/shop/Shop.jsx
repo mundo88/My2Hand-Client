@@ -17,7 +17,6 @@ import ProductlModal from '../../components/ProductlModal';
 
 const Shop = () => {
     const [categories,setCategories] = useState([])
-    const [users,setUsers] = useState([])
     const [modal,setModal] = useState(null)
     const [productId,setProductId] = useState(0)
 
@@ -28,22 +27,16 @@ const Shop = () => {
         setModal(true)
         setProductId(productId)
     }
-    useEffect(() =>{
-        axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/users`).then((response)=>{
-            setUsers(response.data.users);
-        })
-    },[])
+
     const [products,setProducts] = useState([])
     useEffect(() =>{
         axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/products`).then((response)=>{
             setProducts(response.data.products);
         })
-    },[])
-    useEffect(()=>{
         axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/categories`).then((response)=>{
             setCategories(response.data.categories);
         })
-    },[])    
+    },[])
     const [counter,setCounter] = useState(60)
     setTimeout(() => {
         setCounter(new Date().getSeconds())
