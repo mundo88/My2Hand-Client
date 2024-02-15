@@ -16,7 +16,7 @@ const Explore = () => {
         setImage(img)
     }
     useEffect(()=>{
-        axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/images`).then((response)=>{
+        axios.get(`/api/images`).then((response)=>{
             setImages(response.data);
         })
     },[])
@@ -24,7 +24,7 @@ const Explore = () => {
     return (
         <div className={`flex items-center justify-center min-h-screen`}>
             <div className='py-4 max-w-5xl w-full mx-auto grid grid-cols-3 gap-1'>
-                {images.map((image,index)=>(
+                {images.length ? images.map((image,index)=>(
                     <div onClick={()=>handleOpenPost(image.urls.regular)} className={`'w-full rounded-md overflow-hidden aspect-square relative group`}>
                         <img src={image.urls.regular} alt=""  className='w-full h-full object-cover'/>
                         <div className='absolute inset-0 bg-black/30 group-hover:opacity-100 opacity-0 duration-150 flex items-center justify-center'>
@@ -38,7 +38,20 @@ const Explore = () => {
                             </div>
                         </div>
                     </div>
-                ))}
+                )) 
+                : 
+                <>
+                <div className='w-full rounded-md overflow-hidden aspect-square bg-gray-200 animate-pulse'></div>
+                <div className='w-full rounded-md overflow-hidden aspect-square bg-gray-200 animate-pulse'></div>
+                <div className='w-full rounded-md overflow-hidden aspect-square bg-gray-200 animate-pulse'></div>
+                <div className='w-full rounded-md overflow-hidden aspect-square bg-gray-200 animate-pulse'></div>
+                <div className='w-full rounded-md overflow-hidden aspect-square bg-gray-200 animate-pulse'></div>
+                <div className='w-full rounded-md overflow-hidden aspect-square bg-gray-200 animate-pulse'></div>
+                <div className='w-full rounded-md overflow-hidden aspect-square bg-gray-200 animate-pulse'></div>
+                <div className='w-full rounded-md overflow-hidden aspect-square bg-gray-200 animate-pulse'></div>
+                <div className='w-full rounded-md overflow-hidden aspect-square bg-gray-200 animate-pulse'></div>
+                </>
+                }
             </div>  
             {showPost&& <PostModal onClose={handleClosePost} show={showPost} image={image}></PostModal>}
         </div>

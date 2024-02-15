@@ -111,14 +111,14 @@ const Newfeed = () => {
         setProductId(productId)
     }
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/stories`).then((response) => {
+        axios.get(`/api/stories`).then((response) => {
             setStories(response.data.data);
         });
     },[]);
     
     const [posts,setpost] = useState(0)
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/posts`).then((response) => {
+        axios.get(`/api/posts`).then((response) => {
             setpost(response.data.posts);
         });
     },[]);

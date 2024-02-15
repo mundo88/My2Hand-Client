@@ -22,7 +22,7 @@ const Message = () => {
     const [tab,setTab] = useState('message')
     const [users,setUsers] = useState([])
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/users`).then((response)=>{
+        axios.get(`/api/users`).then((response)=>{
             setUsers(response.data.users);
         })
     }, []);

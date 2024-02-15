@@ -6,7 +6,7 @@ import Avatar from '../../components/Avatar';
 const WatchHome = () => {
     const [videos,setVideos] = useState(null)
     useEffect(()=>{
-        axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/videos`).then((response)=>{
+        axios.get(`/api/videos`).then((response)=>{
             setVideos(response.data.data);
         })
     },[])

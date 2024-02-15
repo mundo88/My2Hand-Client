@@ -47,7 +47,7 @@ const ProductlModal = ({ children,show,onClose,onOpen,productId, ...props }) => 
     }, [show]); 
     useEffect(()=>{
         if(productId){
-             axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/products/${productId}`).then(response => {
+             axios.get(`/api/products/${productId}`).then(response => {
                 setData(response.data)
             })
         }return setData(false)

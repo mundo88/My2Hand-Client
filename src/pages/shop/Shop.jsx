@@ -30,10 +30,10 @@ const Shop = () => {
 
     const [products,setProducts] = useState([])
     useEffect(() =>{
-        axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/products`).then((response)=>{
+        axios.get(`/api/products`).then((response)=>{
             setProducts(response.data.products);
         })
-        axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/categories`).then((response)=>{
+        axios.get(`/api/categories`).then((response)=>{
             setCategories(response.data.categories);
         })
     },[])

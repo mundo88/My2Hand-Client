@@ -1,7 +1,7 @@
-import { BiLike ,BiSolidMessageDetail,BiSolidLike  } from "react-icons/bi";
+import { BiLike ,BiSolidMessageDetail,BiSolidLike, BiSolidChat  } from "react-icons/bi";
 import { GoComment } from "react-icons/go";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
-import { FaEarthAmericas } from "react-icons/fa6";
+import { FaBookmark, FaEarthAmericas } from "react-icons/fa6";
 import { TbHeartFilled } from "react-icons/tb";
 import Button from './Button';
 import { BsPatchCheckFill } from "react-icons/bs";
@@ -12,7 +12,7 @@ import { CiImageOn,CiLocationOn  } from "react-icons/ci";
 import { IoBagHandleOutline,IoShareSocialOutline,IoPause,IoVolumeHigh,IoVolumeMute ,IoPlay } from "react-icons/io5";
 import {RiMessengerFill } from "react-icons/ri";
 import { MdOutlineInsertEmoticon,MdOutlineBookmarkBorder } from "react-icons/md";
-import { IoIosShareAlt } from "react-icons/io";
+import { IoIosShareAlt, IoMdShare } from "react-icons/io";
 import testVideo from "../assets/video/pexels.mp4"
 import { useRef, useState } from "react";
 import ReactPlayer from "react-player";
@@ -172,26 +172,31 @@ const PostCard = ({children,post,handlePostDetail,...props}) => {
                 </div>
             </div>
             <div className='px-2 mt-2 flex items-center justify-between'>
-                <div className="flex items-center gap-1">
-                    <Button variant='text' size='sm' rounded='full' onClick={handleLike}>
-                       { like ? 
-                         <BiSolidLike className="text-cyan-700" size={16}></BiSolidLike>:
-                         <BiLike size={16}></BiLike>
-                       }
-                        <span className={like &&'text-cyan-700'}>312</span>
-                    </Button>
-                    <Button variant='text' size='sm' rounded='full'>
-                        <GoComment size={16}></GoComment>
-                        <span >17</span>
-                    </Button>
-                    <Button variant='text' size='sm' rounded='full'>
-                        <IoShareSocialOutline size={16}></IoShareSocialOutline>
-                        <span >3</span>
-                    </Button>
+                <div className="flex px-2 items-center justify-between gap-4 w-full my-3">
+                    <div className='flex gap-4 items-center'>
+                        <div className='flex items-center gap-2'>
+                            <Button rounded='full' size='sm-icon' onClick={handleLike}>
+                                <TbHeartFilled className={like && 'text-red-600'} size={20}></TbHeartFilled>
+                            </Button>
+                            <span className='text-sm font-medium'>3.2M</span>
+                        </div>
+                        <div className='flex items-center gap-2'>
+                            <Button rounded='full' size='sm-icon'>
+                                <BiSolidChat size={20}></BiSolidChat>
+                            </Button>
+                            <span className='text-sm font-medium'>2339</span>
+                        </div>
+                        <div className='flex items-center gap-2'>
+                            <Button rounded='full' size='sm-icon'>
+                                <IoMdShare size={20}></IoMdShare>
+                            </Button>
+                            <span className='text-sm font-medium'>274.7k</span>
+                        </div>
+                    </div>
+                    <button className='text-gray-800 hover:text-gray-500'>
+                        <FaBookmark size={20}></FaBookmark>
+                    </button>
                 </div>
-                <Button variant='text' size='sm' rounded='full'>
-                    <MdOutlineBookmarkBorder  size={16}></MdOutlineBookmarkBorder >
-                </Button>
             </div> 
             <div className="w-full mt-2 mb-4 flex items-center px-4 gap-1">
                 <Avatar ></Avatar>

@@ -12,13 +12,18 @@ import Button from './Button';
 import { MdEmojiEmotions, MdKeyboardVoice } from 'react-icons/md';
 import { RiUserFollowLine } from 'react-icons/ri';
 import {  IoMdShare } from 'react-icons/io';
-
+import { LuHeart } from 'react-icons/lu';
 const PostModal = ({ children,show,onClose,onOpen,image, ...props }) => {
     const [users,setUsers] = useState([])
     const [tab,setTab] = useState('comment')
+    const [products,setProducts] = useState([])
+  
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/users`).then((response)=>{
+        axios.get(`/api/users`).then((response)=>{
             setUsers(response.data.users);
+        })
+        axios.get(`/api/products`).then((response)=>{
+            setProducts(response.data.products);
         })
     }, []);
     useEffect(() => {
@@ -48,7 +53,7 @@ const PostModal = ({ children,show,onClose,onOpen,image, ...props }) => {
                         <img src={image} alt="" className='w-auto h-full object-cover' />
                     </div>
                     <div className= 'bg-white min-w-[450px] w-[500px] h-full flex flex-col justify-between border-l'>
-                        <div className='px-4 pt-4 relative group border-b'>
+                        <div className='px-4 pt-4 relative group border-b mb-4'>
                             <div>
                                 <div className='flex gap-4 items-center justify-between'>
                                     <div className='flex gap-4'>
@@ -82,17 +87,18 @@ const PostModal = ({ children,show,onClose,onOpen,image, ...props }) => {
                                 <div className="line-clamp-1 px-2 text-gray-500 pr-2">https://www.my2hand.com/@ideasjoseantonio/post/6758571167092591877</div>
                                 <button className='font-medium py-2 px-2 active:bg-gray-200 duration-150 text-gray-800 whitespace-nowrap'>Sao chép liên kết</button>
                             </div>
-                            <div className='flex items-center mt-3'>
-                                <button onClick={()=>setTab('comment')} className={`w-full -mb-[2px] py-2 border-b-2 ${tab==='comment' && 'border-gray-500'}`}>
+                            <div className='flex items-center mt-3 '>
+                                <button onClick={()=>setTab('comment')} className={`w-full translate-y-0.5 py-2 border-b-2 ${tab==='comment' && 'border-gray-500'}`}>
                                     Bình luận
                                 </button>
-                                <button onClick={()=>setTab('product')} className={`w-full -mb-[2px] py-2 border-b-2 ${tab==='product' && 'border-gray-500'}`}>
+                                <button onClick={()=>setTab('product')} className={`w-full translate-y-0.5 py-2 border-b-2 ${tab==='product' && 'border-gray-500'}`}>
                                     Sản phẩm của kênh
                                 </button>
                             </div>
                         </div>
-                        <div className='flex-1 max-h-full overflow-hidden'>
-                            <div className='flex flex-col gap-6 h-full overflow-auto p-4 scroll'>
+                        <div className='flex-1 max-h-full overflow-auto scroll'>
+                            {tab==='comment' &&
+                            <div className='flex flex-col gap-6 h-full p-4'>
                                 {users.map(user=>(
                                     <div className='flex gap-4 relative'>
                                         <div className='h-full'>
@@ -114,7 +120,41 @@ const PostModal = ({ children,show,onClose,onOpen,image, ...props }) => {
                                         </button>
                                     </div>
                                 ))}
-                            </div>
+                            </div>}
+                            {tab==='product'&&
+                            <div className='px-4 pb-4 grid grid-cols-2 gap-4'>
+                                {products.map(product=>(
+                                    <div className="rounded-lg relative overflow-hidden group">
+                                        <div className="w-full h-full">
+                                            <img src={product.images[0]} alt="" className="w-full h-full object-cover"/>
+                                        </div>
+                                        <div className="absolute inset-0 rounded-lg group-hover:opacity-100 bg-black/60 opacity-0 duration-150 flex flex-col justify-between">
+                                            <div className="p-4 flex items-center justify-between">
+                                                <div className="flex space-x-2 items-center">
+                                                    <div className="h-8 w-8 overflow-hidden rounded-md">
+                                                        <img className="w-full h-full object-cover" src="https://cdn.dribbble.com/users/146798/screenshots/2691447/helping-hands_1x.png" alt="" />
+                                                    </div>
+                                                    <div className="flex flex-col justify-center">
+                                                        <p className="text-white text-sm font-medium">Mundo shop</p>
+                                                        <p className="text-gray-200 text-xs">11.2k follow</p>
+                                                    </div>
+                                                </div>
+                                                <button className='text-gray-200 hover:text-white duration-150 active:scale-75'>
+                                                    <LuHeart size={24}/>
+                                                </button>
+                                            </div>
+                                            <div className="p-4 relative">
+                                                <p className="text-sm text-white font-semibold">
+                                                    Áo mùa đông chất liệu vải nhập đài loan
+                                                </p>
+                                                <p className="text-sm text-white bg-cyan-600 w-fit py-1 px-2 font-semibold rounded-md mt-1.5">
+                                                    ${product.price}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>}
                         </div>
                         <div className='p-4 border-t'>
                             <div className="flex items-center justify-between gap-4">

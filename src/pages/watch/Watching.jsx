@@ -30,7 +30,7 @@ const Watching = () => {
     const [fullDes,setfullDes] = useState(false)
     const [videos,setVideos] = useState(null)
     useEffect(()=>{
-        axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/videos`).then((response)=>{
+        axios.get(`/api/videos`).then((response)=>{
             setVideos(response.data.data);
         })
     },[])
@@ -42,8 +42,8 @@ const Watching = () => {
         setModal(true)
         setProductId(productId)
     }
-    const video_api = `${process.env.REACT_APP_API_ENDPOINT}/api/video`
-    const product_api = `${process.env.REACT_APP_API_ENDPOINT}/api/products`
+    const video_api = `/api/video`
+    const product_api = `/api/products`
     useEffect(() => {
         axios({
             url:video_api,
